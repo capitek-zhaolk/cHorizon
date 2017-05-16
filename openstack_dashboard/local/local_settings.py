@@ -12,6 +12,9 @@ DEBUG = True
 
 SITE_BRANDING = "Cloud Platform Dev"
 
+# Compress all assets offline as part of packaging installation
+COMPRESS_OFFLINE = False
+
 # WEBROOT is the location relative to Webserver root
 # should end with a slash.
 WEBROOT = '/'
@@ -145,11 +148,11 @@ SECRET_KEY = secret_key.generate_or_read_from_file(
 #    },
 #}
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-    },
-}
+#CACHES = {
+#    'default': {
+#        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#    },
+#}
 
 # Send email to the console by default
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
