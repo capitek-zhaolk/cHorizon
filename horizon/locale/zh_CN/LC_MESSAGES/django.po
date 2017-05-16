@@ -116,7 +116,7 @@ msgid "Actions"
 msgstr "动作"
 
 msgid "Active Instances:"
-msgstr "运行的实例："
+msgstr "运行的云服务器："
 
 msgid "Active RAM:"
 msgstr "启用的内存："

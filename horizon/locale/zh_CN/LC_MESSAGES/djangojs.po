@@ -221,7 +221,7 @@ msgid "Finish"
 msgstr "结束"
 
 msgid "Flavor"
-msgstr "实例类型"
+msgstr "云服务器类型"
 
 msgid "Format validation failed"
 msgstr "格式验证失败"

@@ -99,6 +99,9 @@ OPENSTACK_KEYSTONE_DEFAULT_DOMAIN = 'Default'
 # information on how to report issues).
 #HORIZON_CONFIG["bug_url"] = "http://bug-report.example.com"
 
+# OpenStack RC
+HORIZON_CONFIG["openrc"] = False
+
 # Show backdrop element outside the modal, do not close the modal
 # after clicking on backdrop.
 #HORIZON_CONFIG["modal_backdrop"] = "static"

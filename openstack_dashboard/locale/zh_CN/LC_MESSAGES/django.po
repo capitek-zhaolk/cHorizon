@@ -63,7 +63,7 @@ msgid ""
 "visible within OpenStack. <br> <br> This is equivalent to the <tt>cinder "
 "manage</tt> command."
 msgstr ""
-"通过Cinder主机来对现有卷进行管理。这将会使该卷在OpenStack内变得可见。<br> "
+"通过Cinder主机来对现有云硬盘进行管理。这将会使该云硬盘在OpenStack内变得可见。<br> "
 "<br>这相当于<tt>cinder manage</tt>命令"
 
 msgid ""
@@ -244,7 +244,7 @@ msgstr "合法的MAC地址"
 msgid ""
 "A volume of %(req)iGiB cannot be created as you only have %(avail)iGiB of "
 "your quota available."
-msgstr "不能创建%(req)iGiB的卷，因为您的可用配置只有%(avail)iGiB。"
+msgstr "不能创建%(req)iGiB的云硬盘，因为您的可用配置只有%(avail)iGiB。"
 
 msgid "AKI - Amazon Kernel Image"
 msgstr "AKI - Amazon Kernel 镜像"
@@ -287,7 +287,7 @@ msgid "Accept Transfer"
 msgstr "接受转让"
 
 msgid "Accept Volume Transfer"
-msgstr "接受卷转让"
+msgstr "接受云硬盘转让"
 
 msgid "Access & Security"
 msgstr "访问和安全"
@@ -471,14 +471,14 @@ msgid ""
 "added to the same consistency group only if they are associated with same "
 "back end."
 msgstr ""
-"给该一致性组增加卷类型。如果多种卷类型皆与同一个存储后端相关联则可都加入该一"
+"给该一致性组增加云硬盘类型。如果多种云硬盘类型皆与同一个存储后端相关联则可都加入该一"
 "致性组。"
 
 msgid "Add, modify or remove the QoS Spec associated with this volume type."
-msgstr "添加、修改、删除该卷类型所关联的 QoS 规格。"
+msgstr "添加、修改、删除该云硬盘类型所关联的 QoS 规格。"
 
 msgid "Add/Remove Consistency Group Volumes"
-msgstr "添加/删除一致性组卷"
+msgstr "添加/删除一致性组云硬盘"
 
 msgid "Add/Remove Hosts to Aggregate"
 msgstr "添加/删除聚合中的主机"
@@ -487,7 +487,7 @@ msgid ""
 "Add/remove volumes to/from this consistency group. Only volumes associated "
 "with the volume type(s) assigned to this consistency group will be available "
 "for selection."
-msgstr "添加/删除 该一致性组内的卷。 仅可选择卷类型已指派给该一致性组的卷。"
+msgstr "添加/删除 该一致性组内的云硬盘。 仅可选择云硬盘类型已指派给该一致性组的云硬盘。"
 
 #, python-format
 msgid "Added Firewall \"%s\"."
@@ -589,7 +589,7 @@ msgstr "后于"
 msgid ""
 "After launching an instance, you login using the private key (the username "
 "might be different depending on the image you launched):"
-msgstr "创建云服务器后，您使用私钥来登录实例(登陆用户名取决您所用的镜像)："
+msgstr "创建云服务器后，您使用私钥来登录云服务器(登陆用户名取决您所用的镜像)："
 
 #, python-format
 msgid "Agent %s was successfully added."
@@ -626,10 +626,10 @@ msgid "All available hosts"
 msgstr "所有可用主机"
 
 msgid "All available volume types"
-msgstr "所有可用卷类型"
+msgstr "所有可用云硬盘类型"
 
 msgid "All available volumes"
-msgstr "所有可用卷"
+msgstr "所有可用云硬盘"
 
 msgid "All fields are optional."
 msgstr "所有的选项都是可选的"
@@ -637,7 +637,7 @@ msgstr "所有的选项都是可选的"
 msgid ""
 "All selected volume types must be associated with the same volume backend "
 "name."
-msgstr "所有选中的卷必须托管于同一个存储后端。"
+msgstr "所有选中的云硬盘必须托管于同一个存储后端。"
 
 msgid "Allocate Floating IP"
 msgstr "分配浮动IP"
@@ -718,7 +718,7 @@ msgid "Associate QoS Spec"
 msgstr "关联QoS规格"
 
 msgid "Associate QoS Spec with Volume Type"
-msgstr "将QoS规格关联到卷类型"
+msgstr "将QoS规格关联到云硬盘类型"
 
 msgid "Associated QoS Spec"
 msgstr "已关联的QoS规格"
@@ -733,7 +733,7 @@ msgid "At least one network must be specified."
 msgstr "至少选择一个网络"
 
 msgid "At least one volume type must be assigned to a consistency group."
-msgstr "至少为一致性组分配一种卷类型"
+msgstr "至少为一致性组分配一种云硬盘类型"
 
 msgid "Attach Interface"
 msgstr "连接接口"
@@ -742,13 +742,13 @@ msgid "Attach To Instance"
 msgstr "连接到云服务器"
 
 msgid "Attach Volume"
-msgstr "连接卷"
+msgstr "连接云硬盘"
 
 msgid "Attach Volume to Running Instance."
-msgstr "连接卷到正在运行的云服务器上"
+msgstr "连接云硬盘到正在运行的云服务器上"
 
 msgid "Attach a Volume"
-msgstr "连接卷"
+msgstr "连接云硬盘"
 
 msgid "Attach to Instance"
 msgstr "连接到云服务器"
@@ -775,7 +775,7 @@ msgstr "为云服务器 %s 连接端口。"
 
 #, python-format
 msgid "Attaching volume %(vol)s to instance %(inst)s on %(dev)s."
-msgstr "正在设备 %(dev)s上为主机 %(inst)s 连接卷%(vol)s"
+msgstr "正在设备 %(dev)s上为主机 %(inst)s 连接云硬盘%(vol)s"
 
 msgid "Attachments"
 msgstr "连接的设备"
@@ -906,16 +906,16 @@ msgid "Boot from image"
 msgstr "从镜像启动"
 
 msgid "Boot from image (creates a new volume)"
-msgstr "从镜像启动 (创建一个新卷)"
+msgstr "从镜像启动 (创建一个新云硬盘)"
 
 msgid "Boot from snapshot"
 msgstr "从快照启动"
 
 msgid "Boot from volume"
-msgstr "从卷启动"
+msgstr "从云硬盘启动"
 
 msgid "Boot from volume snapshot (creates a new volume)"
-msgstr "从卷快照启动(创建一个新卷)"
+msgstr "从云硬盘快照启动(创建一个新云硬盘)"
 
 msgid "Bootable"
 msgstr "可启动"
@@ -954,7 +954,7 @@ msgid ""
 "By default, volume type is created as public. To create a private volume "
 "type, uncheck this field."
 msgstr ""
-"默认情况下，卷类型创建的时候设置为公共的。如果要创建一个私有类型的卷，取消选"
+"默认情况下，云硬盘类型创建的时候设置为公共的。如果要创建一个私有类型的云硬盘，取消选"
 "中这个选项"
 
 msgid "CIDR"
@@ -1009,12 +1009,12 @@ msgid "Change Template"
 msgstr "更改模板"
 
 msgid "Change Volume Type"
-msgstr "修改卷类型"
+msgstr "修改云硬盘类型"
 
 msgid ""
 "Change the volume type of a volume after its creation. This is equivalent to "
 "the <tt>cinder retype</tt> command."
-msgstr "在创建完成后改变卷的类型。这相当于<tt>cinder retype</tt>命令"
+msgstr "在创建完成后改变云硬盘的类型。这相当于<tt>cinder retype</tt>命令"
 
 msgid "Change user's password. We highly recommend you create a strong one."
 msgstr "修改您的密码。强烈建议您选择一个复杂密码。"
@@ -1047,7 +1047,7 @@ msgstr[0] "检查栈"
 msgid ""
 "Check the &quot;Delete Volumes&quot; box to also delete any volumes "
 "associated with this consistency group."
-msgstr "选中 &quot;删除卷&quot; 复选框也会删除与此一致性组相关联的卷。"
+msgstr "选中 &quot;删除云硬盘&quot; 复选框也会删除与此一致性组相关联的云硬盘。"
 
 msgid "Checked Stack"
 msgid_plural "Checked Stacks"
@@ -1059,7 +1059,7 @@ msgstr "校验和"
 msgid ""
 "Choose \"Disk Format\" for the image. The volume images are created with the "
 "QEMU disk image utility."
-msgstr "为镜像选择“磁盘格式”。卷镜像可以用QEMU磁盘镜像来创建"
+msgstr "为镜像选择“磁盘格式”。云硬盘镜像可以用QEMU磁盘镜像来创建"
 
 msgid "Choose Your Boot Source Type."
 msgstr "选择您的启动源的类型"
@@ -1082,7 +1082,7 @@ msgid "Choose a snapshot"
 msgstr "选择快照"
 
 msgid "Choose a volume"
-msgstr "选择卷"
+msgstr "选择云硬盘"
 
 msgid "Choose an DHCP Agent to attach to."
 msgstr "选择要连接的DHCP Agent。"
@@ -1136,7 +1136,7 @@ msgid ""
 "Cinder host on which the existing volume resides; takes the form: "
 "host@backend-name#pool"
 msgstr ""
-"Cinder主机就是那个卷驻留的地方；使用这样的形式： host@backend-name#pool"
+"Cinder主机就是那个云硬盘驻留的地方；使用这样的形式： host@backend-name#pool"
 
 msgid "Cipher"
 msgstr "Cipher"
@@ -1164,7 +1164,7 @@ msgstr "克隆一致性组"
 msgid ""
 "Clone each of the volumes in the source Consistency Group, and then add them "
 "to a newly created Consistency Group."
-msgstr "克隆源一致性组中的每个卷，然后把它们添加到新创建的一致性组中。"
+msgstr "克隆源一致性组中的每个云硬盘，然后把它们添加到新创建的一致性组中。"
 
 msgid "Close"
 msgstr "关闭"
@@ -1226,7 +1226,7 @@ msgid "Confirming Resize or Migrate"
 msgstr "正在确认 调整大小/迁移"
 
 msgid "Consistency Group"
-msgstr "一致性卷组"
+msgstr "一致性云硬盘组"
 
 msgid "Consistency Group Information"
 msgstr "一致性组信息"
@@ -1322,7 +1322,7 @@ msgid "Create Domain"
 msgstr "创建域"
 
 msgid "Create Encrypted Volume Type"
-msgstr "创建加密的卷类型"
+msgstr "创建加密的云硬盘类型"
 
 msgid "Create Encryption"
 msgstr "创建加密"
@@ -1431,43 +1431,43 @@ msgid "Create VPN service for current project."
 msgstr "为当前项目创建VPN服务"
 
 msgid "Create Volume"
-msgstr "创建卷"
+msgstr "创建云硬盘"
 
 msgid "Create Volume Backup"
-msgstr "创建一个卷备份"
+msgstr "创建一个云硬盘备份"
 
 msgid "Create Volume Consistency Group"
-msgstr "创建卷一致性组"
+msgstr "创建云硬盘一致性组"
 
 msgid "Create Volume Snapshot"
-msgstr "创建卷快照"
+msgstr "创建云硬盘快照"
 
 msgid "Create Volume Snapshot (Force)"
-msgstr "创建卷快照(强制)"
+msgstr "创建云硬盘快照(强制)"
 
 msgid "Create Volume Transfer"
-msgstr "创建卷转让"
+msgstr "创建云硬盘转让"
 
 msgid "Create Volume Type"
-msgstr "创建卷类型"
+msgstr "创建云硬盘类型"
 
 msgid "Create Volume Type Encryption"
-msgstr "创建加密卷类型"
+msgstr "创建加密云硬盘类型"
 
 msgid "Create Volume Type Extra Spec"
-msgstr "创建卷类型扩展规格"
+msgstr "创建云硬盘类型扩展规格"
 
 msgid ""
 "Create a Consistency Group that will contain newly created volumes cloned "
 "from each of the snapshots in the source Consistency Group Snapshot."
 msgstr ""
-"创建一个一致性组，它包括对源一致性组快照中的每个快照进行克隆所新创建的卷。"
+"创建一个一致性组，它包括对源一致性组快照中的每个快照进行克隆所新创建的云硬盘。"
 
 msgid "Create a Metadata Namespace"
 msgstr "创建元数据命名空间"
 
 msgid "Create a New Volume"
-msgstr "创建一个新卷"
+msgstr "创建一个新云硬盘"
 
 msgid "Create a Router"
 msgstr "新建路由"
@@ -1545,7 +1545,7 @@ msgid "Create a mapping."
 msgstr "创建映射"
 
 msgid "Create a new \"extra spec\" key-value pair for a volume type."
-msgstr "为卷类型创建新的\"扩展规格\"键值对。"
+msgstr "为云硬盘类型创建新的\"扩展规格\"键值对。"
 
 #, python-format
 msgid "Create a new \"spec\" key-value pair for QoS Spec \"%(qos_spec_name)s\""
@@ -1577,7 +1577,7 @@ msgid "Create a project to organize users."
 msgstr "为组织用户创建一个项目"
 
 msgid "Create a snapshot for each volume contained in the Consistency Group."
-msgstr "为一致性组中的每个卷创建快照"
+msgstr "为一致性组中的每个云硬盘创建快照"
 
 msgid ""
 "Create a subnet associated with the network. Advanced configuration is "
@@ -1585,7 +1585,7 @@ msgid ""
 msgstr "创建关联到这个网络的子网。点击“子网详情”标签可进行高级配置。"
 
 msgid "Create an Encrypted Volume Type"
-msgstr "创建加密的卷类型"
+msgstr "创建加密的云硬盘类型"
 
 msgid "Created"
 msgstr "已创建"
@@ -1627,7 +1627,7 @@ msgid "Created new project \"%s\"."
 msgstr "创建项目\"%s\""
 
 msgid "Created new volume consistency group"
-msgstr "创建新的卷一致性组"
+msgstr "创建新的云硬盘一致性组"
 
 #, python-format
 msgid "Created spec \"%s\"."
@@ -1639,7 +1639,7 @@ msgstr "已新增子网\"%s\"."
 
 #, python-format
 msgid "Created volume transfer: \"%s\"."
-msgstr "已创建的卷转让：\"%s\"。"
+msgstr "已创建的云硬盘转让：\"%s\"。"
 
 msgid "Creates a router with specified parameters."
 msgstr "基于特殊参数创建一路由。"
@@ -1679,16 +1679,16 @@ msgid ""
 "type to be encrypted.  Encryption information cannot be added to a volume "
 "type if volumes are currently in use with that volume type."
 msgstr ""
-"为一个卷类型创建加密后，使用此类型的所有卷都会被加密。若卷类型当前正在被卷使"
+"为一个云硬盘类型创建加密后，使用此类型的所有云硬盘都会被加密。若云硬盘类型当前正在被云硬盘使"
 "用，则无法添加加密信息。"
 
 #, python-format
 msgid "Creating volume \"%s\""
-msgstr "正在创建卷 \"%s\""
+msgstr "正在创建云硬盘 \"%s\""
 
 #, python-format
 msgid "Creating volume backup \"%s\""
-msgstr "正在创建卷备份 \"%s\""
+msgstr "正在创建云硬盘备份 \"%s\""
 
 #, python-format
 msgid "Creating volume snapshot \"%s\"."
@@ -1987,32 +1987,32 @@ msgstr[0] "删除VPN服务"
 
 msgid "Delete Volume"
 msgid_plural "Delete Volumes"
-msgstr[0] "删除卷"
+msgstr[0] "删除云硬盘"
 
 msgid "Delete Volume Backup"
 msgid_plural "Delete Volume Backups"
-msgstr[0] "删除卷备份"
+msgstr[0] "删除云硬盘备份"
 
 msgid "Delete Volume Snapshot"
 msgid_plural "Delete Volume Snapshots"
-msgstr[0] "删除卷快照"
+msgstr[0] "删除云硬盘快照"
 
 msgid "Delete Volume Type"
 msgid_plural "Delete Volume Types"
-msgstr[0] "删除卷类型"
+msgstr[0] "删除云硬盘类型"
 
 msgid "Delete Volume on Instance Delete"
-msgstr "删除云服务器时删除卷"
+msgstr "删除云服务器时删除云硬盘"
 
 msgid "Delete Volumes"
-msgstr "删除卷"
+msgstr "删除云硬盘"
 
 #, python-format
 msgid "Delete the created network \"%s\" due to subnet creation failure."
 msgstr "创建子网时删除网络\"%s\"失败"
 
 msgid "Delete volume when the instance is deleted"
-msgstr "云服务器被删除后删除卷"
+msgstr "云服务器被删除后删除云硬盘"
 
 msgid "Deleted"
 msgstr "删除"
@@ -2131,7 +2131,7 @@ msgstr[0] "已删除的用户"
 
 msgid "Deleted Volume Type"
 msgid_plural "Deleted Volume Types"
-msgstr[0] "已删除的卷类型"
+msgstr[0] "已删除的云硬盘类型"
 
 msgid "Deleted address pair"
 msgid_plural "Deleted address pairs"
@@ -2144,15 +2144,15 @@ msgid "Deleted instances are not recoverable."
 msgstr "删除云服务器是不可恢复的。"
 
 msgid "Deleted volume backups are not recoverable."
-msgstr "删除卷备份是不可恢复的"
+msgstr "删除云硬盘备份是不可恢复的"
 
 msgid "Deleted volume snapshots are not recoverable."
-msgstr "删除卷快照是不可恢复的"
+msgstr "删除云硬盘快照是不可恢复的"
 
 msgid ""
 "Deleted volumes are not recoverable. All data stored in the volume will be "
 "removed."
-msgstr "删除卷是不可恢复的。卷中所有的数据都会被移除"
+msgstr "删除云硬盘是不可恢复的。云硬盘中所有的数据都会被移除"
 
 msgid "Deleting"
 msgstr "删除中"
@@ -2171,7 +2171,7 @@ msgstr "删除中"
 
 #, python-format
 msgid "Deleting volume consistency group \"%s\""
-msgstr "删除一致性卷组\"%s\""
+msgstr "删除一致性云硬盘组\"%s\""
 
 msgid "Description"
 msgstr "描述"
@@ -2216,18 +2216,18 @@ msgid "Detach Interface"
 msgstr "分离接口"
 
 msgid "Detach Volume"
-msgstr "分离卷"
+msgstr "分离云硬盘"
 
 msgctxt "Action to perform (the volume is currently attached)"
 msgid "Detach Volume"
 msgid_plural "Detach Volumes"
-msgstr[0] "分离卷"
+msgstr[0] "分离云硬盘"
 
 msgid "Detach Volume from Running Instance."
-msgstr "从正在运行的云服务器上分离卷"
+msgstr "从正在运行的云服务器上分离云硬盘"
 
 msgid "Detach a Volume"
-msgstr "分离卷"
+msgstr "分离云硬盘"
 
 msgid "Detached"
 msgstr "分离"
@@ -2246,11 +2246,11 @@ msgstr "分离中"
 msgctxt "Past action (the volume is currently being detached)"
 msgid "Detaching Volume"
 msgid_plural "Detaching Volumes"
-msgstr[0] "正在分离卷"
+msgstr[0] "正在分离云硬盘"
 
 #, python-format
 msgid "Detaching volume %(vol)s from instance %(inst)s."
-msgstr "从云服务器 %(inst)s中分离实例%(vol)s。"
+msgstr "从云服务器 %(inst)s中分离云服务器%(vol)s。"
 
 msgid "Details"
 msgstr "详情"
@@ -2592,19 +2592,19 @@ msgid "Edit VPN Service"
 msgstr "编辑VPN服务"
 
 msgid "Edit Volume"
-msgstr "编辑卷"
+msgstr "编辑云硬盘"
 
 msgid "Edit Volume Type"
-msgstr "编辑卷"
+msgstr "编辑云硬盘"
 
 msgid "Edit Volume Type Extra Spec"
-msgstr "编辑卷类型扩展规格"
+msgstr "编辑云硬盘类型扩展规格"
 
 msgid ""
 "Edit the flavor details. Flavors define the sizes for RAM, disk, number of "
 "cores, and other resources. Flavors are selected when users deploy instances."
 msgstr ""
-"编辑云服务器类型详情。实例类型定义了RAM和磁盘大小、CPU数，以及其他资源，用户在部"
+"编辑云服务器类型详情。云服务器类型定义了RAM和磁盘大小、CPU数，以及其他资源，用户在部"
 "署云服务器的时候可选用。"
 
 msgid "Edit the identity provider's details."
@@ -2704,7 +2704,7 @@ msgstr "加密算法"
 msgid ""
 "Encryption information cannot be updated for a volume type if volumes are "
 "currently in use with the volume type."
-msgstr "卷类型正在被卷使用, 无法更新其加密信息."
+msgstr "云硬盘类型正在被云硬盘使用, 无法更新其加密信息."
 
 msgid "Endpoints"
 msgstr "服务地址。"
@@ -2858,7 +2858,7 @@ msgid "Errors occurred in deleting consistency group."
 msgstr "删除一致性组时出错"
 
 msgid "Errors occurred in removing volumes from consistency group."
-msgstr "在一致性卷组中移除卷时出错"
+msgstr "在一致性云硬盘组中移除云硬盘时出错"
 
 msgid "Ether Type"
 msgstr "以太网类型（EtherType）"
@@ -2891,10 +2891,10 @@ msgstr ""
 "新云服务器类型的元数据时相应的属性都会加上 “hw:” 的前缀。"
 
 msgid "Extend Volume"
-msgstr "扩展卷"
+msgstr "扩展云硬盘"
 
 msgid "Extend the size of a volume."
-msgstr "扩展卷的大小"
+msgstr "扩展云硬盘的大小"
 
 msgctxt "Current status of a Volume"
 msgid "Extending"
@@ -2902,7 +2902,7 @@ msgstr "扩展中"
 
 #, python-format
 msgid "Extending volume: \"%s\""
-msgstr "扩展卷大小: \"%s\""
+msgstr "扩展云硬盘大小: \"%s\""
 
 msgid "External"
 msgstr "外部"
@@ -3066,7 +3066,7 @@ msgid "Failed to migrate instances: %s"
 msgstr "云服务器迁移失败： %s"
 
 msgid "Failed to migrate volume."
-msgstr "迁移卷失败"
+msgstr "迁移云硬盘失败"
 
 #, python-format
 msgid ""
@@ -3101,7 +3101,7 @@ msgstr "无法修改 %s 项目成员，更新项目组和项目配额。"
 msgid ""
 "Failed to perform requested operation on instance \"%s\", the instance has "
 "an error status"
-msgstr "云服务器 \"%s\" 执行所请求操作失败，实例处于错误状态。"
+msgstr "云服务器 \"%s\" 执行所请求操作失败，云服务器处于错误状态。"
 
 #, python-format
 msgid "Failed to remove router(s) from firewall %(name)s: %(reason)s"
@@ -3293,7 +3293,7 @@ msgid ""
 "Flavors define the sizes for RAM, disk, number of cores, and other resources "
 "and can be selected when users deploy instances."
 msgstr ""
-"云服务器类型定义了RAM和磁盘的大小、CPU数，以及其他资源，用户在部署实例的时候可选"
+"云服务器类型定义了RAM和磁盘的大小、CPU数，以及其他资源，用户在部署云服务器的时候可选"
 "用。"
 
 msgid "Floating IP"
@@ -3345,7 +3345,7 @@ msgstr "强制主机拷贝"
 
 #, python-format
 msgid "Forcing to create snapshot \"%s\" from attached volume."
-msgstr "正在强制从已连接的卷创建快照 \"%s\""
+msgstr "正在强制从已连接的云硬盘创建快照 \"%s\""
 
 msgid "Format"
 msgstr "镜像格式"
@@ -3366,7 +3366,7 @@ msgid "From here you can allocate a floating IP to a specific project."
 msgstr "从这里可以为一个特定项目分配一个浮动 IP。"
 
 msgid "From here you can create a snapshot of a volume."
-msgstr "为一个卷创建一个快照"
+msgstr "为一个云硬盘创建一个快照"
 
 msgid "From here you can update the default quotas (max limits)."
 msgstr "在这里您可以更新默认配额(上限)。"
@@ -3709,7 +3709,7 @@ msgstr "认证服务不允许编辑用户密码。"
 msgid ""
 "If \"No volume type\" is selected, the volume will be created without a "
 "volume type."
-msgstr "如果\"无卷类型\"被选中, 卷被创建的时候将没有卷类型。"
+msgstr "如果\"无云硬盘类型\"被选中, 云硬盘被创建的时候将没有云硬盘类型。"
 
 msgid ""
 "If console is not responding to keyboard input: click the grey status bar "
@@ -3721,7 +3721,7 @@ msgid ""
 "will be provisioned for you. Backups will be the same size as the volume "
 "they originate from."
 msgstr ""
-"如果不提供容器名字，默认会使用 volumebackups 来作为名字。备份会跟它们原来的卷"
+"如果不提供容器名字，默认会使用 volumebackups 来作为名字。备份会跟它们原来的云硬盘"
 "大小一样。"
 
 msgid ""
@@ -4081,7 +4081,7 @@ msgstr "使用这个策略概要来创建云服务器"
 msgid ""
 "Launching multiple instances is only supported for images and instance "
 "snapshots."
-msgstr "只支持从镜像和云服务器快照同时创建多个实例"
+msgstr "只支持从镜像和云服务器快照同时创建多个云服务器"
 
 msgid "Length of Injected File Path"
 msgstr "注入文件路径的长度"
@@ -4236,16 +4236,16 @@ msgid "Manage Specs"
 msgstr "管理规格"
 
 msgid "Manage Volume"
-msgstr "管理卷"
+msgstr "管理云硬盘"
 
 msgid "Manage Volume Attachments"
-msgstr "管理已连接卷"
+msgstr "管理已连接云硬盘"
 
 msgid "Manage Volume Types"
-msgstr "管理卷类型"
+msgstr "管理云硬盘类型"
 
 msgid "Manage Volumes"
-msgstr "管理卷"
+msgstr "管理云硬盘"
 
 msgid "Manual"
 msgstr "手动"
@@ -4320,14 +4320,14 @@ msgid_plural "Migrate Instances"
 msgstr[0] "迁移云服务器"
 
 msgid "Migrate Volume"
-msgstr "迁移卷"
+msgstr "迁移云硬盘"
 
 msgid ""
 "Migrate a volume to a specific host. <br> <br> Force Host Copy: Enables or "
 "disables generic host-based force-migration, which bypasses driver "
 "optimizations."
 msgstr ""
-"将卷迁移至特定主机。<br> <br> 强制主机复制：启用或禁用通用的基于主机的强制迁"
+"将云硬盘迁移至特定主机。<br> <br> 强制主机复制：启用或禁用通用的基于主机的强制迁"
 "移，跳过驱动器优化。 "
 
 msgid ""
@@ -4381,7 +4381,7 @@ msgid "Modified flavor \"%s\"."
 msgstr "已修改云服务器类型 \"%s\""
 
 msgid "Modified flavor information, but unable to modify flavor access."
-msgstr "已修改云服务器类型信息，但是无法修改实例类型的使用权。"
+msgstr "已修改云服务器类型信息，但是无法修改云服务器类型的使用权。"
 
 #, python-format
 msgid "Modified instance \"%s\"."
@@ -4412,19 +4412,19 @@ msgid "Modify dashboard settings for your user."
 msgstr "修改当前用户的界面设置"
 
 msgid "Modify name and description of a volume."
-msgstr "修改卷的名称和描述"
+msgstr "修改云硬盘的名称和描述"
 
 msgid "Modify the name and description of a snapshot."
 msgstr "编辑快照的名称和描述"
 
 msgid "Modify the name and description of a volume consistency group snapshot."
-msgstr "修改卷，一致性组快照的名称和描述信息"
+msgstr "修改云硬盘，一致性组快照的名称和描述信息"
 
 msgid "Modify the name and description of a volume consistency group."
-msgstr "修改卷一致性组名称和描述"
+msgstr "修改云硬盘一致性组名称和描述"
 
 msgid "Modify volume type name, description, and public status."
-msgstr "修改卷类型名称、描述，以及公共状态。"
+msgstr "修改云硬盘类型名称、描述，以及公共状态。"
 
 msgid "Monitoring:"
 msgstr "监控："
@@ -4456,7 +4456,7 @@ msgid "Name of the stack to create."
 msgstr "待创建栈的名称"
 
 msgid "Name or other identifier for existing volume"
-msgstr "已有卷的名称或者其他标识符"
+msgstr "已有云硬盘的名称或者其他标识符"
 
 #, python-format
 msgid "Name: %(name)s ID: %(uuid)s"
@@ -4593,7 +4593,7 @@ msgid "New name cannot be empty."
 msgstr "新名称不能为空"
 
 msgid "New name conflicts with another volume type."
-msgstr "新名称与别的卷类型冲突"
+msgstr "新名称与别的云硬盘类型冲突"
 
 msgid "New password"
 msgstr "新密码"
@@ -4629,7 +4629,7 @@ msgid "No State"
 msgstr "无状态"
 
 msgid "No assigned volumes"
-msgstr "没有分配卷"
+msgstr "没有分配云硬盘"
 
 msgid "No associated fixed IP"
 msgstr "无相关的固定 IP"
@@ -4713,7 +4713,7 @@ msgid "No other hosts available."
 msgstr "没有其他可用的主机"
 
 msgid "No other volume types available"
-msgstr "没有其它卷类型可用"
+msgstr "没有其它云硬盘类型可用"
 
 msgid "No ports available"
 msgstr "无可用端口"
@@ -4749,7 +4749,7 @@ msgid "No snapshots available"
 msgstr "无可用快照"
 
 msgid "No source, empty volume"
-msgstr "没有源，空白卷。"
+msgstr "没有源，空白云硬盘。"
 
 msgid "No subnets available"
 msgstr "没有可用的子网"
@@ -4761,31 +4761,31 @@ msgid "No users."
 msgstr "没有用户"
 
 msgid "No volume snapshots available"
-msgstr "没有可用的卷快照。"
+msgstr "没有可用的云硬盘快照。"
 
 msgid "No volume type"
-msgstr "未设置卷类型"
+msgstr "未设置云硬盘类型"
 
 msgid "No volume types found."
-msgstr "找不到卷类型"
+msgstr "找不到云硬盘类型"
 
 msgid "No volume types selected."
-msgstr "没有选择卷类型"
+msgstr "没有选择云硬盘类型"
 
 msgid "No volumes attached"
-msgstr "没有连接卷"
+msgstr "没有连接云硬盘"
 
 msgid "No volumes attached."
-msgstr "未连接卷。"
+msgstr "未连接云硬盘。"
 
 msgid "No volumes available"
-msgstr "没有可用卷。"
+msgstr "没有可用云硬盘。"
 
 msgid "No volumes found."
-msgstr "找不到卷"
+msgstr "找不到云硬盘"
 
 msgid "No volumes selected."
-msgstr "没有选择卷"
+msgstr "没有选择云硬盘"
 
 msgid "Non admin users are not allowed to make images public."
 msgstr "非管理员用户无权公开镜像。"
@@ -4820,7 +4820,7 @@ msgid ""
 "any dependent snapshots."
 msgstr ""
 " 注意：无法删除已经连接（ &quot;attached&quot; ）或者被快照依赖（dependent）"
-"的卷。"
+"的云硬盘。"
 
 msgid "Note: "
 msgstr "注意："
@@ -4835,7 +4835,7 @@ msgid "Number of VCPUs"
 msgstr "VCPU数量"
 
 msgid "Number of Volumes"
-msgstr "卷数量"
+msgstr "云硬盘数量"
 
 #, python-format
 msgid ""
@@ -4891,7 +4891,7 @@ msgid "Optional Parameters"
 msgstr "可选参数"
 
 msgid "Optionally, you may choose to create a new volume."
-msgstr "可供选择的，您可以选择创建一个新的卷。"
+msgstr "可供选择的，您可以选择创建一个新的云硬盘。"
 
 msgid "Orchestration"
 msgstr "云编排"
@@ -4931,7 +4931,7 @@ msgid ""
 "Key from the donor.  This is equivalent to the <tt>cinder transfer-accept</"
 "tt> command."
 msgstr ""
-"卷的所有权能够从一个项目转让到另一个项目。接受转让的卷需要先从出让方处获取转"
+"云硬盘的所有权能够从一个项目转让到另一个项目。接受转让的云硬盘需要先从出让方处获取转"
 "让ID和认证密钥。这等价于 <tt>cinder transfer-accept</tt> 命令。"
 
 msgid ""
@@ -4940,7 +4940,7 @@ msgid ""
 "by a recipient project. This is equivalent to the <tt>cinder transfer-"
 "create</tt> command."
 msgstr ""
-"卷的所有权能够从一个项目转让到另一个项目。一旦卷转让在出让方项目中创建，它就"
+"云硬盘的所有权能够从一个项目转让到另一个项目。一旦云硬盘转让在出让方项目中创建，它就"
 "能在接收方项目中被“接受”。这个等价于 <tt>cinder transfer-create</tt> 命令。"
 
 msgid "PFS"
@@ -5045,7 +5045,7 @@ msgid "Pending Update"
 msgstr "等待更新"
 
 msgid "Per Volume Size (GiB)"
-msgstr "每个卷的大小 (GiB)"
+msgstr "每个云硬盘的大小 (GiB)"
 
 msgid "Perfect Forward Secrecy"
 msgstr "完善前向保密（FPS，Perfect Forward Secrecy）"
@@ -5328,7 +5328,7 @@ msgid ""
 "enforced. This value can be \"front-end\" (Nova Compute), \"back-end"
 "\" (Cinder back-end), or \"both\"."
 msgstr ""
-"QoS 规则可以和卷类型进行绑定。它对应与卷所有者发出的一组服务能力质量请求。它"
+"QoS 规则可以和云硬盘类型进行绑定。它对应与云硬盘所有者发出的一组服务能力质量请求。它"
 "等价于<tt>cinder qos-create</tt> 命令。当 QoS 规则创建成功之后，单击 “管理规"
 "则”可对 QoS 规范中的规范键/值对进行修改。<br><br>每一个QoS 规则都有一个 "
 "“Consumer”值，表示管理员希望实施 QoS 策略的位置。该属性可以设置为“front-"
@@ -5536,7 +5536,7 @@ msgid_plural "Remove Users"
 msgstr[0] "删除用户"
 
 msgid "Remove Volumes from Consistency Group"
-msgstr "从一致性组中移除卷"
+msgstr "从一致性组中移除云硬盘"
 
 msgid "Removed User"
 msgid_plural "Removed Users"
@@ -5551,7 +5551,7 @@ msgstr ""
 
 #, python-format
 msgid "Removing volumes from volume consistency group \"%s\""
-msgstr "从一致性卷组\"%s\"中移除卷"
+msgstr "从一致性云硬盘组\"%s\"中移除云硬盘"
 
 msgid "Report Bug"
 msgstr "报告问题"
@@ -5571,7 +5571,7 @@ msgstr "为云服务器 \"%s\" 调整大小的请求已提交。"
 msgid ""
 "Request for restoring backup %(backup_name)s to volume with id: "
 "%(volume_id)s has been submitted."
-msgstr "把备份 %(backup_name)s 恢复到卷（id: %(volume_id)s）的请求已提交。"
+msgstr "把备份 %(backup_name)s 恢复到云硬盘（id: %(volume_id)s）的请求已提交。"
 
 msgid "Requested snapshot would exceed the allowed quota."
 msgstr "请求的快照会超过配额的限制。"
@@ -5651,13 +5651,13 @@ msgid "Restore Backup"
 msgstr "恢复备份"
 
 msgid "Restore Backup to Volume"
-msgstr "还原备份卷"
+msgstr "还原备份云硬盘"
 
 msgid "Restore Backup:"
 msgstr "恢复备份："
 
 msgid "Restore Volume Backup"
-msgstr "恢复卷备份"
+msgstr "恢复云硬盘备份"
 
 msgctxt "Current status of a Volume Backup"
 msgid "Restoring"
@@ -5838,7 +5838,7 @@ msgid ""
 "Rules define which traffic is allowed to instances assigned to the security "
 "group. A security group rule consists of three main parts:"
 msgstr ""
-"云服务器可以关联安全组，组中的规则定义了允许哪些访问到达被关联的实例。安全组由以"
+"云服务器可以关联安全组，组中的规则定义了允许哪些访问到达被关联的云服务器。安全组由以"
 "下三个主要组件组成："
 
 msgctxt "Power state of an Instance"
@@ -5911,7 +5911,7 @@ msgstr[0] "已调度删除规则"
 
 msgid "Scheduled deletion of Snapshot"
 msgid_plural "Scheduled deletion of Snapshots"
-msgstr[0] "已调度的卷删除"
+msgstr[0] "已调度的云硬盘删除"
 
 msgid "Scheduled deletion of VPN Service"
 msgid_plural "Scheduled deletion of VPN Services"
@@ -5919,15 +5919,15 @@ msgstr[0] "已调度删除VPN服务"
 
 msgid "Scheduled deletion of Volume"
 msgid_plural "Scheduled deletion of Volumes"
-msgstr[0] "已调度删除卷"
+msgstr[0] "已调度删除云硬盘"
 
 msgid "Scheduled deletion of Volume Backup"
 msgid_plural "Scheduled deletion of Volume Backups"
-msgstr[0] "已调度删除卷备份"
+msgstr[0] "已调度删除云硬盘备份"
 
 msgid "Scheduled deletion of Volume Snapshot"
 msgid_plural "Scheduled deletion of Volume Snapshots"
-msgstr[0] "已调度删除卷快照"
+msgstr[0] "已调度删除云硬盘快照"
 
 msgid "Scheduled migration (pending confirmation) of Instance"
 msgid_plural "Scheduled migration (pending confirmation) of Instances"
@@ -6016,10 +6016,10 @@ msgid "Select VPN Service"
 msgstr "选择VPN服务"
 
 msgid "Select Volume"
-msgstr "选择卷"
+msgstr "选择云硬盘"
 
 msgid "Select Volume Snapshot"
-msgstr "选择卷快照"
+msgstr "选择云硬盘快照"
 
 msgid "Select a New Flavor"
 msgstr "选择一个新的云服务器类型"
@@ -6058,7 +6058,7 @@ msgid "Select a new template to re-launch a stack."
 msgstr "重新选择模板来创建stack"
 
 msgid "Select a new volume type"
-msgstr "选择一个新卷类型"
+msgstr "选择一个新云硬盘类型"
 
 msgid "Select a pool"
 msgstr "选择一个资源池"
@@ -6082,16 +6082,16 @@ msgid "Select a template to launch a stack."
 msgstr "选择模板创建stack"
 
 msgid "Select a volume"
-msgstr "选择一个卷"
+msgstr "选择一个云硬盘"
 
 msgid "Select a volume to attach to this instance."
-msgstr "选择一个要连接到云服务器的卷"
+msgstr "选择一个要连接到云服务器的云硬盘"
 
 msgid "Select a volume to detach from this instance."
-msgstr "选择一个要从云服务器中分离出来的卷"
+msgstr "选择一个要从云服务器中分离出来的云硬盘"
 
 msgid "Select a volume to restore to."
-msgstr "选择一个卷用来恢复。"
+msgstr "选择一个云硬盘用来恢复。"
 
 msgid "Select an IP address"
 msgstr "选择一个IP地址"
@@ -6158,10 +6158,10 @@ msgid "Selected networks"
 msgstr "已选择的网络"
 
 msgid "Selected volume types"
-msgstr "选择的卷类型"
+msgstr "选择的云硬盘类型"
 
 msgid "Selected volumes"
-msgstr "选择卷"
+msgstr "选择云硬盘"
 
 msgid "Server Group"
 msgstr "主机组"
@@ -6350,17 +6350,17 @@ msgid "Snapshot Name"
 msgstr "快照名称"
 
 msgid "Snapshot Volume Types"
-msgstr "快照卷类型"
+msgstr "快照云硬盘类型"
 
 msgid "Snapshot Volumes"
-msgstr "快照卷"
+msgstr "快照云硬盘"
 
 msgid "Snapshot source must be specified"
 msgstr "快照源必须被指定"
 
 msgid ""
 "Snapshots can only be created for Consistency Groups that contain volumes."
-msgstr "只有包含卷的一致性组才可以创建快照"
+msgstr "只有包含云硬盘的一致性组才可以创建快照"
 
 msgctxt "Task status of an Instance"
 msgid "Snapshotting"
@@ -6430,10 +6430,10 @@ msgstr ""
 "行配置，或者由 OpenStack 之外的系统进行配置。"
 
 msgid "Specifies that the newly created volume should be marked as bootable"
-msgstr "特别指出新创建的卷须标记为可启动"
+msgstr "特别指出新创建的云硬盘须标记为可启动"
 
 msgid "Specifies that the volume can be used to launch an instance"
-msgstr "指定该存储卷可以用于创建云服务器"
+msgstr "指定该存储云硬盘可以用于创建云服务器"
 
 msgid ""
 "Specify \"Address pool\" or select \"Enter Network Address manually\" and "
@@ -6623,7 +6623,7 @@ msgstr "已连接的子网"
 
 #, python-format
 msgid "Successfully accepted volume transfer: \"%s\""
-msgstr "已成功接受卷转让：“%s”"
+msgstr "已成功接受云硬盘转让：“%s”"
 
 #, python-format
 msgid "Successfully added rule: %s"
@@ -6639,7 +6639,7 @@ msgstr "成功创建QoS规格：%s"
 
 #, python-format
 msgid "Successfully created encryption for volume type: %s"
-msgstr "成功为卷类型: %s 创建了加密"
+msgstr "成功为云硬盘类型: %s 创建了加密"
 
 #, python-format
 msgid "Successfully created security group: %s"
@@ -6647,14 +6647,14 @@ msgstr "安全组创建成功：%s"
 
 #, python-format
 msgid "Successfully created volume type: %s"
-msgstr "成功创建卷类型: %s"
+msgstr "成功创建云硬盘类型: %s"
 
 msgid "Successfully deleted volume transfer"
-msgstr "成功删除卷转让"
+msgstr "成功删除云硬盘转让"
 
 #, python-format
 msgid "Successfully deleted volume transfer \"%s\""
-msgstr "成功删除卷转让  \"%s\""
+msgstr "成功删除云硬盘转让  \"%s\""
 
 #, python-format
 msgid "Successfully disassociated Floating IP: %s"
@@ -6678,24 +6678,24 @@ msgstr "重新创建EC2凭据成功。"
 msgid ""
 "Successfully sent the request to change the volume type to \"%(vtype)s\" for "
 "volume: \"%(name)s\""
-msgstr "为卷\"%(name)s\"成功发送更改卷类型到\"%(vtype)s\"的请求。"
+msgstr "为云硬盘\"%(name)s\"成功发送更改云硬盘类型到\"%(vtype)s\"的请求。"
 
 #, python-format
 msgid "Successfully sent the request to manage volume: %s"
-msgstr "成功发送管理卷: %s 的请求"
+msgstr "成功发送管理云硬盘: %s 的请求"
 
 #, python-format
 msgid "Successfully sent the request to migrate volume: %s"
-msgstr "成功发送迁移卷 %s 的请求"
+msgstr "成功发送迁移云硬盘 %s 的请求"
 
 #, python-format
 msgid "Successfully sent the request to unmanage volume: %s"
-msgstr "成功发送不管理卷: %s 的请求"
+msgstr "成功发送不管理云硬盘: %s 的请求"
 
 #, python-format
 msgid ""
 "Successfully sent the request to upload volume to image for volume: \"%s\""
-msgstr "为卷 \"%s\"成功发送上传卷到镜像的请求。"
+msgstr "为云硬盘 \"%s\"成功发送上传云硬盘到镜像的请求。"
 
 msgid "Successfully updated QoS Spec association."
 msgstr "成功更新QoS规格关联。"
@@ -6706,7 +6706,7 @@ msgstr "成功更新主机聚合：\"%s.\""
 
 #, python-format
 msgid "Successfully updated encryption for volume type: %s"
-msgstr "成功为卷类型: %s 更新了加密"
+msgstr "成功为云硬盘类型: %s 更新了加密"
 
 #, python-format
 msgid "Successfully updated security group: %s"
@@ -6714,14 +6714,14 @@ msgstr "成功更新安全组: %s"
 
 #, python-format
 msgid "Successfully updated volume snapshot status: \"%s\"."
-msgstr "更新卷快照状态成功：\"%s\"."
+msgstr "更新云硬盘快照状态成功：\"%s\"."
 
 #, python-format
 msgid "Successfully updated volume status to \"%s\"."
-msgstr "成功更新卷状态为\"%s\"。"
+msgstr "成功更新云硬盘状态为\"%s\"。"
 
 msgid "Successfully updated volume type."
-msgstr "成功更新卷类型"
+msgstr "成功更新云硬盘类型"
 
 msgctxt "Action log of an instance"
 msgid "Suspend"
@@ -6812,7 +6812,7 @@ msgstr "模板版本"
 msgid ""
 "The \"Bootable\" flag specifies that this volume can be used to launch an "
 "instance."
-msgstr "“可启动”标记标明此卷可以被用来创建云服务器。"
+msgstr "“可启动”标记标明此云硬盘可以被用来创建云服务器。"
 
 msgid ""
 "The \"Migration Policy\" is only used if the volume retype cannot be "
@@ -6820,12 +6820,12 @@ msgid ""
 "perform volume migration. Note that migration may take a significant amount "
 "of time to complete, in some cases hours."
 msgstr ""
-"\"迁移策略\"只在卷更改类型无法完成时使用。如果\"迁移策略\"是\"按需\"，后端会"
-"执行卷迁移。注意，迁移可能会占用大量的时间来完成，有时可达数小时。"
+"\"迁移策略\"只在云硬盘更改类型无法完成时使用。如果\"迁移策略\"是\"按需\"，后端会"
+"执行云硬盘迁移。注意，迁移可能会占用大量的时间来完成，有时可达数小时。"
 
 msgid ""
 "The \"Volume Type\" selected must be different from the current volume type."
-msgstr "选定的\"卷类型\"必须与当前的卷类型不同。"
+msgstr "选定的\"云硬盘类型\"必须与当前的云硬盘类型不同。"
 
 msgid "The \"from\" port number is invalid."
 msgstr "起始端口号不合法。"
@@ -6860,7 +6860,7 @@ msgid ""
 "encryption is performed (e.g., front-end=Nova). The default value is 'front-"
 "end.'"
 msgstr ""
-"<strong>控制位置</strong> 是用于指定由哪个服务来对卷进行加密（如，“前端” 对应"
+"<strong>控制位置</strong> 是用于指定由哪个服务来对云硬盘进行加密（如，“前端” 对应"
 "的是 Nova ）。默认值是“前端”。"
 
 msgid ""
@@ -6951,7 +6951,7 @@ msgid ""
 "The Volume size is too small for the '%(image_name)s' image and has to be "
 "greater than or equal to '%(smallest_size)d' GB."
 msgstr ""
-"对于镜像 '%(image_name)s' 来说，卷太小了，必须大于或等于'%(smallest_size)d' "
+"对于镜像 '%(image_name)s' 来说，云硬盘太小了，必须大于或等于'%(smallest_size)d' "
 "GB。"
 
 msgid "The admin password is incorrect."
@@ -6976,7 +6976,7 @@ msgstr ""
 msgid ""
 "The data will remain in the volume and another instance will be able to "
 "access the data if you attach this volume to it."
-msgstr "数据会保留在卷上，可被其他连接了该卷的云服务器读取。"
+msgstr "数据会保留在云硬盘上，可被其他连接了该云硬盘的云服务器读取。"
 
 msgid ""
 "The default IP address of the interface created is a gateway of the selected "
@@ -7081,7 +7081,7 @@ msgstr "请求的特性 '%(feature)s' 未知。确保指定 FEATURE_MAP 里定�
 msgid ""
 "The requested instance cannot be launched. Requested volume exceeds quota: "
 "Available: %(avail)s, Requested: %(req)s."
-msgstr "请求的云服务器无法创建。请求的卷超过配额: 可以配额:%(avail)s,请求:%(req)s."
+msgstr "请求的云服务器无法创建。请求的云硬盘超过配额: 可以配额:%(avail)s,请求:%(req)s."
 
 #, python-format
 msgid ""
@@ -7126,7 +7126,7 @@ msgid ""
 "circumstances an administrator may need to explicitly update the status "
 "value.  This is equivalent to the <tt>cinder reset-state</tt> command."
 msgstr ""
-"正常情况下，卷的状态是被自动管理的。某些情况下，管理员可能需要手动更新卷的状"
+"正常情况下，云硬盘的状态是被自动管理的。某些情况下，管理员可能需要手动更新云硬盘的状"
 "态值。可以通过命令<tt>cinder snapshot-reset-state</tt>执行该操作。"
 
 msgid ""
@@ -7135,7 +7135,7 @@ msgid ""
 "value. This is equivalent to the <tt>cinder snapshot-reset-state</tt> "
 "command."
 msgstr ""
-"正常情况下，卷快照的状态是被自动管理的。某些情况下，管理员可能需要手动更新卷"
+"正常情况下，云硬盘快照的状态是被自动管理的。某些情况下，管理员可能需要手动更新云硬盘"
 "快照的状态值。可以通过命令<tt>cinder snapshot-reset-state</tt>执行该操作。"
 
 #, python-format
@@ -7163,19 +7163,19 @@ msgstr "版本种类 (v1/v2)需要进行筛选"
 
 #, python-format
 msgid "The volume size cannot be less than the image minimum disk size (%sGiB)"
-msgstr "卷大小不能小于镜像最小磁盘要求(%sGiB)"
+msgstr "云硬盘大小不能小于镜像最小磁盘要求(%sGiB)"
 
 #, python-format
 msgid "The volume size cannot be less than the image size (%s)"
-msgstr "卷大小不得小于镜像大小 (%s)"
+msgstr "云硬盘大小不得小于镜像大小 (%s)"
 
 #, python-format
 msgid "The volume size cannot be less than the snapshot size (%sGiB)"
-msgstr "卷大小不能小于快照(%sGiB)"
+msgstr "云硬盘大小不能小于快照(%sGiB)"
 
 #, python-format
 msgid "The volume size cannot be less than the source volume size (%sGiB)"
-msgstr "卷大小不得小于原始卷大小 (%sGiB)"
+msgstr "云硬盘大小不得小于原始云硬盘大小 (%sGiB)"
 
 msgid "Theme Preview"
 msgstr "主题预览"
@@ -7212,7 +7212,7 @@ msgstr "该操作无法撤销（undo），当前EC2凭据将被删除且无法�
 msgid ""
 "This action will unassign all volumes that are currently contained in this "
 "consistency group."
-msgstr "本操作会取消分配一致性组中包含的现有的所有卷"
+msgstr "本操作会取消分配一致性组中包含的现有的所有云硬盘"
 
 msgid "This application requires JavaScript to be enabled in your web browser."
 msgstr "此应用需要您的浏览器启用JavaScript。"
@@ -7243,11 +7243,11 @@ msgid ""
 "This volume is currently attached to an instance. In some cases, creating a "
 "snapshot from an attached volume can result in a corrupted snapshot."
 msgstr ""
-"这个卷已经被连接到某个云服务器了。从某种程度上来说，从已连接的卷上创建快照可能会"
+"这个云硬盘已经被连接到某个云服务器了。从某种程度上来说，从已连接的云硬盘上创建快照可能会"
 "导致快照有误。"
 
 msgid "This volume type is used by one or more volumes."
-msgstr "该卷类型还有卷在使用."
+msgstr "该云硬盘类型还有云硬盘在使用."
 
 msgid "Time Since Created"
 msgstr "创建后的时间"
@@ -7285,7 +7285,7 @@ msgid "To exit the fullscreen mode, click the browser's back button."
 msgstr "要退出全屏模式，请点击浏览器的后退按键"
 
 msgid "To make volume type private, uncheck this field."
-msgstr "建立私有类型的卷，取消选中这个选项"
+msgstr "建立私有类型的云硬盘，取消选中这个选项"
 
 msgid "To specify a subnet or a fixed IP, select any options."
 msgstr "要指定一个子网或一个固定的 IP 地址，选择任何选项。"
@@ -7334,14 +7334,14 @@ msgid "Total RAM"
 msgstr "内存总计"
 
 msgid "Total Size of Volumes and Snapshots (GB)"
-msgstr "卷和快照的总大小(GB)"
+msgstr "云硬盘和快照的总大小(GB)"
 
 msgid "Total Size of Volumes and Snapshots (GiB)"
-msgstr "卷及快照总大小 (GiB)"
+msgstr "云硬盘及快照总大小 (GiB)"
 
 #, python-format
 msgid "Total Size of Volumes and Snapshots (GiB) of Type %(type)s"
-msgstr "%(type)s 类型的卷和快照总大小 (GiB)"
+msgstr "%(type)s 类型的云硬盘和快照总大小 (GiB)"
 
 msgid "Total VCPU Usage (Hours):"
 msgstr "VCPU总用量(小时):"
@@ -7414,7 +7414,7 @@ msgid "UTC %(hour)s:%(min)s"
 msgstr "UTC %(hour)s:%(min)s"
 
 msgid "Unable to accept volume transfer."
-msgstr "无法接受卷转让。"
+msgstr "无法接受云硬盘转让。"
 
 #, python-format
 msgid "Unable to add Firewall \"%s\"."
@@ -7467,14 +7467,14 @@ msgid "Unable to attach interface."
 msgstr "未能连接接口。"
 
 msgid "Unable to attach volume."
-msgstr "无法连接卷"
+msgstr "无法连接云硬盘"
 
 msgid "Unable to change password."
 msgstr "无法修改密码。"
 
 #, python-format
 msgid "Unable to change the volume type for volume: \"%s\""
-msgstr "无法更改卷: \"%s\"的类型"
+msgstr "无法更改云硬盘: \"%s\"的类型"
 
 msgid "Unable to check if DHCP agent scheduler extension is supported"
 msgstr "无法检测DHCP代理调度器扩展是否被支持"
@@ -7500,7 +7500,7 @@ msgid "Unable to create consistency group \"%s\" from snapshot."
 msgstr "无法从snapshot中创建一致的组名\"%s\"。"
 
 msgid "Unable to create consistency group due to exceeding volume quota limit."
-msgstr "由于超过卷配额限制，无法创建一致性组"
+msgstr "由于超过云硬盘配额限制，无法创建一致性组"
 
 msgid "Unable to create consistency group snapshot."
 msgstr "无法创建一致性组快照"
@@ -7513,7 +7513,7 @@ msgid "Unable to create domain \"%s\"."
 msgstr "无法创建新域\"%s\"。"
 
 msgid "Unable to create encrypted volume type."
-msgstr "无法创建加密卷类型。"
+msgstr "无法创建加密云硬盘类型。"
 
 #, python-format
 msgid "Unable to create flavor \"%s\"."
@@ -7585,10 +7585,10 @@ msgid "Unable to create snapshot."
 msgstr "无法创建快照。"
 
 msgid "Unable to create snapshot. Consistency group must contain volumes."
-msgstr "无法创建快照。一致性组中必须包含卷"
+msgstr "无法创建快照。一致性组中必须包含云硬盘"
 
 msgid "Unable to create snapshots due to exceeding snapshot quota limit."
-msgstr "由于超过卷配额限制，无法创建一致性组"
+msgstr "由于超过云硬盘配额限制，无法创建一致性组"
 
 msgid "Unable to create spec."
 msgstr "无法创建规格"
@@ -7601,22 +7601,22 @@ msgid "Unable to create user."
 msgstr "无法创建用户。"
 
 msgid "Unable to create volume backup."
-msgstr "无法创建卷备份。"
+msgstr "无法创建云硬盘备份。"
 
 msgid "Unable to create volume snapshot."
-msgstr "无法创建卷快照"
+msgstr "无法创建云硬盘快照"
 
 msgid "Unable to create volume transfer."
-msgstr "无法创建卷转让。"
+msgstr "无法创建云硬盘转让。"
 
 msgid "Unable to create volume type extra spec."
-msgstr "无法创建卷类型扩展规格。"
+msgstr "无法创建云硬盘类型扩展规格。"
 
 msgid "Unable to create volume type."
-msgstr "无法创建卷类型"
+msgstr "无法创建云硬盘类型"
 
 msgid "Unable to create volume."
-msgstr "不能创建卷。"
+msgstr "不能创建云硬盘。"
 
 #, python-format
 msgid "Unable to delete IKE Policy. %s"
@@ -7651,19 +7651,19 @@ msgid "Unable to delete rule. %s"
 msgstr "无法删除规则  %s"
 
 msgid "Unable to delete volume transfer."
-msgstr "无法删除卷转让。"
+msgstr "无法删除云硬盘转让。"
 
 msgid "Unable to detach interface."
 msgstr "未能分离接口。"
 
 msgid "Unable to detach volume."
-msgstr "无法分离卷"
+msgstr "无法分离云硬盘"
 
 msgid "Unable to determine if availability zones extension is supported."
 msgstr "无法确定可用域是否支持扩展"
 
 msgid "Unable to determine if volume type encryption is supported."
-msgstr "无法判断卷类型是否支持加密。"
+msgstr "无法判断云硬盘类型是否支持加密。"
 
 msgid "Unable to disassociate floating IP."
 msgstr "无法将浮动IP解除绑定"
@@ -7675,10 +7675,10 @@ msgid "Unable to edit spec."
 msgstr "无法编辑规格"
 
 msgid "Unable to edit volume type extra spec."
-msgstr "无法编辑卷类型扩展规格。"
+msgstr "无法编辑云硬盘类型扩展规格。"
 
 msgid "Unable to extend volume."
-msgstr "无法扩展卷"
+msgstr "无法扩展云硬盘"
 
 msgid "Unable to fetch EC2 credentials."
 msgstr "无法获得EC2凭据。"
@@ -7755,13 +7755,13 @@ msgid "Unable to get the available hosts"
 msgstr "无法获取可用的主机"
 
 msgid "Unable to get the available volume types"
-msgstr "无法获取可用卷类型"
+msgstr "无法获取可用云硬盘类型"
 
 msgid "Unable to get the available volumes"
-msgstr "无法获取可用卷"
+msgstr "无法获取可用云硬盘"
 
 msgid "Unable to get volume type list"
-msgstr "无法获取卷类型列表"
+msgstr "无法获取云硬盘类型列表"
 
 msgid "Unable to import key pair."
 msgstr "无法导入密钥对。"
@@ -7791,13 +7791,13 @@ msgstr "无法读取指定快照"
 
 #, python-format
 msgid "Unable to load the specified volume. %s"
-msgstr "无法加载指定卷. %s"
+msgstr "无法加载指定云硬盘. %s"
 
 msgid "Unable to lookup volume or backup information."
-msgstr "无法查找卷或备份的信息。"
+msgstr "无法查找云硬盘或备份的信息。"
 
 msgid "Unable to manage volume."
-msgstr "无法管理卷。"
+msgstr "无法管理云硬盘。"
 
 #, python-format
 msgid "Unable to modify domain \"%s\"."
@@ -8144,10 +8144,10 @@ msgid "Unable to retrieve list of security groups"
 msgstr "无法获取安全组列表"
 
 msgid "Unable to retrieve list of volume snapshots."
-msgstr "无法获取卷快照列表。"
+msgstr "无法获取云硬盘快照列表。"
 
 msgid "Unable to retrieve list of volumes."
-msgstr "无法获取卷列表。"
+msgstr "无法获取云硬盘列表。"
 
 msgid "Unable to retrieve mapping list."
 msgstr "无法获取映射列表。"
@@ -8316,7 +8316,7 @@ msgid "Unable to retrieve the project information of the image."
 msgstr "无法获取镜像的项目信息。"
 
 msgid "Unable to retrieve the volume type list."
-msgstr "无法获取卷类型列表"
+msgstr "无法获取云硬盘类型列表"
 
 msgid "Unable to retrieve usage information."
 msgstr "无法获取使用信息。"
@@ -8346,91 +8346,91 @@ msgid "Unable to retrieve version information."
 msgstr "无法获取版本信息"
 
 msgid "Unable to retrieve volume backups."
-msgstr "无法获取卷备份。"
+msgstr "无法获取云硬盘备份。"
 
 msgid "Unable to retrieve volume consistency group snapshots."
-msgstr "无法检索一致性组卷快照"
+msgstr "无法检索一致性组云硬盘快照"
 
 msgid "Unable to retrieve volume consistency groups."
-msgstr "无法获取卷一致性组。"
+msgstr "无法获取云硬盘一致性组。"
 
 msgid "Unable to retrieve volume details."
-msgstr "无法获取卷详情。"
+msgstr "无法获取云硬盘详情。"
 
 msgid "Unable to retrieve volume encryption details."
-msgstr "无法获取卷加密详情。"
+msgstr "无法获取云硬盘加密详情。"
 
 #, python-format
 msgid "Unable to retrieve volume information for volume: \"%s\""
-msgstr "无法获取卷: \"%s\" 的信息"
+msgstr "无法获取云硬盘: \"%s\" 的信息"
 
 msgid "Unable to retrieve volume information."
-msgstr "无法获取卷信息"
+msgstr "无法获取云硬盘信息"
 
 msgid "Unable to retrieve volume limit information."
-msgstr "无法获取卷限制信息。"
+msgstr "无法获取云硬盘限制信息。"
 
 #, python-format
 msgid "Unable to retrieve volume list for instance \"%(name)s\" (%(id)s)."
-msgstr "无法获取云服务器 \"%(name)s\" (%(id)s) 的卷列表。"
+msgstr "无法获取云服务器 \"%(name)s\" (%(id)s) 的云硬盘列表。"
 
 msgid "Unable to retrieve volume list."
-msgstr "无法获取卷列表"
+msgstr "无法获取云硬盘列表"
 
 msgid "Unable to retrieve volume project information."
-msgstr "无法获取卷项目信息。"
+msgstr "无法获取云硬盘项目信息。"
 
 msgid "Unable to retrieve volume snapshot."
-msgstr "无法获取卷快照"
+msgstr "无法获取云硬盘快照"
 
 msgid "Unable to retrieve volume snapshots."
-msgstr "无法获取卷快照。"
+msgstr "无法获取云硬盘快照。"
 
 msgid "Unable to retrieve volume transfer."
-msgstr "无法获取卷转让。"
+msgstr "无法获取云硬盘转让。"
 
 msgid "Unable to retrieve volume type details."
-msgstr "无法获取卷类型详情。"
+msgstr "无法获取云硬盘类型详情。"
 
 msgid "Unable to retrieve volume type encryption details."
-msgstr "无法获取卷类型加密详情"
+msgstr "无法获取云硬盘类型加密详情"
 
 msgid "Unable to retrieve volume type encryption information."
-msgstr "无法获取卷类型的加密信息。"
+msgstr "无法获取云硬盘类型的加密信息。"
 
 msgid "Unable to retrieve volume type extra spec details."
-msgstr "无法获取卷类型扩展规格详情。"
+msgstr "无法获取云硬盘类型扩展规格详情。"
 
 #, python-format
 msgid "Unable to retrieve volume type for: \"%s\""
-msgstr "无法获取\"%s\"的卷类型"
+msgstr "无法获取\"%s\"的云硬盘类型"
 
 msgid "Unable to retrieve volume type list."
-msgstr "无法获取卷类型列表。"
+msgstr "无法获取云硬盘类型列表。"
 
 msgid "Unable to retrieve volume type name."
-msgstr "无法获取卷类型名称。"
+msgstr "无法获取云硬盘类型名称。"
 
 msgid "Unable to retrieve volume type qos."
-msgstr "无法获取卷类型QoS"
+msgstr "无法获取云硬盘类型QoS"
 
 msgid "Unable to retrieve volume types"
-msgstr "无法获取卷类型"
+msgstr "无法获取云硬盘类型"
 
 msgid "Unable to retrieve volume."
-msgstr "无法获取卷"
+msgstr "无法获取云硬盘"
 
 msgid "Unable to retrieve volume/instance attachment information"
-msgstr "无法获取卷/云服务器连接信息"
+msgstr "无法获取云硬盘/云服务器连接信息"
 
 msgid "Unable to retrieve volumes availability zones."
-msgstr "无法获取卷可用域。"
+msgstr "无法获取云硬盘可用域。"
 
 msgid "Unable to set Domain Context."
 msgstr "无法设定域上下文。"
 
 msgid "Unable to set bootable flag on volume."
-msgstr "无法设卷的可启动标记。"
+msgstr "无法设云硬盘的可启动标记。"
 
 #, python-format
 msgid "Unable to set flavor access for project %s."
@@ -8446,7 +8446,7 @@ msgid "Unable to sort instance flavors."
 msgstr "无法对云服务器类型排序."
 
 msgid "Unable to unmanage volume."
-msgstr "无法不管理卷。"
+msgstr "无法不管理云硬盘。"
 
 msgid "Unable to update default quotas for Cinder."
 msgstr "无法更新 Cinder 的默认配额."
@@ -8458,7 +8458,7 @@ msgid "Unable to update default quotas."
 msgstr "无法更新默认配额。"
 
 msgid "Unable to update encrypted volume type."
-msgstr "无法更新加密的卷类型"
+msgstr "无法更新加密的云硬盘类型"
 
 msgid "Unable to update group."
 msgstr "无法更新组。"
@@ -8508,30 +8508,30 @@ msgid "Unable to update the user."
 msgstr "无法更新此用户。"
 
 msgid "Unable to update volume consistency group."
-msgstr "无法更新卷一致性组。"
+msgstr "无法更新云硬盘一致性组。"
 
 msgid "Unable to update volume snapshot status."
-msgstr "不能更新卷快照状态。"
+msgstr "不能更新云硬盘快照状态。"
 
 msgid "Unable to update volume snapshot."
-msgstr "无法更新卷快照"
+msgstr "无法更新云硬盘快照"
 
 #, python-format
 msgid "Unable to update volume status to \"%s\"."
-msgstr "无法更新卷状状态为\"%s\"."
+msgstr "无法更新云硬盘状状态为\"%s\"."
 
 msgid "Unable to update volume type."
-msgstr "无法更新卷类型"
+msgstr "无法更新云硬盘类型"
 
 msgid "Unable to update volume."
-msgstr "不能更新卷"
+msgstr "不能更新云硬盘"
 
 msgid "Unable to update volumes for consistency group"
-msgstr "无法为一致性组更新卷"
+msgstr "无法为一致性组更新云硬盘"
 
 #, python-format
 msgid "Unable to upload volume to image for volume: \"%s\""
-msgstr "无法为卷: \"%s\"上传卷到镜像"
+msgstr "无法为云硬盘: \"%s\"上传云硬盘到镜像"
 
 msgid "Unable to verify Neutron service providers"
 msgstr "无法验证Neutron服务providers"
@@ -8552,7 +8552,7 @@ msgid "Unknown resource type for detail API."
 msgstr "详情 API 未知的资源类型。"
 
 msgid "Unknown volume (None)"
-msgstr "未知卷（None）"
+msgstr "未知云硬盘（None）"
 
 msgid "Unlock Instance"
 msgid_plural "Unlock Instances"
@@ -8566,7 +8566,7 @@ msgid "Unmanage"
 msgstr "不管理"
 
 msgid "Unmanage Volume"
-msgstr "非管理卷"
+msgstr "非管理云硬盘"
 
 msgctxt "Action log of an instance"
 msgid "Unpause"
@@ -8629,7 +8629,7 @@ msgid "Update Defaults"
 msgstr "更新默认值"
 
 msgid "Update Encrypted Volume Type"
-msgstr "更新加密的卷类型"
+msgstr "更新加密的云硬盘类型"
 
 msgid "Update Encryption"
 msgstr "更新加密"
@@ -8679,13 +8679,13 @@ msgid "Update User"
 msgstr "更新用户"
 
 msgid "Update Volume Snapshot Status"
-msgstr "更新卷快照状态"
+msgstr "更新云硬盘快照状态"
 
 msgid "Update Volume Status"
-msgstr "更新卷状态"
+msgstr "更新云硬盘状态"
 
 msgid "Update Volume Type Encryption"
-msgstr "更新加密卷类型"
+msgstr "更新加密云硬盘类型"
 
 msgid "Update a Metadata Namespace"
 msgstr "更新元数据命名空间"
@@ -8704,7 +8704,7 @@ msgid ""
 msgstr "更新关联到这个网络的子网。点击“子网详情”标签可进行高级配置。"
 
 msgid "Update an Encrypted Volume Type"
-msgstr "更新加密卷类型"
+msgstr "更新加密云硬盘类型"
 
 #, python-format
 msgid "Update the \"extra spec\" value for \"%(key)s\""
@@ -8726,7 +8726,7 @@ msgstr "已更新子网\"%s\"."
 
 #, python-format
 msgid "Updated volumes for consistency group \"%s\"."
-msgstr "为一致性组\"%s\"更新卷"
+msgstr "为一致性组\"%s\"更新云硬盘"
 
 msgctxt "Task status of an Instance"
 msgid "Updating Password"
@@ -8735,31 +8735,31 @@ msgstr "更新密码"
 msgid ""
 "Updating encryption is not implemented.  Unable to update  encrypted volume "
 "type."
-msgstr "无法更新加密的卷类型: 还未实现此功能."
+msgstr "无法更新加密的云硬盘类型: 还未实现此功能."
 
 #, python-format
 msgid "Updating volume \"%s\""
-msgstr "正在更新卷\"%s\""
+msgstr "正在更新云硬盘\"%s\""
 
 #, python-format
 msgid "Updating volume consistency group \"%s\""
-msgstr "正在更新卷一致性组\"%s\""
+msgstr "正在更新云硬盘一致性组\"%s\""
 
 #, python-format
 msgid "Updating volume snapshot \"%s\""
-msgstr "正在更新卷快照\"%s\""
+msgstr "正在更新云硬盘快照\"%s\""
 
 msgid "Upload"
 msgstr "上传"
 
 msgid "Upload Volume to Image"
-msgstr "上传卷到镜像"
+msgstr "上传云硬盘到镜像"
 
 msgid ""
 "Upload the volume to the Image Service as an image. This is equivalent to "
 "the <tt>cinder upload-to-image</tt> command."
 msgstr ""
-"将卷作为镜像上传到glance服务中。这相当于<tt>cinder upload-to-image</tt>命令"
+"将云硬盘作为镜像上传到glance服务中。这相当于<tt>cinder upload-to-image</tt>命令"
 
 msgid "Upload to Image"
 msgstr "上传镜像"
@@ -8783,7 +8783,7 @@ msgid "Use a consistency group as source"
 msgstr "使用一致性组作为源"
 
 msgid "Use a volume as source"
-msgstr "将卷作为源"
+msgstr "将云硬盘作为源"
 
 msgid "Use image as a source"
 msgstr "使用镜像作为源"
@@ -8970,116 +8970,116 @@ msgid "Virtual Size"
 msgstr "虚拟大小"
 
 msgid "Volume"
-msgstr "卷"
+msgstr "云硬盘"
 
 #, python-format
 msgid "Volume %(volume_name)s on instance %(instance_name)s"
-msgstr "云服务器%(instance_name)s的附加卷%(volume_name)s"
+msgstr "云服务器%(instance_name)s的附加云硬盘%(volume_name)s"
 
 msgid "Volume Backup:"
-msgstr "卷备份:"
+msgstr "云硬盘备份:"
 
 msgid "Volume Backups"
-msgstr "卷备份"
+msgstr "云硬盘备份"
 
 msgid ""
 "Volume Backups are stored using the Object Storage service. You must have "
 "this service activated in order to create a backup."
-msgstr "卷备份使用的是对象存储服务。您必须激活这个对象存储服务才能创建备份。"
+msgstr "云硬盘备份使用的是对象存储服务。您必须激活这个对象存储服务才能创建备份。"
 
 msgid "Volume Consistency Groups"
-msgstr "卷一致性组"
+msgstr "云硬盘一致性组"
 
 msgid "Volume Encryption Details"
-msgstr "卷加密详情"
+msgstr "云硬盘加密详情"
 
 #, python-format
 msgid "Volume Encryption Details: %(volume_name)s"
-msgstr "卷加密详情：%(volume_name)s"
+msgstr "云硬盘加密详情：%(volume_name)s"
 
 msgid "Volume Encryption Details: {{ volume.name }}"
-msgstr "卷加密详情: {{ volume.name }}"
+msgstr "云硬盘加密详情: {{ volume.name }}"
 
 msgid "Volume Encryption Overview"
-msgstr "存储卷加密概览"
+msgstr "存储云硬盘加密概览"
 
 msgid "Volume ID"
-msgstr "卷 ID"
+msgstr "云硬盘 ID"
 
 msgid "Volume Limits"
-msgstr "卷限度"
+msgstr "云硬盘限度"
 
 msgid "Volume Name"
-msgstr "卷名称"
+msgstr "云硬盘名称"
 
 msgid "Volume Name ="
 msgstr "Volume Name ="
 
 msgid "Volume Snapshot"
-msgstr "卷快照"
+msgstr "云硬盘快照"
 
 msgid "Volume Snapshots"
-msgstr "卷快照"
+msgstr "云硬盘快照"
 
 #, python-format
 msgid "Volume Snapshots of Type %(type)s"
-msgstr "卷快照的类型 %(type)s"
+msgstr "云硬盘快照的类型 %(type)s"
 
 msgid "Volume Source"
-msgstr "卷来源"
+msgstr "云硬盘来源"
 
 msgid "Volume Storage"
-msgstr "卷存储"
+msgstr "云硬盘存储"
 
 msgid "Volume Transfer"
-msgstr "卷转让"
+msgstr "云硬盘转让"
 
 msgid "Volume Transfer Details"
-msgstr "卷转让详情"
+msgstr "云硬盘转让详情"
 
 msgid "Volume Type"
-msgstr "卷类型"
+msgstr "云硬盘类型"
 
 msgid "Volume Type Description:"
-msgstr "卷类型描述:"
+msgstr "云硬盘类型描述:"
 
 msgid "Volume Type Encryption Details"
-msgstr "卷类型加密详情"
+msgstr "云硬盘类型加密详情"
 
 msgid "Volume Type Encryption Overview"
-msgstr "卷类型加密概览"
+msgstr "云硬盘类型加密概览"
 
 msgid "Volume Type Extra Specs"
-msgstr "卷类型扩展规格"
+msgstr "云硬盘类型扩展规格"
 
 msgid "Volume Type Name"
-msgstr "卷类型名称"
+msgstr "云硬盘类型名称"
 
 msgid "Volume Type is Unencrypted."
-msgstr "卷类型没有加密。"
+msgstr "云硬盘类型没有加密。"
 
 msgid "Volume Type(s)"
-msgstr "卷类型（s）"
+msgstr "云硬盘类型（s）"
 
 #, python-format
 msgid "Volume Type: %(volume_type_name)s"
-msgstr "卷类型：%(volume_type_name)s"
+msgstr "云硬盘类型：%(volume_type_name)s"
 
 #, python-format
 msgid "Volume Type: %(volume_type_name)s "
-msgstr "卷类型：%(volume_type_name)s"
+msgstr "云硬盘类型：%(volume_type_name)s"
 
 msgid "Volume Types"
-msgstr "卷类型"
+msgstr "云硬盘类型"
 
 #, python-format
 msgid ""
 "Volume cannot be extended to %(req)iGiB as you only have %(avail)iGiB of "
 "your quota available."
-msgstr "卷不能扩展到%(req)iGiB，因为您的可用配置只有%(avail)iGiB。"
+msgstr "云硬盘不能扩展到%(req)iGiB，因为您的可用配置只有%(avail)iGiB。"
 
 msgid "Volume consistency groups can not be deleted if they contain volumes."
-msgstr "包含卷的一致性卷组无法被删除"
+msgstr "包含云硬盘的一致性云硬盘组无法被删除"
 
 msgid ""
 "Volume consistency groups provide a mechanism for creating snapshots of "
@@ -9088,53 +9088,53 @@ msgid ""
 "A consistency group can support more than one volume type, but it can only "
 "contain volumes hosted by the same back end."
 msgstr ""
-"卷一致性组提供了一种同时为多个卷创建快照的机制以确保数据一致性。\n"
+"云硬盘一致性组提供了一种同时为多个云硬盘创建快照的机制以确保数据一致性。\n"
 "\n"
-"一个一致性组可以支持多种卷类型，但包含的卷皆须托管于同一个存储后端。"
+"一个一致性组可以支持多种云硬盘类型，但包含的云硬盘皆须托管于同一个存储后端。"
 
 msgid "Volume is Unencrypted"
-msgstr "卷没有加密"
+msgstr "云硬盘没有加密"
 
 msgid ""
 "Volume mount point (e.g. 'vda' mounts at '/dev/vda'). Leave this field blank "
 "to let the system choose a device name for you."
 msgstr ""
-"卷挂载点 (例如，设备'vda'挂载于'/dev/vda'路径上)。如果此处不填，则系统将为您"
+"云硬盘挂载点 (例如，设备'vda'挂载于'/dev/vda'路径上)。如果此处不填，则系统将为您"
 "自动选择设备名。"
 
 msgid "Volume name to be assigned"
-msgstr "已分配的卷名称"
+msgstr "已分配的云硬盘名称"
 
 msgid "Volume size in gigabytes (integer value)."
-msgstr "卷大小 (GB, 整数)。"
+msgstr "云硬盘大小 (GB, 整数)。"
 
 #, python-format
 msgid ""
 "Volume size must be equal to or greater than the image minimum disk size "
 "(%sGiB)"
-msgstr "卷大小必须等于或大于镜像最小磁盘大小(%sGiB)"
+msgstr "云硬盘大小必须等于或大于镜像最小磁盘大小(%sGiB)"
 
 #, python-format
 msgid "Volume size must be equal to or greater than the image size (%s)"
-msgstr "卷大小必须等于或大于镜像大小(%s)"
+msgstr "云硬盘大小必须等于或大于镜像大小(%s)"
 
 #, python-format
 msgid ""
 "Volume size must be equal to or greater than the origin volume size (%sGiB)"
-msgstr "卷大小必须等于或大于原始卷大小(%sGiB)"
+msgstr "云硬盘大小必须等于或大于原始云硬盘大小(%sGiB)"
 
 #, python-format
 msgid "Volume size must be equal to or greater than the snapshot size (%sGiB)"
-msgstr "卷大小必须等于或大于快照大小(%sGiB)"
+msgstr "云硬盘大小必须等于或大于快照大小(%sGiB)"
 
 msgid "Volume size must be greater than 0"
-msgstr "卷大小必须大于0"
+msgstr "云硬盘大小必须大于0"
 
 msgid "Volume source must be specified"
-msgstr "卷的源必须被指定"
+msgstr "云硬盘的源必须被指定"
 
 msgid "Volume transfer name cannot be empty."
-msgstr "卷转让名不能为空。"
+msgstr "云硬盘转让名不能为空。"
 
 msgid ""
 "Volume type is a type or label that can be selected at volume creation time "
@@ -9144,30 +9144,30 @@ msgid ""
 "command. Once the volume type gets created, click the \"View Extra Specs\" "
 "button to set up extra specs key-value pair(s) for that volume type."
 msgstr ""
-"卷类型是在创建卷的时候可以指定的标签。它通常用来映射到这些卷所使用的存储后端"
+"云硬盘类型是在创建云硬盘的时候可以指定的标签。它通常用来映射到这些云硬盘所使用的存储后端"
 "驱动器的性能指标集合。例如，“Performance”、“SSD”、“Backup”等。这等价于"
-"<tt>cinder type-create</tt>命令。一旦卷类型被创建，单击\"查看 extra spec\"按"
-"钮以设置卷类型的 extra spec 键值对。"
+"<tt>cinder type-create</tt>命令。一旦云硬盘类型被创建，单击\"查看 extra spec\"按"
+"钮以设置云硬盘类型的 extra spec 键值对。"
 
 #, python-format
 msgid "Volume type name \"%s\" already exists."
-msgstr "卷类型名 \"%s\" 已存在。"
+msgstr "云硬盘类型名 \"%s\" 已存在。"
 
 msgid "Volume type name can not be empty."
-msgstr "卷类型名称不能为 空."
+msgstr "云硬盘类型名称不能为 空."
 
 msgid "Volumes"
-msgstr "卷"
+msgstr "云硬盘"
 
 msgid "Volumes Attached"
-msgstr "卷已连接"
+msgstr "云硬盘已连接"
 
 msgid "Volumes are block devices that can be attached to instances."
-msgstr "卷是可被连接到云服务器的块设备。"
+msgstr "云硬盘是可被连接到云服务器的块设备。"
 
 #, python-format
 msgid "Volumes of Type %(type)s"
-msgstr "卷类型 %(type)s"
+msgstr "云硬盘类型 %(type)s"
 
 msgid "Warning: "
 msgstr "警告："
@@ -9177,13 +9177,13 @@ msgid ""
 "OpenStack. Note that the volume will not be deleted from the Cinder host. "
 "<br> <br> This is equivalent to the <tt>cinder unmanage</tt> command."
 msgstr ""
-"\"取消管理\"一个卷后，该卷将在openstack中不再可视。请注意，这个卷不会从cinder"
+"\"取消管理\"一个云硬盘后，该云硬盘将在openstack中不再可视。请注意，这个云硬盘不会从cinder"
 "主机中删除。<br><br>它相当于<tt>cinder unmanage</tt>命令。"
 
 msgid ""
 "When the volume status is \"in-use\", you can use \"Force\" to upload the "
 "volume to an image."
-msgstr "当卷状态是\"in-use\"时，您可以用\"Force\"将卷上传到镜像中。"
+msgstr "当云硬盘状态是\"in-use\"时，您可以用\"Force\"将云硬盘上传到镜像中。"
 
 msgid "Yes"
 msgstr "是"
@@ -9192,7 +9192,7 @@ msgid "You are already using all of your available floating IPs."
 msgstr "您已经使用了您全部可用的浮动IP地址。"
 
 msgid "You are already using all of your available volumes."
-msgstr "所有可用卷已使用完"
+msgstr "所有可用云硬盘已使用完"
 
 msgid ""
 "You can connect a specified external network to the router. The external "
@@ -9300,13 +9300,13 @@ msgid "You must select a snapshot."
 msgstr "您必须选择一个快照"
 
 msgid "You must select a volume."
-msgstr "您必须选择一个卷。"
+msgstr "您必须选择一个云硬盘。"
 
 msgid "You must select an image."
 msgstr "您必须选择一个镜像。"
 
 msgid "You must set volume size"
-msgstr "您必须设置卷的大小"
+msgstr "您必须设置云硬盘的大小"
 
 msgid "You must specify a template via one of the available sources."
 msgstr "您必须通过可用源中的一个来指定模板。"
@@ -9320,7 +9320,7 @@ msgid ""
 msgstr ""
 "您必须指定允许通过该规则的流量来源。可以通过以下两种方式实现：IP地址块(CIDR)"
 "或者来源地址组(安全组)。如果选择一个安全组作为来访源地址，则该安全组中的任何"
-"云服务器都被允许使用该规则访问任一其它实例。"
+"云服务器都被允许使用该规则访问任一其它云服务器。"
 
 #, python-format
 msgid "Your image %s has been queued for creation."
