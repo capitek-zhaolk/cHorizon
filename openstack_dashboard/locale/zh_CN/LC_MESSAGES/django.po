@@ -3898,7 +3898,7 @@ msgid "Instance ID"
 msgstr "云服务器ID"
 
 msgid "Instance ID ="
-msgstr "示例 ID ="
+msgstr "云服务器ID ="
 
 msgid "Instance Name"
 msgstr "云服务器名称"
