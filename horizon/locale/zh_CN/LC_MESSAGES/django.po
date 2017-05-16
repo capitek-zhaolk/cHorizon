@@ -116,10 +116,13 @@ msgid "Actions"
 msgstr "动作"
 
 msgid "Active Instances:"
-msgstr "运行的云服务器："
+msgstr "已创建的云服务器总数"
 
-msgid "Active RAM:"
-msgstr "启用的内存："
+msgid "Active RAM (MB):"
+msgstr "已分配的内存总数(MB)"
+
+msgid "Active Disk (GB):"
+msgstr "已分配的磁盘总数(GB)"
 
 msgid "Add a row"
 msgstr "增加一行"
@@ -215,7 +218,7 @@ msgid "Keystone Providers:"
 msgstr "Keystone 供应商："
 
 msgid "Limit Summary"
-msgstr "上限摘要"
+msgstr "资源使用量"
 
 msgid "Log in"
 msgstr "登录"
@@ -307,7 +310,7 @@ msgid "Select a %s to browse."
 msgstr "请选择要浏览的 %s 。"
 
 msgid "Select a period of time to query its usage:"
-msgstr "选择一段时间来查询其用量："
+msgstr "查询本周期内的资源使用量情况："
 
 #. Translators: test code, don't really have to translate
 msgid "Sell Puppy"
@@ -355,13 +358,13 @@ msgstr ""
 "\" 或\"https://\"开头。"
 
 msgid "This Period's GB-Hours:"
-msgstr "周期内磁盘GB-小时数:"
+msgstr "周期内磁盘用量(GB*小时)"
 
 msgid "This Period's RAM-Hours:"
-msgstr "周期内内存-小时数"
+msgstr "周期内内存用量(MB*小时)"
 
 msgid "This Period's VCPU-Hours:"
-msgstr "周期内VCPU-小时数:"
+msgstr "周期内VCPU用量(VCPU数*小时)"
 
 msgid "This action cannot be undone."
 msgstr "这个动作不能撤消。"
@@ -396,7 +399,7 @@ msgid_plural "Upped Items"
 msgstr[0] "Upped Item"
 
 msgid "Usage Summary"
-msgstr "使用情况摘要"
+msgstr "使用情况列表"
 
 #, python-format
 msgid "Used <span> %(used)s </span>(No Limit)"

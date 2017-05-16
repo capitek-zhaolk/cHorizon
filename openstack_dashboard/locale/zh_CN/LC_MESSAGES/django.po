@@ -2448,7 +2448,7 @@ msgid "Down"
 msgstr "Down"
 
 msgid "Download CSV Summary"
-msgstr "下载 CSV 摘要"
+msgstr "下载使用量文件"
 
 msgid "Download EC2 Credentials"
 msgstr "下载EC2凭据"
@@ -7250,19 +7250,19 @@ msgid "This volume type is used by one or more volumes."
 msgstr "该云硬盘类型还有云硬盘在使用."
 
 msgid "Time Since Created"
-msgstr "创建后的时间"
+msgstr "已创建时间"
 
 msgid "Time Since Event"
-msgstr "发生事件后的时间"
+msgstr "事件已发生时间"
 
 msgid "Time since created"
-msgstr "创建后的时间"
+msgstr "已创建时间"
 
 msgid "Time since created (Seconds)"
-msgstr "创建后的时间(秒)"
+msgstr "已创建时间(秒)"
 
 msgid "Time since update"
-msgstr "更新后的时间"
+msgstr "已更新时间"
 
 msgid "Timeout"
 msgstr "超时"

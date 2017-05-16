@@ -17,10 +17,43 @@
     <small>{% trans "The date should be in YYYY-MM-DD format." %}</small>
   </form>
   <p id="activity">
-    <span><strong>{% trans "Active Instances:" %}</strong> {{ usage.summary.instances|default:'0' }}</span>
-    <span><strong>{% trans "Active RAM:" %}</strong> {{ usage.summary.memory_mb|mb_float_format|default:'0' }}</span>
-    <span><strong>{% trans "This Period's VCPU-Hours:" %}</strong> {{ usage.summary.vcpu_hours|floatformat:2|default:'0' }}</span>
-    <span><strong>{% trans "This Period's GB-Hours:" %}</strong> {{ usage.summary.disk_gb_hours|floatformat:2|default:'0' }}</span>
-    <span><strong>{% trans "This Period's RAM-Hours:" %}</strong> {{ usage.summary.memory_mb_hours|floatformat:2|default:'0' }}</span>
+    <table class="table table-striped table-condensed table-hover">
+      <tr>
+        <td width="10%">#1</td>
+        <td width="25%"><span><strong>{% trans "Active Instances:" %}</strong></span></td>
+        <td width="15%"><span><strong>{{ usage.summary.instances|default:'0' }}</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>#2</td>
+        <td><span><strong>{% trans "Active RAM (MB):" %}</strong></span></td>
+        <td><span><strong>{{ usage.summary.memory_mb|default:'0' }}</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>#3</td>
+        <td><span><strong>{% trans "Active Disk (GB):" %}</strong></span></td>
+        <td><span><strong>{{ usage.summary.local_gb|default:'0' }}</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>#4</td>
+        <td><span><strong>{% trans "This Period's VCPU-Hours:" %}</strong></span></td>
+        <td><span><strong>{{ usage.summary.vcpu_hours|floatformat:2|default:'0' }}</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>#5</td>
+        <td><span><strong>{% trans "This Period's RAM-Hours:" %}</strong></span></td>
+        <td><span><strong>{{ usage.summary.memory_mb_hours|floatformat:2|default:'0' }}</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>#6</td>
+        <td><span><strong>{% trans "This Period's GB-Hours:" %}</strong></span></td>
+        <td><span><strong>{{ usage.summary.disk_gb_hours|floatformat:2|default:'0' }}</span></td>
+        <td></td>
+      </tr>
+    </table>
   </p>
 </div>

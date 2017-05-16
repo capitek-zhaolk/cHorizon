@@ -361,7 +361,7 @@ msgid "Available"
 msgstr "可用"
 
 msgid "Available Scheduler Hints"
-msgstr "可用的 scheduler hint"
+msgstr "可用的调度建议值"
 
 msgid "Badges"
 msgstr "标记"
@@ -801,7 +801,7 @@ msgid "Example body text"
 msgstr "正文例子"
 
 msgid "Existing Scheduler Hints"
-msgstr "存在的 scheduler hint"
+msgstr "存在的调度建议值"
 
 #, python-format
 msgid "Extension is not enabled: %(extension)s."
@@ -1385,13 +1385,13 @@ msgid "No available items"
 msgstr "没有可选项"
 
 msgid "No available scheduler hints"
-msgstr "没有可用的 scheduler hint"
+msgstr "没有可用的调度建议值"
 
 msgid "No description available."
 msgstr "没有可用的描述。"
 
 msgid "No existing scheduler hints"
-msgstr "没有存在的 scheduler hint"
+msgstr "没有存在的调度建议值"
 
 msgid "None"
 msgstr "无"
@@ -1723,12 +1723,12 @@ msgid "Saving"
 msgstr "保存中"
 
 msgid "Scheduler Hints"
-msgstr "scheduler hint"
+msgstr "调度建议值"
 
 msgid ""
 "Scheduler hints allow you to pass additional placement related information "
 "to the compute scheduler."
-msgstr "使用 scheduler hint 可用向计算调度程序传递额外的放置信息。"
+msgstr "使用调度建议值可用向计算调度程序传递额外的放置信息。"
 
 msgid "Search"
 msgstr "搜索"
@@ -2174,7 +2174,7 @@ msgid "This step allows you to add Metadata items to your instance."
 msgstr "此步骤允许您为云服务器添加元数据条目。"
 
 msgid "This step allows you to add scheduler hints to your instance."
-msgstr "这一步允许为云服务器添加 scheduler hint。"
+msgstr "这一步允许为云服务器添加调度建议值。"
 
 msgid "Time"
 msgstr "时间"
@@ -2885,9 +2885,9 @@ msgid ""
 "the Glance Metadata Catalog. Use the \"Custom\" option to add scheduler "
 "hints with the key of your choice."
 msgstr ""
-"可以通过把左列的项目移动到右列来指定 scheduler hint。左列是来自 Glance 元数据"
-"目录里的 scheduler hint 定义。请使用“自定义”选项来添加具有您所选择的键的 "
-"scheduler hint。"
+"可以通过把左列的项目移动到右列来指定调度建议值。左列是来自 Glance 元数据"
+"目录里的调度建议值定义。请使用“自定义”选项来添加具有您所选择的键的"
+"调度建议值。"
 
 #, python-format
 msgid "You have selected \"%s\". Deleted image is not recoverable."
