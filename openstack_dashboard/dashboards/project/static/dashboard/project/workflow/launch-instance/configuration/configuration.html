@@ -4,6 +4,22 @@
     "Customization Script" is analogous to "User Data" in other systems.
   </p>
 
+  <label>Example: </label>
+  <div>
+      <span style='white-space:pre;'>#cloud-config</span><br>
+      <span style='white-space:pre;'>ssh_pwauth: True</span><br>
+      <span style='white-space:pre;'>disable_root: False</span><br>
+      <span style='white-space:pre;'>chpasswd:</span><br>
+      <span style='white-space:pre;'>  list: |</span><br>
+      <span style='white-space:pre;'>    root:capitek</span><br>
+      <span style='white-space:pre;'>  expire: False</span><br>
+      <span style='white-space:pre;'>runcmd:</span><br>
+      <span style='white-space:pre;'>  - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin yes/' /etc/ssh/sshd_config</span><br>
+      <span style='white-space:pre;'>  - sed -i -e 's/\"set background=dark/set background=dark/g' /etc/vim/vimrc</span><br>
+      <span style='white-space:pre;'>  - service ssh restart</span><br>
+      <span style='white-space:pre;'>  - service sshd restart</span><br>
+  </div>
+
   <load-edit config="config"
              user-input="model.newInstanceSpec"
              key="user_data">
