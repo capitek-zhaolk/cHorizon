@@ -423,7 +423,7 @@ API_RESULT_PAGE_SIZE = 20
 SWIFT_FILE_TRANSFER_CHUNK_SIZE = 512 * 1024
 
 # The default number of lines displayed for instance console log.
-INSTANCE_LOG_LENGTH = 35
+INSTANCE_LOG_LENGTH = 100
 
 # Specify a maximum number of items to display in a dropdown.
 DROPDOWN_MAX_ITEMS = 30
