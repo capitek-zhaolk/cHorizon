@@ -266,7 +266,7 @@ msgid "Next"
 msgstr "下一步"
 
 msgid "No"
-msgstr "不"
+msgstr "否"
 
 msgid "No Limit"
 msgstr "无限制"

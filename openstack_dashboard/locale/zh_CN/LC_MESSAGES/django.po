@@ -703,7 +703,7 @@ msgid "Any"
 msgstr "任何"
 
 msgid "Any Availability Zone"
-msgstr "任何可用域"
+msgstr "随机分配"
 
 msgid "Architecture"
 msgstr "构架"
@@ -818,19 +818,19 @@ msgid "Automatically schedule new host."
 msgstr "自动安排新主机。"
 
 msgid "Availability Zone"
-msgstr "可用域"
+msgstr "可用区"
 
 msgid "Availability Zone ="
 msgstr "Availability Zone ="
 
 msgid "Availability Zone Name"
-msgstr "可用域名称"
+msgstr "可用区名称"
 
 msgid "Availability Zones"
-msgstr "可用域"
+msgstr "可用区"
 
 msgid "Availability zone"
-msgstr "可用域"
+msgstr "可用区"
 
 msgid "Available"
 msgstr "可用"
@@ -4613,7 +4613,7 @@ msgid ""
 msgstr "下一跳的IP必须是路由器接口已连接的子网的一个IP"
 
 msgid "No"
-msgstr "不"
+msgstr "否"
 
 msgid "No Host selected."
 msgstr "没有选择主机。"
@@ -4641,7 +4641,7 @@ msgid "No attached device"
 msgstr "没有连接设备"
 
 msgid "No availability zones found"
-msgstr "找不到可用域。"
+msgstr "找不到可用区。"
 
 msgid "No available console found."
 msgstr "没有可用的控制台"
@@ -7190,8 +7190,8 @@ msgid ""
 "There is not enough capacity for this flavor in the selected availability "
 "zone. Try again later or select a different availability zone."
 msgstr ""
-"在选定的可用域中没有足够的空间来匹配这个主机类型。请稍后重试或者选择另外一个"
-"可用域"
+"在选定的可用区中没有足够的空间来匹配这个主机类型。请稍后重试或者选择另外一个"
+"可用区"
 
 #, python-format
 msgid "There was a problem loading the namespace: %s."
@@ -7660,7 +7660,7 @@ msgid "Unable to detach volume."
 msgstr "无法分离云硬盘"
 
 msgid "Unable to determine if availability zones extension is supported."
-msgstr "无法确定可用域是否支持扩展"
+msgstr "无法确定可用区是否支持扩展"
 
 msgid "Unable to determine if volume type encryption is supported."
 msgstr "无法判断云硬盘类型是否支持加密。"
@@ -7944,10 +7944,10 @@ msgid "Unable to retrieve attachment information."
 msgstr "无法获取连接信息"
 
 msgid "Unable to retrieve availability zone list."
-msgstr "无法获取可用域列表。"
+msgstr "无法获取可用区列表。"
 
 msgid "Unable to retrieve availability zones."
-msgstr "无法获取可用域。"
+msgstr "无法获取可用区。"
 
 msgid "Unable to retrieve backup details."
 msgstr "无法获取备份详情。"
@@ -8424,7 +8424,7 @@ msgid "Unable to retrieve volume/instance attachment information"
 msgstr "无法获取云硬盘/云服务器连接信息"
 
 msgid "Unable to retrieve volumes availability zones."
-msgstr "无法获取云硬盘可用域。"
+msgstr "无法获取云硬盘可用区。"
 
 msgid "Unable to set Domain Context."
 msgstr "无法设定域上下文。"
