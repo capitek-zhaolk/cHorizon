@@ -16,6 +16,8 @@
       <span style='white-space:pre;'>runcmd:</span><br>
       <span style='white-space:pre;'>  - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin yes/' /etc/ssh/sshd_config</span><br>
       <span style='white-space:pre;'>  - sed -i -e 's/\"set background=dark/set background=dark/g' /etc/vim/vimrc</span><br>
+      <span style='white-space:pre;'>  - echo "capitek" | passwd --stdin root</span><br>
+      <span style='white-space:pre;'>  - echo "capitek" | passwd --stdin centos</span><br>
       <span style='white-space:pre;'>  - service ssh restart</span><br>
       <span style='white-space:pre;'>  - service sshd restart</span><br>
   </div>

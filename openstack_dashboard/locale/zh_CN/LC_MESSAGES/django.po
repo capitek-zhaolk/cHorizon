@@ -3709,7 +3709,7 @@ msgstr "认证服务不允许编辑用户密码。"
 msgid ""
 "If \"No volume type\" is selected, the volume will be created without a "
 "volume type."
-msgstr "如果\"无云硬盘类型\"被选中, 云硬盘被创建的时候将没有云硬盘类型。"
+msgstr "如果\"默认类型\"被选中, 云硬盘被创建的时候将不设置云硬盘类型。"
 
 msgid ""
 "If console is not responding to keyboard input: click the grey status bar "
@@ -4764,7 +4764,7 @@ msgid "No volume snapshots available"
 msgstr "没有可用的云硬盘快照。"
 
 msgid "No volume type"
-msgstr "未设置云硬盘类型"
+msgstr "默认类型"
 
 msgid "No volume types found."
 msgstr "找不到云硬盘类型"
