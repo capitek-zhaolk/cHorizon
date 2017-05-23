@@ -739,35 +739,35 @@ msgid "Attach Interface"
 msgstr "连接接口"
 
 msgid "Attach To Instance"
-msgstr "连接到云服务器"
+msgstr "挂载到云服务器"
 
 msgid "Attach Volume"
-msgstr "连接云硬盘"
+msgstr "挂载云硬盘"
 
 msgid "Attach Volume to Running Instance."
-msgstr "连接云硬盘到正在运行的云服务器上"
+msgstr "挂载云硬盘到正在运行的云服务器上"
 
 msgid "Attach a Volume"
-msgstr "连接云硬盘"
+msgstr "挂载云硬盘"
 
 msgid "Attach to Instance"
-msgstr "连接到云服务器"
+msgstr "挂载到云服务器"
 
 msgid "Attached"
-msgstr "连接"
+msgstr "挂载"
 
 msgid "Attached Device"
-msgstr "连接设备"
+msgstr "挂载设备"
 
 msgid "Attached To"
-msgstr "连接到"
+msgstr "挂载到"
 
 msgid "Attaching"
-msgstr "连接中"
+msgstr "挂载中"
 
 msgctxt "Current status of a Volume"
 msgid "Attaching"
-msgstr "连接中"
+msgstr "挂载中"
 
 #, python-format
 msgid "Attaching interface for instance %s."
@@ -775,7 +775,7 @@ msgstr "为云服务器 %s 连接端口。"
 
 #, python-format
 msgid "Attaching volume %(vol)s to instance %(inst)s on %(dev)s."
-msgstr "正在设备 %(dev)s上为主机 %(inst)s 连接云硬盘%(vol)s"
+msgstr "正在设备 %(dev)s上为主机 %(inst)s 挂载云硬盘%(vol)s"
 
 msgid "Attachments"
 msgstr "连接的设备"
@@ -2216,18 +2216,18 @@ msgid "Detach Interface"
 msgstr "分离接口"
 
 msgid "Detach Volume"
-msgstr "分离云硬盘"
+msgstr "卸载云硬盘"
 
 msgctxt "Action to perform (the volume is currently attached)"
 msgid "Detach Volume"
 msgid_plural "Detach Volumes"
-msgstr[0] "分离云硬盘"
+msgstr[0] "卸载云硬盘"
 
 msgid "Detach Volume from Running Instance."
-msgstr "从正在运行的云服务器上分离云硬盘"
+msgstr "从正在运行的云服务器上卸载云硬盘"
 
 msgid "Detach a Volume"
-msgstr "分离云硬盘"
+msgstr "卸载云硬盘"
 
 msgid "Detached"
 msgstr "分离"
@@ -2246,7 +2246,7 @@ msgstr "分离中"
 msgctxt "Past action (the volume is currently being detached)"
 msgid "Detaching Volume"
 msgid_plural "Detaching Volumes"
-msgstr[0] "正在分离云硬盘"
+msgstr[0] "正在卸载云硬盘"
 
 #, python-format
 msgid "Detaching volume %(vol)s from instance %(inst)s."
@@ -4201,7 +4201,7 @@ msgid "Manage"
 msgstr "管理"
 
 msgid "Manage Attachments"
-msgstr "管理连接"
+msgstr "管理挂载"
 
 msgid "Manage Floating IP Associations"
 msgstr "管理浮动IP的关联"
@@ -4239,7 +4239,7 @@ msgid "Manage Volume"
 msgstr "管理云硬盘"
 
 msgid "Manage Volume Attachments"
-msgstr "管理已连接云硬盘"
+msgstr "管理已挂载云硬盘"
 
 msgid "Manage Volume Types"
 msgstr "管理云硬盘类型"
@@ -4773,10 +4773,10 @@ msgid "No volume types selected."
 msgstr "没有选择云硬盘类型"
 
 msgid "No volumes attached"
-msgstr "没有连接云硬盘"
+msgstr "没有挂载云硬盘"
 
 msgid "No volumes attached."
-msgstr "未连接云硬盘。"
+msgstr "未挂载云硬盘。"
 
 msgid "No volumes available"
 msgstr "没有可用云硬盘。"
@@ -6085,7 +6085,7 @@ msgid "Select a volume"
 msgstr "选择一个云硬盘"
 
 msgid "Select a volume to attach to this instance."
-msgstr "选择一个要连接到云服务器的云硬盘"
+msgstr "选择一个要挂载到云服务器的云硬盘"
 
 msgid "Select a volume to detach from this instance."
 msgstr "选择一个要从云服务器中分离出来的云硬盘"
@@ -6100,7 +6100,7 @@ msgid "Select an instance"
 msgstr "请选择一个云服务器"
 
 msgid "Select an instance to attach to."
-msgstr "选择要连接到的云服务器。"
+msgstr "选择要挂载到的云服务器。"
 
 msgid "Select format"
 msgstr "选择格式"
@@ -7467,7 +7467,7 @@ msgid "Unable to attach interface."
 msgstr "未能连接接口。"
 
 msgid "Unable to attach volume."
-msgstr "无法连接云硬盘"
+msgstr "无法挂载云硬盘"
 
 msgid "Unable to change password."
 msgstr "无法修改密码。"
@@ -7657,7 +7657,7 @@ msgid "Unable to detach interface."
 msgstr "未能分离接口。"
 
 msgid "Unable to detach volume."
-msgstr "无法分离云硬盘"
+msgstr "无法卸载云硬盘"
 
 msgid "Unable to determine if availability zones extension is supported."
 msgstr "无法确定可用区是否支持扩展"
@@ -9163,7 +9163,7 @@ msgid "Volumes Attached"
 msgstr "云硬盘已连接"
 
 msgid "Volumes are block devices that can be attached to instances."
-msgstr "云硬盘是可被连接到云服务器的块设备。"
+msgstr "云硬盘是可被挂载到云服务器的块设备。"
 
 #, python-format
 msgid "Volumes of Type %(type)s"
