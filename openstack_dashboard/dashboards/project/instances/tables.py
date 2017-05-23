@@ -973,6 +973,7 @@ class DetachInterface(policy.PolicyTargetMixin, tables.LinkAction):
     verbose_name = _("Detach Interface")
     classes = ("btn-confirm", "ajax-modal")
     url = "horizon:project:instances:detach_interface"
+    policy_rules = (("compute", "compute_extension:detach_interfaces"),)
 
     def allowed(self, request, instance):
         if not api.base.is_service_enabled(request, 'network'):
