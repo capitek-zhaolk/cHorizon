@@ -20,6 +20,7 @@ import horizon
 class FloatingIps(horizon.Panel):
     name = _("Floating IPs")
     slug = 'floating_ips'
+    policy_rules = (("network", "context_is_admin"),)
 
     @staticmethod
     def can_register():

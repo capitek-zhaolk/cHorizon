@@ -21,6 +21,7 @@ import horizon
 class Routers(horizon.Panel):
     name = _("Routers")
     slug = 'routers'
+    policy_rules = (("network", "context_is_admin"),)
     permissions = ('openstack.services.network',)
 
     @staticmethod

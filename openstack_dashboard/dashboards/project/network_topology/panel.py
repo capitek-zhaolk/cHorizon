@@ -24,4 +24,5 @@ import horizon
 class NetworkTopology(horizon.Panel):
     name = _("Network Topology")
     slug = 'network_topology'
+    policy_rules = (("network", "context_is_admin"),)
     permissions = ('openstack.services.network', )

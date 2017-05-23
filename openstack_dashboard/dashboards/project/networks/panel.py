@@ -20,4 +20,5 @@ import horizon
 class Networks(horizon.Panel):
     name = _("Networks")
     slug = 'networks'
+    policy_rules = (("network", "context_is_admin"),)
     permissions = ('openstack.services.network',)

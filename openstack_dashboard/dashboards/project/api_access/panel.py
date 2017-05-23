@@ -19,3 +19,4 @@ import horizon
 class ApiAccess(horizon.Panel):
     name = _("API Access")
     slug = 'api_access'
+    policy_rules = (("compute", "context_is_admin"),)

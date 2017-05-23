@@ -19,3 +19,4 @@ import horizon
 class SecurityGroups(horizon.Panel):
     name = _("Security Groups")
     slug = 'security_groups'
+#    policy_rules = (("network", "context_is_admin"),)

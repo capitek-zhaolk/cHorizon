@@ -21,5 +21,6 @@ class KeyPairs(horizon.Panel):
     name = _("Key Pairs")
     slug = 'key_pairs'
     permissions = ('openstack.services.compute',)
-    policy_rules = (("compute", "os_compute_api:os-keypairs:index"),
-                    ("compute", "os_compute_api:os-keypairs:create"),)
+    policy_rules = ((("compute", "context_is_admin"),
+                     ("compute", "os_compute_api:os-keypairs:index"),
+                     ("compute", "os_compute_api:os-keypairs:create"),),)
