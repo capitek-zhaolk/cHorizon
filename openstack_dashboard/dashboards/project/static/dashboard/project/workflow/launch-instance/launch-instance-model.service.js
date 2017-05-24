@@ -234,6 +234,7 @@
         model.allowedBootSources.length = 0;
 
         var launchInstanceDefaults = settings.getSetting('LAUNCH_INSTANCE_DEFAULTS');
+        var defaultUserDataOfInstance = settings.getSetting('INSTANCE_DEFAULT_USER_DATA');
 
         promise = $q.all([
           novaAPI.getAvailabilityZones().then(onGetAvailabilityZones, noop),
@@ -244,7 +245,8 @@
           serviceCatalog.ifTypeEnabled('network').then(getNetworks, noop),
           launchInstanceDefaults.then(addImageSourcesIfEnabled, noop),
           launchInstanceDefaults.then(setDefaultValues, noop),
-          launchInstanceDefaults.then(addVolumeSourcesIfEnabled, noop)
+          launchInstanceDefaults.then(addVolumeSourcesIfEnabled, noop),
+          defaultUserDataOfInstance.then(getDefaultUserData, noop),
         ]);
 
         promise.then(onInitSuccess, onInitFail);
@@ -266,6 +268,10 @@
     function onInitFail() {
       model.initializing = false;
       model.initialized = false;
+    }
+
+    function getDefaultUserData(defaults) {
+      model.newInstanceSpec.user_data = defaults;
     }
 
     function setDefaultValues(defaults) {

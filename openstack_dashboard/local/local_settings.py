@@ -266,14 +266,14 @@ OPENSTACK_KEYSTONE_BACKEND = {
 
 # A dictionary of settings which can be used to provide the default values for
 # properties found in the Launch Instance modal.
-#LAUNCH_INSTANCE_DEFAULTS = {
-#    'config_drive': False,
-#    'enable_scheduler_hints': True,
-#    'disable_image': False,
-#    'disable_instance_snapshot': False,
-#    'disable_volume': False,
-#    'disable_volume_snapshot': False,
-#}
+LAUNCH_INSTANCE_DEFAULTS = {
+    'config_drive': False,
+    'enable_scheduler_hints': True,
+    'disable_image': False,
+    'disable_instance_snapshot': True,
+    'disable_volume': True,
+    'disable_volume_snapshot': True,
+}
 
 # The Xen Hypervisor has the ability to set the mount point for volumes
 # attached to instances (other Hypervisors currently do not). Setting
@@ -772,7 +772,8 @@ SECURITY_GROUP_RULES = {
 REST_API_REQUIRED_SETTINGS = ['OPENSTACK_HYPERVISOR_FEATURES',
                               'LAUNCH_INSTANCE_DEFAULTS',
                               'OPENSTACK_IMAGE_FORMATS',
-                              'OPENSTACK_KEYSTONE_DEFAULT_DOMAIN']
+                              'OPENSTACK_KEYSTONE_DEFAULT_DOMAIN',
+                              'INSTANCE_DEFAULT_USER_DATA']
 
 # Additional settings can be made available to the client side for
 # extensibility by specifying them in REST_API_ADDITIONAL_SETTINGS
@@ -858,3 +859,22 @@ ALLOWED_PRIVATE_SUBNET_CIDR = {'ipv4': [], 'ipv6': []}
 #USER_TABLE_EXTRA_INFO = {
 #   'phone_num': _('Phone Number'),
 #}
+
+
+# A settings instance user-data of configuration.
+INSTANCE_DEFAULT_USER_DATA = """
+#cloud-config
+ssh_pwauth: True
+disable_root: False
+chpasswd:
+  list: |
+    root:capitek
+  expire: False
+runcmd:
+  - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin yes/' /etc/ssh/sshd_config
+  - sed -i -e 's/\"set background=dark/set background=dark/g' /etc/vim/vimrc
+  - echo "capitek" | passwd --stdin root
+  - echo "capitek" | passwd --stdin centos
+  - service ssh restart
+  - service sshd restart
+"""

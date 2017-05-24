@@ -13,6 +13,8 @@
 # limitations under the License.
 """API over the nova service.
 """
+import logging
+
 from collections import OrderedDict
 
 from django.http import HttpResponse
@@ -31,6 +33,7 @@ from openstack_dashboard.api.rest import urls
 from openstack_dashboard.api.rest import utils as rest_utils
 from openstack_dashboard.usage import quotas
 
+LOG = logging.getLogger(__name__)
 
 @urls.register
 class Snapshots(generic.View):
@@ -398,6 +401,8 @@ class Servers(generic.View):
                 request.DATA['user_data'],
                 request.DATA['security_groups'],
             )
+
+            LOG.info(request.DATA['user_data'])
         except KeyError as e:
             raise rest_utils.AjaxError(400, 'missing required parameter '
                                             "'%s'" % e.args[0])

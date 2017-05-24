@@ -33,14 +33,14 @@
       steps: [
         {
           id: 'details',
-          title: gettext('Details'),
+          title: gettext('Instance Details'),
           templateUrl: basePath + 'details/details.html',
           helpUrl: basePath + 'details/details.help.html',
           formName: 'launchInstanceDetailsForm'
         },
         {
           id: 'source',
-          title: gettext('Source'),
+          title: gettext('Instance Source'),
           templateUrl: basePath + 'source/source.html',
           helpUrl: basePath + 'source/source.help.html',
           formName: 'launchInstanceSourceForm'

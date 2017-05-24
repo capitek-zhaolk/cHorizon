@@ -686,6 +686,9 @@ msgstr "描述列表"
 msgid "Details"
 msgstr "详情"
 
+msgid "Instance Details"
+msgstr "基本信息"
+
 msgid "Details Views:"
 msgstr "详情视图："
 
@@ -1899,6 +1902,9 @@ msgstr "此处为其他内容"
 
 msgid "Source"
 msgstr "源"
+
+msgid "Instance Source"
+msgstr "操作系统"
 
 msgid "Source Code"
 msgstr "源代码"
