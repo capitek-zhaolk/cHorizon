@@ -14,6 +14,9 @@
 """API over the nova service.
 """
 import logging
+import json
+
+from django.core.mail import send_mail
 
 from collections import OrderedDict
 
@@ -401,8 +404,6 @@ class Servers(generic.View):
                 request.DATA['user_data'],
                 request.DATA['security_groups'],
             )
-
-            LOG.info(request.DATA['user_data'])
         except KeyError as e:
             raise rest_utils.AjaxError(400, 'missing required parameter '
                                             "'%s'" % e.args[0])
@@ -411,11 +412,33 @@ class Servers(generic.View):
             if name in request.DATA:
                 kw[name] = request.DATA[name]
 
+        LOG.info("Request DATA:")
+        for k in request.DATA:
+            LOG.info('%s:\t%s' % (k, request.DATA[k]))
+
         new = api.nova.server_create(*args, **kw)
-        return rest_utils.CreatedResponse(
+
+        resp = rest_utils.CreatedResponse(
             '/api/nova/servers/%s' % utils_http.urlquote(new.id),
             new.to_dict()
         )
+
+        LOG.info("Response DATA:")
+        LOG.info(new)
+
+        try:
+	    send_mail(
+                'Capitek Cloud: New Server "%s" Created' % request.DATA['name'],
+                'User:\t%s\nServer Name:\t%s\n' % (request.__dict__['user'], request.DATA['name']),
+                'cloud@capitek.com.cn',
+                ['linfeng@capitek.com.cn'],
+                fail_silently=False,
+                )
+        except Exception as e:
+            LOG.info(e.message)
+
+        return resp
+
 
 
 @urls.register

@@ -158,15 +158,16 @@ SECRET_KEY = secret_key.generate_or_read_from_file(
 #}
 
 # Send email to the console by default
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Or send them to /dev/null
 #EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Configure these for your outgoing email host
-#EMAIL_HOST = 'smtp.my-company.com'
-#EMAIL_PORT = 25
-#EMAIL_HOST_USER = 'djangomail'
-#EMAIL_HOST_PASSWORD = 'top-secret!'
+EMAIL_HOST = 'smtp.capitek.com.cn'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'cloud@capitek.com.cn'
+EMAIL_HOST_PASSWORD = os.environ.get('CLOUD_EMAIL_PASSWORD','')
 
 # For multiple regions uncomment this configuration, and add (endpoint, title).
 #AVAILABLE_REGIONS = [

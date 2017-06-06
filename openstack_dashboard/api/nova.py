@@ -20,8 +20,11 @@
 
 from __future__ import absolute_import
 
+import os
 import collections
 import logging
+
+from django.core.mail import send_mail
 
 from django.conf import settings
 from django.utils.functional import cached_property  # noqa
@@ -714,6 +717,25 @@ def server_create(request, name, image, flavor, key_name, user_data,
 
 @profiler.trace
 def server_delete(request, instance_id):
+
+    instance = server_get(request, instance_id)
+    LOG.info(instance.name)
+
+    LOG.info("Request DATA:")
+    for k in request.__dict__:
+        LOG.info('%s:\n%s' % (k, request.__dict__[k]))
+
+    try:
+        send_mail(
+            'Capitek Cloud: Server "%s" Deleted' % instance.name,
+            'User:\t%s\nServer Name:\t%s\n' % (request.__dict__['user'], instance.name),
+            'cloud@capitek.com.cn',
+            ['linfeng@capitek.com.cn'],
+            fail_silently=False,
+            )
+    except Exception as e:
+        LOG.info(e.message)
+
     novaclient(request).servers.delete(instance_id)
 
 
