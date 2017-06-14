@@ -46,6 +46,7 @@ from horizon.utils.memoized import memoized  # noqa
 from horizon.utils.memoized import memoized_with_request  # noqa
 
 from openstack_dashboard.api import base
+from openstack_dashboard.api import keystone
 from openstack_dashboard.api import network_base
 from openstack_dashboard.contrib.developer.profiler import api as profiler
 
@@ -704,7 +705,7 @@ def server_create(request, name, image, flavor, key_name, user_data,
                   availability_zone=None, instance_count=1, admin_pass=None,
                   disk_config=None, config_drive=None, meta=None,
                   scheduler_hints=None):
-    return Server(novaclient(request).servers.create(
+    new = Server(novaclient(request).servers.create(
         name.strip(), image, flavor, userdata=user_data,
         security_groups=security_groups,
         key_name=key_name, block_device_mapping=block_device_mapping,
@@ -714,27 +715,123 @@ def server_create(request, name, image, flavor, key_name, user_data,
         disk_config=disk_config, config_drive=config_drive,
         meta=meta, scheduler_hints=scheduler_hints), request)
 
-
-@profiler.trace
-def server_delete(request, instance_id):
-
-    instance = server_get(request, instance_id)
-    LOG.info(instance.name)
-
-    LOG.info("Request DATA:")
-    for k in request.__dict__:
-        LOG.info('%s:\n%s' % (k, request.__dict__[k]))
-
     try:
+        LOG.info("****** Create Server: Instance & User info ******")
+
+        LOG.info(new)
+
+        user = None
+        try:
+            LOG.info("instance: user_id=%s\t" % (new.user_id))
+            user = keystone.user_get(request, new.user_id, False)
+            LOG.info(user)
+            LOG.info(user.email)
+        except Exception as e:
+            LOG.info("Failure: %s" % (e.message))
+        except:
+            LOG.info("instance: user get failure")
+      
+        LOG.info("instance: name=%s\tstatus=%s\timage_name=%s\tuser_id=%s\t" % (new.name,new.status,new.image_name, new.user_id))
+
+        flavor = None
+        try:
+            LOG.info(new.flavor)
+            flavor = flavor_get(request, new.flavor["id"])
+            LOG.info("instance: rams=%s, disk=%s, vcpu=%s" % (flavor.ram, flavor.disk, flavor.vcpus))
+        except:
+            LOG.info("instance: flavor get failure")
+
+        # send mail
         send_mail(
-            'Capitek Cloud: Server "%s" Deleted' % instance.name,
-            'User:\t%s\nServer Name:\t%s\n' % (request.__dict__['user'], instance.name),
+            'Capitek Cloud: New Server "%s" Created' % request.DATA['name'],
+            'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nOS:\t%s\nIP Address:\t(DHCP)\n' % (request.__dict__['user'], request.DATA['name'],
+                         flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, new.image_name),
             'cloud@capitek.com.cn',
             ['linfeng@capitek.com.cn'],
             fail_silently=False,
             )
+
+        if (cmp(user.email, 'linfeng@capitek.com.cn')!=0): 
+            send_mail(
+                'Capitek Cloud: New Server "%s" Created' % request.DATA['name'],
+                'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nOS:\t%s\nIP Address:\t(DHCP)\n' % (request.__dict__['user'], request.DATA['name'],
+                         flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, new.image_name),
+                'cloud@capitek.com.cn',
+                [user.email],
+                fail_silently=False,
+            )
+        
+
+        LOG.info("*************************************************")
     except Exception as e:
-        LOG.info(e.message)
+        LOG.info("Failure sending mail: %s" % (e.message))
+    except:
+        LOG.warning("Unknown error!")
+
+    return new
+
+@profiler.trace
+def server_delete(request, instance_id):
+    try:
+        LOG.info("****** Delete Server: Instance & User info ******")
+
+        # instance info
+        instance = server_get(request, instance_id)
+
+        LOG.info("instance: name=%s,\tstatus=%s" % (instance.name, instance.status))
+
+        ips = ""
+        for addresses in instance.addresses.values():
+            for address in addresses:
+                LOG.info("instance: ip=%s" % (address.get('addr')))
+                ips += address.get('addr')
+                ips += " "
+
+        flavor = None
+        try:
+            LOG.info(instance.flavor)
+            flavor = flavor_get(request, instance.flavor["id"])
+            LOG.info("instance: rams=%s, disk=%s, vcpu=%s" % (flavor.ram, flavor.disk, flavor.vcpus))
+        except:
+            LOG.info("instance: flavor get failure")
+
+        # user info
+        user = None
+        try:
+            LOG.info("instance: user_id=%s" % instance.user_id)
+            user = keystone.user_get(request, instance.user_id, False)
+            LOG.info(user)
+            LOG.info(user.email)
+        except Exception as e:
+            LOG.info("Failure: %s" % (e.message))
+        except:
+            LOG.info("instance: user get failure")
+
+        # send email
+        send_mail(
+            'Capitek Cloud: Server "%s" Deleted' % instance.name,
+            'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nIP Address:%s\n' % (request.__dict__['user'], instance.name,
+                         flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, ips),
+            'cloud@capitek.com.cn',
+            ['linfeng@capitek.com.cn'],
+            fail_silently=False,
+            )
+
+        if (cmp(user.email, 'linfeng@capitek.com.cn')!=0): 
+            send_mail(
+                'Capitek Cloud: Server "%s" Deleted' % instance.name,
+                'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nIP Address:%s\n' % (request.__dict__['user'], instance.name,
+                         flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, ips),
+                'cloud@capitek.com.cn',
+                [user.email],
+                fail_silently=False,
+            )
+
+        LOG.info("*************************************************")
+    except Exception as e:
+        LOG.info("Failure sending mail: %s" % (e.message))
+    except:
+        LOG.warning("Unknown error!")
 
     novaclient(request).servers.delete(instance_id)
 

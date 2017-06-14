@@ -412,10 +412,6 @@ class Servers(generic.View):
             if name in request.DATA:
                 kw[name] = request.DATA[name]
 
-        LOG.info("Request DATA:")
-        for k in request.DATA:
-            LOG.info('%s:\t%s' % (k, request.DATA[k]))
-
         new = api.nova.server_create(*args, **kw)
 
         resp = rest_utils.CreatedResponse(
@@ -423,22 +419,7 @@ class Servers(generic.View):
             new.to_dict()
         )
 
-        LOG.info("Response DATA:")
-        LOG.info(new)
-
-        try:
-	    send_mail(
-                'Capitek Cloud: New Server "%s" Created' % request.DATA['name'],
-                'User:\t%s\nServer Name:\t%s\n' % (request.__dict__['user'], request.DATA['name']),
-                'cloud@capitek.com.cn',
-                ['linfeng@capitek.com.cn'],
-                fail_silently=False,
-                )
-        except Exception as e:
-            LOG.info(e.message)
-
         return resp
-
 
 
 @urls.register

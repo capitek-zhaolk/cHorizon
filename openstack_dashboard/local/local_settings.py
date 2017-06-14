@@ -47,7 +47,7 @@ ALLOWED_HOSTS = ['*']
 # The absolute path to the directory where message files are collected.
 # The message file must have a .json file extension. When the user logins to
 # horizon, the message files collected are processed and displayed to the user.
-#MESSAGES_PATH=None
+MESSAGES_PATH='/opt/message'
 
 # Overrides for OpenStack API versions. Use this setting to force the
 # OpenStack dashboard to use a specific API version for a given service API.
@@ -867,6 +867,7 @@ INSTANCE_DEFAULT_USER_DATA = """
 #cloud-config
 ssh_pwauth: True
 disable_root: False
+apt_preserve_sources_list: True
 chpasswd:
   list: |
     root:capitek
