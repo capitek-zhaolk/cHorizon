@@ -12,6 +12,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import logging
+
 from django.conf import settings
 from django import shortcuts
 import django.views.decorators.vary
@@ -21,6 +23,7 @@ from horizon import base
 from horizon import exceptions
 from horizon import notifications
 
+LOG = logging.getLogger(__name__)
 
 MESSAGES_PATH = getattr(settings, 'MESSAGES_PATH', None)
 
@@ -41,11 +44,17 @@ def get_user_home(user):
 
     return dashboard.get_absolute_url()
 
+def index(request):
+    return shortcuts.render(request, 'horizon/index.html')
 
 @django.views.decorators.vary.vary_on_cookie
 def splash(request):
     if not request.user.is_authenticated():
-        raise exceptions.NotAuthenticated()
+        # raise exceptions.NotAuthenticated()
+        LOG.info("User Not Authenticated: %s", request.user)
+        return index(request)
+    else:
+        LOG.info("User Has Authenticated: %s", request.user)
 
     response = shortcuts.redirect(horizon.get_user_home(request.user))
     if 'logout_reason' in request.COOKIES:
