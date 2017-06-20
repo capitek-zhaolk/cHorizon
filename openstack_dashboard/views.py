@@ -14,6 +14,7 @@
 
 import logging
 
+from django.core.mail import send_mail
 from django.conf import settings
 from django import shortcuts
 import django.views.decorators.vary
@@ -46,6 +47,26 @@ def get_user_home(user):
 
 def index(request):
     return shortcuts.render(request, 'horizon/index.html')
+
+def register(request):
+    if request.method == 'POST':
+       register_email = request.POST.get('register-email')
+       register_password = request.POST.get('register-password')
+       LOG.info("User Register Info: email=%s, password=%s" % (register_email, register_password))
+
+       if '@capitek.com.cn' in register_email:
+           send_mail(
+              'Capitek Cloud: Welcome to Cloud Platform',
+              'Email: %s\nPassword: %s\n' % (register_email, register_password),
+              'cloud@capitek.com.cn',
+              [register_email, 'linfeng@capitek.com.cn'],
+              fail_silently=False,
+           )
+           return shortcuts.render(request, 'horizon/register_msg.html')
+       else:
+           return shortcuts.render(request, 'horizon/register.html')
+    else:
+       return shortcuts.render(request, 'horizon/register.html')
 
 @django.views.decorators.vary.vary_on_cookie
 def splash(request):
