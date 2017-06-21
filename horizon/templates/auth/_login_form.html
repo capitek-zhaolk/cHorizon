@@ -13,9 +13,11 @@
 
     <div class="panel-heading">
     {% block login_header %}
+      <!-- 
       <h3 class="login-title">
-        {% trans 'Log in' %}
+          {% trans 'Log in' %}
       </h3>
+      -->
     {% endblock %}
     </div>
 
@@ -65,9 +67,12 @@
 
     <div class="panel-footer">
       {% block login_footer %}
-        <button id="loginBtn" type="submit" class="btn btn-primary pull-right">
+        <button id="loginBtn" type="submit" class="btn btn-lg btn-primary pull-right" style="width:100%">
+          <!--
           <span ng-show="auth_type==='credentials'">{% trans "Sign In" %}</span>
           <span ng-hide="auth_type==='credentials'" ng-cloak>{% trans "Connect" %}</span>
+          -->
+          <span>{% trans "Log in" %}</span>
         </button>
         <div class="clearfix"></div>
       {% endblock %}

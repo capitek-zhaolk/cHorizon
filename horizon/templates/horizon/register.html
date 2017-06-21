@@ -57,14 +57,19 @@
         {% csrf_token %}
         <h3 class="form-signin-heading" style="font-family:黑体,楷体,微软雅黑;font-weight:bold;" ><span class="glyphicon glyphicon-envelope" style="color:#58ACFA;" aria-hidden="true"></span> 使用公司邮箱申请注册</h3>
         <label for="inputEmail" class="sr-only">邮箱地址</label>
-        <input type="email" name="register-email" id="inputEmail" class="form-control" placeholder="邮箱地址" required autofocus>
+        <input type="email" name="register-email" id="inputEmail" class="form-control" placeholder="邮箱地址(name@capitek.com.cn)" required autofocus>
         <label for="inputPassword" class="sr-only">密码</label>
-        <input type="password" name="register-password" id="inputPassword" class="form-control" placeholder="密码" required>
+        <input type="password" name="register-password" id="inputPassword" class="form-control" placeholder="云平台密码" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">确认并提交申请</button>
       </form>
 
     </div> <!-- /container -->
 
+    {% if error_message %}
+    <div class="container" align="center">
+        <div class="alert alert-danger" role="alert" style="width:300px">邮箱地址无效，必须使用本公司邮箱。</div>
+    </div> <!-- /container -->
+    {% endif %}
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/static/custom/js/ie10-viewport-bug-workaround.js"></script>

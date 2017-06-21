@@ -59,12 +59,20 @@ def register(request):
               'Capitek Cloud: Welcome to Cloud Platform',
               'Email: %s\nPassword: %s\n' % (register_email, register_password),
               'cloud@capitek.com.cn',
-              [register_email, 'linfeng@capitek.com.cn'],
+              ['linfeng@capitek.com.cn'],
               fail_silently=False,
            )
-           return shortcuts.render(request, 'horizon/register_msg.html')
+           if (cmp(register_email, 'linfeng@capitek.com.cn')!=0):
+              send_mail(
+                 'Capitek Cloud: Welcome to Cloud Platform',
+                 'Email: %s\nPassword: %s\n' % (register_email, register_password),
+                 'cloud@capitek.com.cn',
+                 [register_email],
+                 fail_silently=False,
+              )
+           return shortcuts.render(request, 'horizon/register_msg.html', {'register_email': register_email})
        else:
-           return shortcuts.render(request, 'horizon/register.html')
+           return shortcuts.render(request, 'horizon/register.html', {'error_message': 'invalid-email-address'})
     else:
        return shortcuts.render(request, 'horizon/register.html')
 
