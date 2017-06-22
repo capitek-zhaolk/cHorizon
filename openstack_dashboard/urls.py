@@ -34,6 +34,9 @@ from openstack_dashboard import views
 
 urlpatterns = [
     url(r'^$', views.splash, name='splash'),
+    url(r'^register/notification/', views.register_notification),
+    url(r'^register/verification/(?P<code>\w+)', views.register_verification),
+    url(r'^register/verification/', views.register_verification),
     url(r'^register/', views.register),
     url(r'^api/', include(rest.urls)),
     url(r'', include(horizon.urls)),

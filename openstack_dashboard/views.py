@@ -13,6 +13,8 @@
 #    under the License.
 
 import logging
+import zlib
+import base64
 
 from django.core.mail import send_mail
 from django.conf import settings
@@ -51,13 +53,14 @@ def index(request):
 def register(request):
     if request.method == 'POST':
        register_email = request.POST.get('register-email')
-       register_password = request.POST.get('register-password')
-       LOG.info("User Register Info: email=%s, password=%s" % (register_email, register_password))
-
        if '@capitek.com.cn' in register_email:
+           register_name = register_email.split('@')[0]
+           register_code = base64.b16encode(zlib.compress(register_name))
+           register_link = "http://172.18.0.125/register/verification/" + register_code.lower()
+
            send_mail(
               'Capitek Cloud: Welcome to Cloud Platform',
-              'Email: %s\nPassword: %s\n' % (register_email, register_password),
+              'Registration Link:\n\t%s\n' % (register_link),
               'cloud@capitek.com.cn',
               ['linfeng@capitek.com.cn'],
               fail_silently=False,
@@ -65,16 +68,44 @@ def register(request):
            if (cmp(register_email, 'linfeng@capitek.com.cn')!=0):
               send_mail(
                  'Capitek Cloud: Welcome to Cloud Platform',
-                 'Email: %s\nPassword: %s\n' % (register_email, register_password),
+                 'Registration Link:\n\t%s\n' % (register_link),
                  'cloud@capitek.com.cn',
                  [register_email],
                  fail_silently=False,
               )
-           return shortcuts.render(request, 'horizon/register_msg.html', {'register_email': register_email})
+           return shortcuts.redirect('/register/notification/')
        else:
            return shortcuts.render(request, 'horizon/register.html', {'error_message': 'invalid-email-address'})
     else:
        return shortcuts.render(request, 'horizon/register.html')
+
+def register_notification(request):
+    return shortcuts.render(request, 'horizon/register_msg.html')
+
+def register_verification(request, code='0'):
+    if request.method == 'GET':
+        LOG.info("register_verification: GET")
+        register_name = None
+        try:
+            register_name = zlib.decompress(base64.b16decode(code.upper()))
+            LOG.info("Username: %s", register_name)
+        except:
+            LOG.info("Username: decompress/decode failure")
+            return shortcuts.render(request, 'horizon/register_verify.html', {'error_message': 'invalid-verification-code'})
+
+        if (register_name):
+            register_email = register_name + "@capitek.com.cn"
+            return shortcuts.render(request, 'horizon/register_verify.html', {'register_name':register_name, 'register_email':register_email})
+        else:
+            return shortcuts.render(request, 'horizon/register_verify.html', {'error_message': 'invalid-verification-code'})
+        pass
+
+    if request.method == 'POST':
+        LOG.info("register_verification: POST")
+        return shortcuts.render(request, 'horizon/register_result.html')
+        pass
+
+    return shortcuts.redirect('/register/')
 
 @django.views.decorators.vary.vary_on_cookie
 def splash(request):
