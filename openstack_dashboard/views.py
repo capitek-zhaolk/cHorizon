@@ -28,6 +28,8 @@ from horizon import notifications
 
 LOG = logging.getLogger(__name__)
 
+HORIZON_HOST = getattr(settings, 'HORIZON_HOST', None)
+
 MESSAGES_PATH = getattr(settings, 'MESSAGES_PATH', None)
 
 
@@ -56,7 +58,9 @@ def register(request):
        if '@capitek.com.cn' in register_email:
            register_name = register_email.split('@')[0]
            register_code = base64.b16encode(zlib.compress(register_name))
-           register_link = "http://172.18.0.125/register/verification/" + register_code.lower()
+           register_link = "http://cloud.capitek.com.cn/register/verification/" + register_code.lower()
+           if HORIZON_HOST:
+               register_link = "http://" + HORIZON_HOST + "/register/verification/" + register_code.lower()
 
            send_mail(
               'Capitek Cloud: Welcome to Cloud Platform',
