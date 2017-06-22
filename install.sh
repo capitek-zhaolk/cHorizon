@@ -10,7 +10,7 @@ pip install --upgrade pip
 pip install tox
 
 ##########################################################################################################
-git clone https://github.com/linfengplus/horizon.git -b stable/ocata
-cd horizon
+git clone https://github.com/CloudPlatformDev/cHorizon.git -b stable/ocata
+cd cHorizon
 
 pip install -c http://git.openstack.org/cgit/openstack/requirements/plain/upper-constraints.txt?h=stable/ocata .
