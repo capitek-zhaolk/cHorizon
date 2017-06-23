@@ -106,7 +106,8 @@ def register_verification(request, code='0'):
 
     if request.method == 'POST':
         LOG.info("register_verification: POST")
-        return shortcuts.render(request, 'horizon/register_result.html')
+        register_name = request.POST.get("register-name")
+        return shortcuts.render(request, 'horizon/register_result.html', {'register_name':register_name})
         pass
 
     return shortcuts.redirect('/register/')

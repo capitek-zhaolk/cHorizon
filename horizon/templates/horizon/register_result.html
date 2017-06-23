@@ -39,13 +39,31 @@
 
          <table class="table" style="border: none">
             <tr style="border: none" ><td style="border: none" >
+        <h3 class="form-signin-heading" style="font-family:黑体,楷体,微软雅黑;font-weight:bold;" ><span class="glyphicon glyphicon-cloud" style="color:#58ACFA;" aria-hidden="true"></span>云平台用户注册成功</h3>
+            </td></tr>
+            <tr style="border: none" ><td style="border: none" >
         <div class="alert alert-success" role="alert">
-            <p>注册成功，转到<a href="/auth/login/">登录</a>页面。</p>
+            <p>用户<samp>&nbsp;{{register_name}}&nbsp;</samp>注册成功，&nbsp;<span id="time" style="color:read;">10</span></code>&nbsp;秒后转到&nbsp;<a class="btn btn-default" role="button" href="/auth/login/" style="font-size:13px">&nbsp;登录&nbsp;</a>&nbsp;页面，通过用户名和密码登录。</p>
         </div>
             </td></tr>
 
     </div> <!-- /container -->
-        </div>
+   </div>
+
+   <script type="text/javascript">  
+      delayURL();    
+      function delayURL() { 
+          var delay = document.getElementById("time").innerHTML;
+          var t = setTimeout("delayURL()", 1000);
+          if (delay > 0) {
+              delay--;
+              document.getElementById("time").innerHTML = delay;
+          } else {
+              clearTimeout(t); 
+              window.location.href = "/auth/login/";
+          }        
+      } 
+   </script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/static/custom/js/ie10-viewport-bug-workaround.js"></script>
