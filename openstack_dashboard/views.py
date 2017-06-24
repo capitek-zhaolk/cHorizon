@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-  
 # Copyright 2012 Nebula, Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -62,21 +63,22 @@ def register(request):
            if HORIZON_HOST:
                register_link = "http://" + HORIZON_HOST + "/register/verification/" + register_code.lower()
 
-           send_mail(
-              'Capitek Cloud: Welcome to Cloud Platform',
-              'Registration Link:\n\t%s\n' % (register_link),
-              'cloud@capitek.com.cn',
-              ['linfeng@capitek.com.cn'],
-              fail_silently=False,
-           )
-           if (cmp(register_email, 'linfeng@capitek.com.cn')!=0):
-              send_mail(
-                 'Capitek Cloud: Welcome to Cloud Platform',
-                 'Registration Link:\n\t%s\n' % (register_link),
-                 'cloud@capitek.com.cn',
-                 [register_email],
-                 fail_silently=False,
-              )
+           mail_from = 'cloud@capitek.com.cn'
+           mail_to_list = {register_email, 'linfeng@capitek.com.cn'}
+
+           mail_subject = 'Capitek Cloud: Welcome to Cloud Platform'
+           mail_plain_msg = 'Registration Link:\n\t%s\n' % (register_link)
+           mail_html_msg  = u'<b>Registration Link</b>:\n\t%s\n' % (register_link)
+
+           for mail_to in mail_to_list:
+               send_mail(
+                   mail_subject,
+                   mail_plain_msg,
+                   mail_from,
+                   [mail_to],
+                   fail_silently=False,
+                   html_message=mail_html_msg
+               )
            return shortcuts.redirect('/register/notification/')
        else:
            return shortcuts.render(request, 'horizon/register.html', {'error_message': 'invalid-email-address'})
