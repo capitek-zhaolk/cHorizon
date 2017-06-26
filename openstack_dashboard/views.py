@@ -68,7 +68,7 @@ def register(request):
 
            mail_subject = 'Capitek Cloud: Welcome to Cloud Platform'
            mail_plain_msg = 'Registration Link:\n\t%s\n' % (register_link)
-           mail_html_msg  = u'<b>Registration Link</b>:\n\t%s\n' % (register_link)
+           mail_html_msg  = u'<b>点击此链接注册</b>:%s' % (register_link)
 
            for mail_to in mail_to_list:
                send_mail(

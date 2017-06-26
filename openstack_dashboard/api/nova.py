@@ -742,27 +742,35 @@ def server_create(request, name, image, flavor, key_name, user_data,
             LOG.info("instance: flavor get failure")
 
         # send mail
-        send_mail(
-            'Capitek Cloud: New Server "%s" Created' % request.DATA['name'],
-            'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nOS:\t%s\nIP Address:\t(DHCP)\n' % (request.__dict__['user'], request.DATA['name'],
-                         flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, new.image_name),
-            'cloud@capitek.com.cn',
-            ['linfeng@capitek.com.cn'],
-            fail_silently=False,
-            )
+        mail_from = 'cloud@capitek.com.cn'
+        mail_to_list = {user.email, 'linfeng@capitek.com.cn'}
 
-        if (cmp(user.email, 'linfeng@capitek.com.cn')!=0): 
+        mail_subject = 'Capitek Cloud: New Server "%s" Created' % request.DATA['name']
+        mail_plain_msg = 'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nOS:\t%s\nIP Address:\t(DHCP)\n' % (request.__dict__['user'], request.DATA['name'],
+                         flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, new.image_name)
+        mail_html_msg = ''' 
+            <table border="1" cellspacing="0">
+                <tr><td width="150">User:</td><td width="150">%s</td></tr>
+                <tr><td>Server Name:</td><td>%s</td></tr>
+                <tr><td>VCPU:</td><td>%s Core%s</td></tr>
+                <tr><td>Memory:</td><td>%sMB</td></tr>
+                <tr><td>Disk:</td><td>%sGB</td></tr>
+                <tr><td>OS:</td><td>%s</td></tr>
+                <tr><td>IP Address:</td><td>(DHCP)</td></tr>
+                <tr><td>SSH supported:</td><td>Yes</td></tr>
+                <tr><td>root Password:</td><td>capitek</td></tr>
+            </table>
+        ''' % (request.__dict__['user'], request.DATA['name'], flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, new.image_name)
+
+        for mail_to in mail_to_list:
             send_mail(
-                'Capitek Cloud: New Server "%s" Created' % request.DATA['name'],
-                'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nOS:\t%s\nIP Address:\t(DHCP)\n' % (request.__dict__['user'], request.DATA['name'],
-                         flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, new.image_name),
-                'cloud@capitek.com.cn',
-                [user.email],
+                mail_subject,
+                mail_plain_msg,
+                mail_from,
+                [mail_to],
                 fail_silently=False,
+                html_message=mail_html_msg
             )
-        
-
-        LOG.info("*************************************************")
     except Exception as e:
         LOG.info("Failure sending mail: %s" % (e.message))
     except:
@@ -807,27 +815,32 @@ def server_delete(request, instance_id):
         except:
             LOG.info("instance: user get failure")
 
-        # send email
-        send_mail(
-            'Capitek Cloud: Server "%s" Deleted' % instance.name,
-            'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nIP Address:%s\n' % (request.__dict__['user'], instance.name,
-                         flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, ips),
-            'cloud@capitek.com.cn',
-            ['linfeng@capitek.com.cn'],
-            fail_silently=False,
-            )
+        # send mail
+        mail_from = 'cloud@capitek.com.cn'
+        mail_to_list = {user.email, 'linfeng@capitek.com.cn'}
 
-        if (cmp(user.email, 'linfeng@capitek.com.cn')!=0): 
+        mail_subject = 'Capitek Cloud: Server "%s" Deleted' % instance.name
+        mail_plain_msg = 'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nIP Address:%s\n' % (request.__dict__['user'], instance.name,
+                         flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, ips)
+        mail_html_msg = ''' 
+            <table border="1" cellspacing="0">
+                <tr><td width="150">User:</td><td width="150">%s</td></tr>
+                <tr><td>Server Name:</td><td>%s</td></tr>
+                <tr><td>VCPU:</td><td>%s Core%s</td></tr>
+                <tr><td>Memory:</td><td>%sMB</td></tr>
+                <tr><td>Disk:</td><td>%sGB</td></tr>
+                <tr><td>IP Address:</td><td>%s</td></tr>
+            </table> ''' % (request.__dict__['user'], instance.name, flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, ips)
+
+        for mail_to in mail_to_list:
             send_mail(
-                'Capitek Cloud: Server "%s" Deleted' % instance.name,
-                'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nIP Address:%s\n' % (request.__dict__['user'], instance.name,
-                         flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, ips),
-                'cloud@capitek.com.cn',
-                [user.email],
+                mail_subject,
+                mail_plain_msg,
+                mail_from,
+                [mail_to],
                 fail_silently=False,
+                html_message=mail_html_msg
             )
-
-        LOG.info("*************************************************")
     except Exception as e:
         LOG.info("Failure sending mail: %s" % (e.message))
     except:
