@@ -13,6 +13,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import os
 import logging
 import zlib
 import base64
@@ -109,6 +110,9 @@ def register_verification(request, code='0'):
     if request.method == 'POST':
         LOG.info("register_verification: POST")
         register_name = request.POST.get("register-name")
+        register_password = request.POST.get("register-password")
+        nret = os.system("/opt/user_create.sh %s %s" % (register_name, register_password))
+        LOG.info("Result: %s/%s, %d" % (register_name, register_password, nret))
         return shortcuts.render(request, 'horizon/register_result.html', {'register_name':register_name})
         pass
 
