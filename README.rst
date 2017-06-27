@@ -28,19 +28,23 @@ Running Horizon
 =============
 
 * Install::
-
-    $ apt-get update -y
+    安装必要软件
+    $ apt-get update -y
     $ apt-get upgrade -y
     $ apt-get install git -y
     $ apt-get install gettext -y
     $ apt-get install python-pip -y
     $ pip install --upgrade pip
     $ pip install tox
-    $ pip install -c http://git.openstack.org/cgit/openstack/requirements/plain/upper-constraints.txt?h=stable/ocata .
+    获取代码
+    # git clone https://github.com/CloudPlatformDev/cHorizon.git -b stable/ocata
+    # cd cHorizon
+    更新依赖库
+    $ pip install -c http://git.openstack.org/cgit/openstack/requirements/plain/upper-constraints.txt?h=stable/ocata .
     
 * Debugging::
-
-    $ ./runserver.sh
+    运行
+    $ ./runserver.sh
 
 Getting Started for Developers
 ==============================
