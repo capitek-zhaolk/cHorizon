@@ -28,7 +28,8 @@ Running Horizon
 =============
 
 * Install::
-    安装必要软件
+
+    安装必要软件
     $ apt-get update -y
     $ apt-get upgrade -y
     $ apt-get install git -y
@@ -43,7 +44,8 @@ Running Horizon
     $ pip install -c http://git.openstack.org/cgit/openstack/requirements/plain/upper-constraints.txt?h=stable/ocata .
     
 * Debugging::
-    运行
+
+    运行
     $ ./runserver.sh
 
 Getting Started for Developers
