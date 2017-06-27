@@ -64,10 +64,10 @@
       <form id="register-form" class="form-signin" style="margin-top:50px" method="post" action="/register/verification/">
         {% csrf_token %}
         <h3 class="form-signin-heading" style="font-family:黑体,楷体,微软雅黑;font-weight:bold;" ><span class="glyphicon glyphicon-envelope" style="color:#58ACFA;" aria-hidden="true"></span> 云平台用户注册</h3>
-        <label for="inputName" class="sr-only1">用户名</label>
-        <input type="text" name="register-name" id="inputName" class="form-control" required value="{{ register_name }}" readonly style="background-color:white;">
         <label for="inputEmail" class="sr-only1">邮箱地址</label>
         <input type="email" name="register-email" id="inputEmail" class="form-control" required value="{{ register_email }}" readonly style="background-color:white;">
+        <label for="inputName" class="sr-only1">用户名</label>
+        <input type="text" name="register-name" id="inputName" class="form-control" required value="{{ register_name }}" readonly style="background-color:white;">
         <label for="inputPassword" class="sr-only1">密码</label>
         <input type="password" name="register-password" id="inputPassword" class="form-control" placeholder="云平台密码" required autofocus >
         <button class="btn btn-lg btn-primary btn-block" type="submit">确认并提交</button>
