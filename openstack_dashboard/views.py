@@ -30,10 +30,17 @@ from horizon import notifications
 
 LOG = logging.getLogger(__name__)
 
+CLOUD_NAME = getattr(settings, 'CLOUD_NAME', None)
+
 HORIZON_HOST = getattr(settings, 'HORIZON_HOST', None)
 
 MESSAGES_PATH = getattr(settings, 'MESSAGES_PATH', None)
 
+EMAIL_HOST_USER = getattr(settings, 'EMAIL_HOST_USER', None)
+
+AUTHORIZATION_EMAIL_DOMAIN = getattr(settings, 'AUTHORIZATION_EMAIL_DOMAIN', None)
+
+CLOUD_ADMINISTRATOR_EMAIL = getattr(settings, 'CLOUD_ADMINISTRATOR_EMAIL', None)
 
 def get_user_home(user):
     try:
@@ -57,17 +64,20 @@ def index(request):
 def register(request):
     if request.method == 'POST':
        register_email = request.POST.get('register-email')
-       if '@capitek.com.cn' in register_email:
-           register_name = register_email.split('@')[0]
-           register_code = base64.b16encode(zlib.compress(register_name))
-           register_link = "http://cloud.capitek.com.cn/register/verification/" + register_code.lower()
-           if HORIZON_HOST:
-               register_link = "http://" + HORIZON_HOST + "/register/verification/" + register_code.lower()
 
-           mail_from = 'cloud@capitek.com.cn'
-           mail_to_list = {register_email, 'linfeng@capitek.com.cn'}
+       register_name = register_email.split('@')[0]
+       register_domain = register_email.split('@')[1]
 
-           mail_subject = 'Capitek Cloud: Welcome to Cloud Platform'
+       LOG.info("Register: %s, %s, %s" % (register_email, register_name, register_domain))
+
+       if register_domain in AUTHORIZATION_EMAIL_DOMAIN.keys():
+           register_code = base64.b16encode(zlib.compress(register_email))
+           register_link = "http://" + HORIZON_HOST + "/register/verification/" + register_code.lower()
+
+           mail_from = EMAIL_HOST_USER
+           mail_to_list = {register_email,} | CLOUD_ADMINISTRATOR_EMAIL
+
+           mail_subject = '%s: Welcome to Cloud Platform' % (CLOUD_NAME)
            mail_plain_msg = 'Registration Link:\n\t%s\n' % (register_link)
            mail_html_msg  = u'<b>点击此链接注册</b>:%s' % (register_link)
 
@@ -92,16 +102,19 @@ def register_notification(request):
 def register_verification(request, code='0'):
     if request.method == 'GET':
         LOG.info("register_verification: GET")
-        register_name = None
+        register_email = None
         try:
-            register_name = zlib.decompress(base64.b16decode(code.upper()))
-            LOG.info("Username: %s", register_name)
+            register_email = zlib.decompress(base64.b16decode(code.upper()))
+            LOG.info("Email: %s", register_email)
         except:
-            LOG.info("Username: decompress/decode failure")
+            LOG.info("Email: decompress/decode failure")
             return shortcuts.render(request, 'horizon/register_verify.html', {'error_message': 'invalid-verification-code'})
 
-        if (register_name):
-            register_email = register_name + "@capitek.com.cn"
+        if (register_email):
+            register_name = register_email.split('@')[0]
+            register_domain = register_email.split('@')[1]
+            register_projectprefix = AUTHORIZATION_EMAIL_DOMAIN[register_domain]
+
             return shortcuts.render(request, 'horizon/register_verify.html', {'register_name':register_name, 'register_email':register_email})
         else:
             return shortcuts.render(request, 'horizon/register_verify.html', {'error_message': 'invalid-verification-code'})
@@ -109,10 +122,19 @@ def register_verification(request, code='0'):
 
     if request.method == 'POST':
         LOG.info("register_verification: POST")
+        register_email = request.POST.get("register-email")
         register_name = request.POST.get("register-name")
         register_password = request.POST.get("register-password")
-        nret = os.system("/opt/user_create.sh %s %s" % (register_name, register_password))
-        LOG.info("Result: %s/%s, %d" % (register_name, register_password, nret))
+
+        register_domain = register_email.split('@')[1]
+        register_projectprefix = AUTHORIZATION_EMAIL_DOMAIN[register_domain]
+        
+        LOG.info("Register: %s, %s, %s, %s, %s" % (register_email, register_name, register_password, register_domain, register_projectprefix))
+
+        nret = os.system("/opt/user_create.sh %s %s %s %s" % (register_name, register_password, register_projectprefix, register_domain))
+        LOG.info("Result: %d" % (nret))
+        # TODO: CALL API
+
         return shortcuts.render(request, 'horizon/register_result.html', {'register_name':register_name})
         pass
 

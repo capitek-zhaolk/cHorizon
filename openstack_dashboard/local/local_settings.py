@@ -10,7 +10,11 @@ from openstack_dashboard.settings import HORIZON_CONFIG
 
 DEBUG = True
 
+CLOUD_NAME = "Capitek Cloud"
+
 SITE_BRANDING = "Cloud Platform Dev"
+
+HORIZON_HOST = "cloud.capitek.com.cn"
 
 # Compress all assets offline as part of packaging installation
 COMPRESS_OFFLINE = False
@@ -47,7 +51,7 @@ ALLOWED_HOSTS = ['*']
 # The absolute path to the directory where message files are collected.
 # The message file must have a .json file extension. When the user logins to
 # horizon, the message files collected are processed and displayed to the user.
-MESSAGES_PATH='/opt/message'
+#MESSAGES_PATH='/opt/message'
 
 # Overrides for OpenStack API versions. Use this setting to force the
 # OpenStack dashboard to use a specific API version for a given service API.
@@ -861,6 +865,12 @@ ALLOWED_PRIVATE_SUBNET_CIDR = {'ipv4': [], 'ipv6': []}
 #   'phone_num': _('Phone Number'),
 #}
 
+# Send email notifications to cloud administrator
+CLOUD_ADMINISTRATOR_EMAIL={'linfeng@capitek.com.cn',}
+
+# Supported company email address domain
+AUTHORIZATION_EMAIL_DOMAIN={'capitek.com.cn':'capitek',
+}
 
 # A settings instance user-data of configuration.
 INSTANCE_DEFAULT_USER_DATA = """
@@ -870,13 +880,13 @@ disable_root: False
 apt_preserve_sources_list: True
 chpasswd:
   list: |
-    root:capitek
+    root:%s
   expire: False
 runcmd:
   - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin yes/' /etc/ssh/sshd_config
   - sed -i -e 's/\"set background=dark/set background=dark/g' /etc/vim/vimrc
-  - echo "capitek" | passwd --stdin root
-  - echo "capitek" | passwd --stdin centos
+  - echo "%s" | passwd --stdin root
+  - echo "%s" | passwd --stdin centos
   - service ssh restart
   - service sshd restart
 """

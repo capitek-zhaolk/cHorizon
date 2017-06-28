@@ -23,6 +23,8 @@ from __future__ import absolute_import
 import os
 import collections
 import logging
+import string
+import random
 
 from django.core.mail import send_mail
 
@@ -51,6 +53,12 @@ from openstack_dashboard.api import network_base
 from openstack_dashboard.contrib.developer.profiler import api as profiler
 
 LOG = logging.getLogger(__name__)
+
+CLOUD_NAME = getattr(settings, 'CLOUD_NAME', None)
+
+EMAIL_HOST_USER = getattr(settings, 'EMAIL_HOST_USER', None)
+
+CLOUD_ADMINISTRATOR_EMAIL = getattr(settings, 'CLOUD_ADMINISTRATOR_EMAIL', None)
 
 # Supported compute versions
 VERSIONS = base.APIVersionManager("compute", preferred_version=2)
@@ -705,8 +713,14 @@ def server_create(request, name, image, flavor, key_name, user_data,
                   availability_zone=None, instance_count=1, admin_pass=None,
                   disk_config=None, config_drive=None, meta=None,
                   scheduler_hints=None):
+
+    LOG.info(user_data)
+    defpass = ''.join(random.sample(string.ascii_letters + string.digits, 8))
+    user_data1 = user_data % (defpass, defpass, defpass)
+    LOG.info(user_data1)
+
     new = Server(novaclient(request).servers.create(
-        name.strip(), image, flavor, userdata=user_data,
+        name.strip(), image, flavor, userdata=user_data1,
         security_groups=security_groups,
         key_name=key_name, block_device_mapping=block_device_mapping,
         block_device_mapping_v2=block_device_mapping_v2,
@@ -742,10 +756,10 @@ def server_create(request, name, image, flavor, key_name, user_data,
             LOG.info("instance: flavor get failure")
 
         # send mail
-        mail_from = 'cloud@capitek.com.cn'
-        mail_to_list = {user.email, 'linfeng@capitek.com.cn'}
+        mail_from = EMAIL_HOST_USER
+        mail_to_list = {user.email,} | CLOUD_ADMINISTRATOR_EMAIL
 
-        mail_subject = 'Capitek Cloud: New Server "%s" Created' % request.DATA['name']
+        mail_subject = '%s: New Server "%s" Created' % (CLOUD_NAME, request.DATA['name'])
         mail_plain_msg = 'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nOS:\t%s\nIP Address:\t(DHCP)\n' % (request.__dict__['user'], request.DATA['name'],
                          flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, new.image_name)
         mail_html_msg = ''' 
@@ -756,11 +770,12 @@ def server_create(request, name, image, flavor, key_name, user_data,
                 <tr><td>Memory:</td><td>%sMB</td></tr>
                 <tr><td>Disk:</td><td>%sGB</td></tr>
                 <tr><td>OS:</td><td>%s</td></tr>
+                <tr><td>OS User:</td><td>root</td></tr>
+                <tr><td>OS Password:</td><td>%s</td></tr>
                 <tr><td>IP Address:</td><td>(DHCP)</td></tr>
                 <tr><td>SSH supported:</td><td>Yes</td></tr>
-                <tr><td>root Password:</td><td>capitek</td></tr>
             </table>
-        ''' % (request.__dict__['user'], request.DATA['name'], flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, new.image_name)
+        ''' % (request.__dict__['user'], request.DATA['name'], flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, new.image_name, defpass)
 
         for mail_to in mail_to_list:
             send_mail(
@@ -816,10 +831,10 @@ def server_delete(request, instance_id):
             LOG.info("instance: user get failure")
 
         # send mail
-        mail_from = 'cloud@capitek.com.cn'
-        mail_to_list = {user.email, 'linfeng@capitek.com.cn'}
+        mail_from = EMAIL_HOST_USER
+        mail_to_list = {user.email,} | CLOUD_ADMINISTRATOR_EMAIL
 
-        mail_subject = 'Capitek Cloud: Server "%s" Deleted' % instance.name
+        mail_subject = '%s: Server "%s" Deleted' % (CLOUD_NAME, instance.name)
         mail_plain_msg = 'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nIP Address:%s\n' % (request.__dict__['user'], instance.name,
                          flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, ips)
         mail_html_msg = ''' 
