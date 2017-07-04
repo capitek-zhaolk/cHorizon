@@ -509,8 +509,11 @@ class VolumesTable(VolumesTableBase):
         verbose_name = _("Volumes")
         status_columns = ["status"]
         row_class = UpdateRow
-        table_actions = (CreateVolume, AcceptTransfer, DeleteVolume,
+#        table_actions = (CreateVolume, AcceptTransfer, DeleteVolume,
+#                         VolumesFilterAction)
+        table_actions = (CreateVolume, DeleteVolume,
                          VolumesFilterAction)
+
 
         launch_actions = ()
         if getattr(settings, 'LAUNCH_INSTANCE_LEGACY_ENABLED', False):
@@ -518,10 +521,16 @@ class VolumesTable(VolumesTableBase):
         if getattr(settings, 'LAUNCH_INSTANCE_NG_ENABLED', True):
             launch_actions = (LaunchVolumeNG,) + launch_actions
 
+#        row_actions = ((EditVolume, ExtendVolume,) +
+#                       launch_actions +
+#                       (EditAttachments, CreateSnapshot, CreateBackup,
+#                        RetypeVolume, UploadToImage, CreateTransfer,
+#                        DeleteTransfer, DeleteVolume, UpdateMetadata))
+
         row_actions = ((EditVolume, ExtendVolume,) +
                        launch_actions +
                        (EditAttachments, CreateSnapshot, CreateBackup,
-                        RetypeVolume, UploadToImage, CreateTransfer,
+                        RetypeVolume,
                         DeleteTransfer, DeleteVolume, UpdateMetadata))
 
 

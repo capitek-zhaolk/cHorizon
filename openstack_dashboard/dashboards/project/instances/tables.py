@@ -1262,13 +1262,24 @@ class InstancesTable(tables.DataTable):
             launch_actions = (LaunchLinkNG,) + launch_actions
         table_actions = launch_actions + (DeleteInstance,
                                           InstancesFilterAction)
+#        row_actions = (StartInstance, ConfirmResize, RevertResize,
+#                       CreateSnapshot, SimpleAssociateIP, AssociateIP,
+#                       SimpleDisassociateIP, AttachInterface,
+#                       DetachInterface, EditInstance, AttachVolume,
+#                       DetachVolume, UpdateMetadata, DecryptInstancePassword,
+#                       EditInstanceSecurityGroups, ConsoleLink, LogLink,
+#                       TogglePause, ToggleSuspend, ToggleShelve,
+#                       ResizeLink, LockInstance, UnlockInstance,
+#                       SoftRebootInstance, RebootInstance,
+#                       StopInstance, RebuildInstance, DeleteInstance)
+
         row_actions = (StartInstance, ConfirmResize, RevertResize,
                        CreateSnapshot, SimpleAssociateIP, AssociateIP,
                        SimpleDisassociateIP, AttachInterface,
                        DetachInterface, EditInstance, AttachVolume,
                        DetachVolume, UpdateMetadata, DecryptInstancePassword,
                        EditInstanceSecurityGroups, ConsoleLink, LogLink,
-                       TogglePause, ToggleSuspend, ToggleShelve,
+                       TogglePause, ToggleSuspend,
                        ResizeLink, LockInstance, UnlockInstance,
                        SoftRebootInstance, RebootInstance,
                        StopInstance, RebuildInstance, DeleteInstance)
