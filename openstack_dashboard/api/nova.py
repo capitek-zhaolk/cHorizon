@@ -28,6 +28,11 @@ import random
 
 from django.core.mail import send_mail
 
+# add Codes
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import get_template
+from django.template import Context
+
 from django.conf import settings
 from django.utils.functional import cached_property  # noqa
 from django.utils.translation import ugettext_lazy as _
@@ -755,29 +760,52 @@ def server_create(request, name, image, flavor, key_name, user_data,
         except:
             LOG.info("instance: flavor get failure")
 
-        # send mail
-        mail_from = EMAIL_HOST_USER
-        mail_to_list = {user.email,} | CLOUD_ADMINISTRATOR_EMAIL
+        # add Codes
+        email_template_name_text = 'send-email.txt'
+        email_template_name_html = 'send-email.html'
+        email_text = loader.get_template(email_template_name_text)
+        email_html = loader.get_template(email_template_name_html)
+        context_name = Context({'name': name})
+        text_content = email_template_name_text.render(context_name)
+        html_context = email_template_name_html.render(context_name)
+
 
         mail_subject = '%s: New Server "%s" Created' % (CLOUD_NAME, request.DATA['name'])
         mail_plain_msg = 'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nOS:\t%s\nIP Address:\t(DHCP)\n' % (request.__dict__['user'], request.DATA['name'],
                          flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, new.image_name)
-        mail_html_msg = ''' 
-            <table border="1" cellspacing="0">
-                <tr><td width="150">User:</td><td width="150">%s</td></tr>
-                <tr><td>Server Name:</td><td>%s</td></tr>
-                <tr><td>VCPU:</td><td>%s Core%s</td></tr>
-                <tr><td>Memory:</td><td>%sMB</td></tr>
-                <tr><td>Disk:</td><td>%sGB</td></tr>
-                <tr><td>OS:</td><td>%s</td></tr>
-                <tr><td>OS User:</td><td>root</td></tr>
-                <tr><td>OS Password:</td><td>%s</td></tr>
-                <tr><td>IP Address:</td><td>(DHCP)</td></tr>
-                <tr><td>SSH supported:</td><td>Yes</td></tr>
-            </table>
-        ''' % (request.__dict__['user'], request.DATA['name'], flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, new.image_name, defpass)
+        '''mail_html_msg =''' ''' 
+                    <table border="1" cellspacing="0">
+                        <tr><td width="150">User:</td><td width="150">%s</td></tr>
+                        <tr><td>Server Name:</td><td>%s</td></tr>
+                        <tr><td>VCPU:</td><td>%s Core%s</td></tr>
+                        <tr><td>Memory:</td><td>%sMB</td></tr>
+                        <tr><td>Disk:</td><td>%sGB</td></tr>
+                        <tr><td>OS:</td><td>%s</td></tr>
+                        <tr><td>OS User:</td><td>root</td></tr>
+                        <tr><td>OS Password:</td><td>%s</td></tr>
+                        <tr><td>IP Address:</td><td>(DHCP)</td></tr>
+                        <tr><td>SSH supported:</td><td>Yes</td></tr>
+                    </table>
+                ''' '''% (
+                request.__dict__['user'], request.DATA['name'], flavor.vcpus, " " if flavor.vcpus == 1 else "s", flavor.ram,
+                flavor.disk, new.image_name, defpass)'''
 
         for mail_to in mail_to_list:
+            msg = EmailMultiAlternatives(mail_subject, mail_plain_msg, mail_from, [mail_to], fail_silently=False)
+            msg.attach_alternative(html_context, "text/html")
+            msg.send()
+            send_html_mail(mail_subject, {
+                'user': content['user'],
+                'serverName': content['name'],
+                'vcpu': content['vcpu'],
+                'memory': content['ram'],
+                'disk': content['disk'],
+                'OS': new['image_name'][0],
+                'osUser': new['image_name'][1],
+                'osPassword': new['image_name'][2],
+            }, new, [mail_to])
+
+            '''
             send_mail(
                 mail_subject,
                 mail_plain_msg,
@@ -786,12 +814,26 @@ def server_create(request, name, image, flavor, key_name, user_data,
                 fail_silently=False,
                 html_message=mail_html_msg
             )
+            '''
     except Exception as e:
         LOG.info("Failure sending mail: %s" % (e.message))
     except:
         LOG.warning("Unknown error!")
 
     return new
+
+def send_html_mail(subject, content, new, recipient_list):
+    html_content = loader.render_to_string(
+        'send-email.html',
+        {
+            'user':content['user'],
+            'serverName':content['name'],
+            'vcpu':content['vcpu'],
+            'memory':content['ram'],
+            'disk':content['disk'],
+            'ipAddress':new['image_name']
+        }
+    )
 
 @profiler.trace
 def server_delete(request, instance_id):
