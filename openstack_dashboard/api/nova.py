@@ -1383,4 +1383,77 @@ def can_set_quotas():
     return features.get('enable_quotas', True)
 
 
+@profiler.trace
+def server_create_users(request, name, image, flavor, key_name, user_data,
+                  security_groups, block_device_mapping=None,
+                  block_device_mapping_v2=None, nics=None,
+                  availability_zone=None, instance_count=1, admin_pass=None,
+                  disk_config=None, config_drive=None, meta=None,
+                  scheduler_hints=None):
+
+    LOG.info(user_data)
+    defpass = ''.join(random.sample(string.ascii_letters + string.digits, 8))
+    user_data1 = user_data % (defpass, defpass, defpass)
+    LOG.info(user_data1)
+
+    new = Server(novaclient(request).servers.create(
+        name.strip(), image, flavor, userdata=user_data1,
+        security_groups=security_groups,
+        key_name=key_name, block_device_mapping=block_device_mapping,
+        block_device_mapping_v2=block_device_mapping_v2,
+        nics=nics, availability_zone=availability_zone,
+        min_count=instance_count, admin_pass=admin_pass,
+        disk_config=disk_config, config_drive=config_drive,
+        meta=meta, scheduler_hints=scheduler_hints), request)
+
+    try:
+        LOG.info("****** Create Server: Instance & User info ******")
+
+        LOG.info(new)
+
+        user = None
+        try:
+            LOG.info("instance: user_id=%s\t" % (new.user_id))
+            user = keystone.user_get(request, new.user_id, False)
+            LOG.info(user)
+            LOG.info(user.email)
+        except Exception as e:
+            LOG.info("Failure: %s" % (e.message))
+        except:
+            LOG.info("instance: user get failure")
+
+        LOG.info("instance: name=%s\tstatus=%s\timage_name=%s\tuser_id=%s\t" % (new.name,new.status,new.image_name, new.user_id))
+
+        flavor = None
+        try:
+            LOG.info(new.flavor)
+            flavor = flavor_get(request, new.flavor["id"])
+            LOG.info("instance: rams=%s, disk=%s, vcpu=%s" % (flavor.ram, flavor.disk, flavor.vcpus))
+        except:
+            LOG.info("instance: flavor get failure")
+
+        # send mail
+        mail_from = EMAIL_HOST_USER
+        mail_to_list = {user.email, } | CLOUD_ADMINISTRATOR_EMAIL
+
+        # add Codes
+        email_template_name_html = 'server_create_users.html'
+
+
+        mail_subject = '%s: New Server User "%s" Created' % (CLOUD_NAME, request.DATA['name'])
+        mail_plain_msg = 'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nOS:\t%s\nIP Address:\t(DHCP)\n' % (request.__dict__['user'], request.DATA['name'],
+                         flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, new.image_name)
+
+        context = {'User': request.__dict__['user'], 'ipAddress': ips, 'email':mail_to_list}
+
+        # 封装了一个方法
+        for mail_to in mail_to_list:
+            send_email_by_template(mail_subject, email_template_name_html, context, mail_to)
+
+    except Exception as e:
+        LOG.info("Failure sending mail: %s" % (e.message))
+    except:
+        LOG.warning("Unknown error!")
+
+    return new
 

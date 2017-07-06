@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-	<title>Cloud Platform - sending email deleted</title>
+	<title>Cloud Platform - sending email create User</title>
 
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -68,7 +68,7 @@
                     <!-- Start 邮件详细信息 -->
                     <div class="email-panel">
                         <!-- Start 邮件详细信息头部 -->
-                        <div class="email-panel-header">{{ mail_subject }}</div>
+                        <div class="email-panel-header">{{ DATA['name'] }}创建用户成功</div>
                         <!-- End 邮件详细信息头部 -->
 
                         <!-- Start 邮件详细信息s -->
@@ -78,24 +78,12 @@
                                 <td>{{context['user']}}</td>
                             </tr>
                             <tr>
-                                <td>Server Name:</td>
-                                <td>{{context['serverName']}}</td>
+                                <td>Email:</td>
+                                <td>{{context['email']}} </td>
                             </tr>
                             <tr>
-                                <td>VCPU:</td>
-                                <td>{{context['vcpu']}} Cores</td>
-                            </tr>
-                            <tr>
-                                <td>Memory:</td>
-                                <td>{{context['memory']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Disk:</td>
-                                <td>{{context['disk']}</td>
-                            </tr>
-                            <tr>
-                                <td>IP Address:</td>
-                                <td></td>
+                                <td>IPAddress:</td>
+                                <td>{{context['ipAddress']}}</td>
                             </tr>
                         </table>
                         <!-- End 邮件详细信息s -->
