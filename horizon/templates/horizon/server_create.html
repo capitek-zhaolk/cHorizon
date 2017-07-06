@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+	<title>Cloud Platform - sending email create</title>
+
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="">
+
+	<!-- Web Fonts -->
+	<!--<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700'>-->
+
+	<!-- CSS Global Compulsory -->
+
+	<!-- CSS Header and Footer -->
+
+	<!-- CSS Implementing Plugins -->
+
+	<!-- CSS Theme -->
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="">
+</head>
+<body>
+
+    <!-- Start 邮件显示区域 -->
+    <div class="wrap" style="width: 100%;position: relative;height: 100px;">
+
+        <!-- Start 邮件区域 -->
+        <div style="background:#fff;padding-bottom:20px;position:relative;">
+            <style>
+                body,div,ul,ol,li{padding:0;margin: 0;}
+                ul,ol,li{list-style: none;}
+                .email-body{color: #404858;font-size: 14px;background-color: #f8f8f8;font-family: "Helvetica Neue", Helvetica, "Nimbus Sans L", "Segoe UI", Arial, "Liberation Sans", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;  }
+                .email-body .email-container{width: 100%;max-width: 600px;padding: 20px;margin: 0 auto;  }
+                .email-body .email-container .email-Logo{ margin-bottom: 20px;font-size: 22px;overflow: hidden;  }
+                .email-body .email-container .email-Logo span.imgs{color: #000;display: inline-block;vertical-align: middle;font-size: 40px;}
+                .email-body .email-container .email-Logo span:nth-child(1)::after{content: "\2601";}
+                .email-body .email-container .email-panel{background: #fff;border: 1px solid #E3E9ED;margin-bottom: 10px;}
+                .email-panel .email-panel-header{font-size: 18px;line-height: 30px;padding: 10px 20px;background: #fcfcfc;border-bottom: 1px solid #E3E9ED;  }
+                .email-panel table.email-panel-body{padding:20px;width:100%;max-width: 100%;font-size: 16px;}
+                .email-panel table.email-panel-body tbody > tr{line-height: 190%;}
+                .email-panel table.email-panel-body tbody > tr:nth-child(odd){background-color: #ABCDEF;}
+                .email-panel table.email-panel-body tbody > tr:nth-child(even){background-color: #eee;}
+                .email-panel table.email-panel-body tbody > tr > td:nth-child(odd){text-align: right;}
+                .email-panel table.email-panel-body tbody > tr > td:nth-child(even){text-align: center;}
+                .email-footer{color: #9B9B9B;font-size: 14px;}
+            </style>
+
+            <!-- Start 邮件体 -->
+            <div class="email-body">
+                <!-- Start 邮件正文区域 -->
+                <div class="email-container">
+                    <!-- Start LOGO -->
+                    <div class="email-Logo" style="text-align: center;">
+                        <span class="imgs"></span>
+                        <span>Cloud Platform</span>
+                    </div>
+                    <!-- End LOGO -->
+
+                    <!-- Start 邮件详细信息 -->
+                    <div class="email-panel">
+                        <!-- Start 邮件详细信息头部 -->
+                        <div class="email-panel-header">通知</div>
+                        <!-- End 邮件详细信息头部 -->
+
+                        <!-- Start 邮件详细信息s -->
+                        <table class="email-panel-body" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td>User:</td>
+                                <td>{{context[user]}}</td>
+                            </tr>
+                            <tr>
+                                <td>Server Name:</td>
+                                <td>{{context[serverName]}}</td>
+                            </tr>
+                            <tr>
+                                <td>VCPU:</td>
+                                <td>{{context[vcpu]}} Cores</td>
+                            </tr>
+                            <tr>
+                                <td>Memory:</td>
+                                <td>{{context[memory]}}</td>
+                            </tr>
+                            <tr>
+                                <td>Disk:</td>
+                                <td>{{context[disk]}</td>
+                            </tr>
+                            <tr>
+                                <td>OS:</td>
+                                <td>{{context[os][0]}}</td>
+                            </tr>
+                            <tr>
+                                <td>OS User:</td>
+                                <td>{{context[os][1]}}</td>
+                            </tr>
+                            <tr>
+                                <td>OS Password:</td>
+                                <td>{{context[os][2]}}</td>
+                            </tr>
+                            <tr>
+                                <td>IP Address:</td>
+                                <td>(DHCP)</td>
+                            </tr>
+                            <tr>
+                                <td>SSH supported:</td>
+                                <td>Yes</td>
+                            </tr>
+                        </table>
+                        <!-- End 邮件详细信息s -->
+                    </div>
+                    <!-- End 邮件详细信息 -->
+
+                    <!-- Start 邮件底部 -->
+                    <div class="email-footer">cloud@capitek.com.cn</div>
+                    <!-- End 邮件底部 -->
+                </div>
+                <!-- End 邮件正文区域 -->
+            </div>
+            <!-- End 邮件体 -->
+        </div>
+        <!-- End 邮件区域  -->
+
+        <!-- Start 清除浮动 -->
+        <div style="position: relative;clear: both;"></div>
+        <!-- End 清除浮动 -->
+    </div>
+    <!-- End 邮件显示区域 -->
+
+
+    <!-- JS Global Compulsory -->
+
+    <!-- JS Implementing Plugins -->
+
+
+    <!-- JS Customization -->
+
+
+    <!-- JS Page Level -->
+
+
+</body>
+</html>

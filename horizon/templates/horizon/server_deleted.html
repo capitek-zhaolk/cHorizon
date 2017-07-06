@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-	<title>Cloud Platform - sending email</title>
+	<title>Cloud Platform - sending email deleted</title>
 
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -73,48 +73,29 @@
 
                         <!-- Start 邮件详细信息s -->
                         <table class="email-panel-body" cellpadding="0" cellspacing="0">
-
-
-
                             <tr>
                                 <td>User:</td>
-                                <td>{{user}}</td>
+                                <td>{{context[user]}}</td>
                             </tr>
                             <tr>
                                 <td>Server Name:</td>
-                                <td>{{serverName}}</td>
+                                <td>{{context[serverName]}}</td>
                             </tr>
                             <tr>
                                 <td>VCPU:</td>
-                                <td>{{vcpu}} Cores</td>
+                                <td>{{context[vcpu]}} Cores</td>
                             </tr>
                             <tr>
                                 <td>Memory:</td>
-                                <td>{{memory}}</td>
+                                <td>{{context[memory]}}</td>
                             </tr>
                             <tr>
                                 <td>Disk:</td>
-                                <td>{{disk}}</td>
-                            </tr>
-                            <tr>
-                                <td>OS:</td>
-                                <td>{{OS}}</td>
-                            </tr>
-                            <tr>
-                                <td>OS User:</td>
-                                <td>{{osUser}}</td>
-                            </tr>
-                            <tr>
-                                <td>OS Password:</td>
-                                <td>{{osPassword}}</td>
+                                <td>{{context[disk]}</td>
                             </tr>
                             <tr>
                                 <td>IP Address:</td>
-                                <td>(DHCP)</td>
-                            </tr>
-                            <tr>
-                                <td>SSH supported:</td>
-                                <td>Yes</td>
+                                <td></td>
                             </tr>
                         </table>
                         <!-- End 邮件详细信息s -->

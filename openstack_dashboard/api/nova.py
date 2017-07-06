@@ -761,18 +761,17 @@ def server_create(request, name, image, flavor, key_name, user_data,
             LOG.info("instance: flavor get failure")
 
         # add Codes
-        email_template_name_text = 'send-email.txt'
-        email_template_name_html = 'send-email.html'
-        email_text = loader.get_template(email_template_name_text)
+        email_template_name_html = 'server_create.html'
         email_html = loader.get_template(email_template_name_html)
-        context_name = Context({'name': name})
-        text_content = email_template_name_text.render(context_name)
-        html_context = email_template_name_html.render(context_name)
 
 
         mail_subject = '%s: New Server "%s" Created' % (CLOUD_NAME, request.DATA['name'])
         mail_plain_msg = 'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nOS:\t%s\nIP Address:\t(DHCP)\n' % (request.__dict__['user'], request.DATA['name'],
                          flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, new.image_name)
+
+        context = {'User': request.__dict__['user'], 'serverName': instance.name, 'vcpu': flavor.vcpus,
+                   'memory': flavor.ram, 'disk': flavor.disk, 'ipAddress': ips, 'os':new.image_name}
+
         '''mail_html_msg =''' ''' 
                     <table border="1" cellspacing="0">
                         <tr><td width="150">User:</td><td width="150">%s</td></tr>
@@ -791,19 +790,10 @@ def server_create(request, name, image, flavor, key_name, user_data,
                 flavor.disk, new.image_name, defpass)'''
 
         for mail_to in mail_to_list:
-            msg = EmailMultiAlternatives(mail_subject, mail_plain_msg, mail_from, [mail_to], fail_silently=False)
-            msg.attach_alternative(html_context, "text/html")
+            html_content = loader.render_to_string(email_template_name_html, context)
+            msg = EmailMessage(mail_subject, html_content, mail_from, mail_to_list)
+            msg.content_subtype = "html"
             msg.send()
-            send_html_mail(mail_subject, {
-                'user': content['user'],
-                'serverName': content['name'],
-                'vcpu': content['vcpu'],
-                'memory': content['ram'],
-                'disk': content['disk'],
-                'OS': new['image_name'][0],
-                'osUser': new['image_name'][1],
-                'osPassword': new['image_name'][2],
-            }, new, [mail_to])
 
             '''
             send_mail(
@@ -822,18 +812,6 @@ def server_create(request, name, image, flavor, key_name, user_data,
 
     return new
 
-def send_html_mail(subject, content, new, recipient_list):
-    html_content = loader.render_to_string(
-        'send-email.html',
-        {
-            'user':content['user'],
-            'serverName':content['name'],
-            'vcpu':content['vcpu'],
-            'memory':content['ram'],
-            'disk':content['disk'],
-            'ipAddress':new['image_name']
-        }
-    )
 
 @profiler.trace
 def server_delete(request, instance_id):
@@ -876,28 +854,40 @@ def server_delete(request, instance_id):
         mail_from = EMAIL_HOST_USER
         mail_to_list = {user.email,} | CLOUD_ADMINISTRATOR_EMAIL
 
+        email_template_name_html = 'server_deleted.html'
+        email_html = loader.get_template(email_template_name_html)
+
         mail_subject = '%s: Server "%s" Deleted' % (CLOUD_NAME, instance.name)
         mail_plain_msg = 'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nIP Address:%s\n' % (request.__dict__['user'], instance.name,
                          flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, ips)
-        mail_html_msg = ''' 
-            <table border="1" cellspacing="0">
-                <tr><td width="150">User:</td><td width="150">%s</td></tr>
-                <tr><td>Server Name:</td><td>%s</td></tr>
-                <tr><td>VCPU:</td><td>%s Core%s</td></tr>
-                <tr><td>Memory:</td><td>%sMB</td></tr>
-                <tr><td>Disk:</td><td>%sGB</td></tr>
-                <tr><td>IP Address:</td><td>%s</td></tr>
-            </table> ''' % (request.__dict__['user'], instance.name, flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, ips)
+
+        context = {'User': request.__dict__['user'], 'serverName': instance.name, 'vcpu': flavor.vcpus,
+                   'memory': flavor.ram, 'disk': flavor.disk, 'os': new.image_name, 'ipAddress': ips}
+
+        # mail_html_msg = '''
+        #     <table border="1" cellspacing="0">
+        #         <tr><td width="150">User:</td><td width="150">%s</td></tr>
+        #         <tr><td>Server Name:</td><td>%s</td></tr>
+        #         <tr><td>VCPU:</td><td>%s Core%s</td></tr>
+        #         <tr><td>Memory:</td><td>%sMB</td></tr>
+        #         <tr><td>Disk:</td><td>%sGB</td></tr>
+        #         <tr><td>IP Address:</td><td>%s</td></tr>
+        #     </table> ''' % (request.__dict__['user'], instance.name, flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, ips)
 
         for mail_to in mail_to_list:
-            send_mail(
-                mail_subject,
-                mail_plain_msg,
-                mail_from,
-                [mail_to],
-                fail_silently=False,
-                html_message=mail_html_msg
-            )
+            html_content = loader.render_to_string(email_template_name_html, context)
+            msg = EmailMessage(mail_subject, html_content, mail_from, mail_to_list)
+            msg.content_subtype = "html"
+            msg.send()
+
+            # send_mail(
+            #     mail_subject,
+            #     mail_plain_msg,
+            #     mail_from,
+            #     [mail_to],
+            #     fail_silently=False,
+            #     html_message=mail_html_msg
+            # )
     except Exception as e:
         LOG.info("Failure sending mail: %s" % (e.message))
     except:
@@ -1437,3 +1427,6 @@ def requires_keypair():
 def can_set_quotas():
     features = getattr(settings, 'OPENSTACK_HYPERVISOR_FEATURES', {})
     return features.get('enable_quotas', True)
+
+
+

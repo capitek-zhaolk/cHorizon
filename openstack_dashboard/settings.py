@@ -469,3 +469,9 @@ if 'HORIZON_IMAGES_ALLOW_UPLOAD' in globals():
         message += ' Keep in mind that HORIZON_IMAGES_ALLOW_UPLOAD set to ' \
                    'False overrides the value of HORIZON_IMAGES_UPLOAD_MODE.'
     logging.warning(message)
+
+
+# add codes
+# 配置Broker
+    BROKER_URL = 'redis://0.0.0.0:80/0'
+    BROKER_TRANSPORT = 'redis'
