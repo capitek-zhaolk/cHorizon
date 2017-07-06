@@ -45,12 +45,7 @@
                 .email-body .email-container .email-Logo span:nth-child(1)::after{content: "\2601";}
                 .email-body .email-container .email-panel{background: #fff;border: 1px solid #E3E9ED;margin-bottom: 10px;}
                 .email-panel .email-panel-header{font-size: 18px;line-height: 30px;padding: 10px 20px;background: #fcfcfc;border-bottom: 1px solid #E3E9ED;  }
-                .email-panel table.email-panel-body{padding:20px;width:100%;max-width: 100%;font-size: 16px;}
-                .email-panel table.email-panel-body tbody > tr{line-height: 190%;}
-                .email-panel table.email-panel-body tbody > tr:nth-child(odd){background-color: #ABCDEF;}
-                .email-panel table.email-panel-body tbody > tr:nth-child(even){background-color: #eee;}
-                .email-panel table.email-panel-body tbody > tr > td:nth-child(odd){text-align: right;}
-                .email-panel table.email-panel-body tbody > tr > td:nth-child(even){text-align: center;}
+                .email-panel .email-panel-body{padding:20px;width:100%;max-width: 100%;font-size: 14px;}
                 .email-footer{color: #9B9B9B;font-size: 14px;}
             </style>
 
@@ -68,8 +63,11 @@
                     <!-- Start 邮件详细信息 -->
                     <div class="email-panel">
                         <!-- Start 邮件详细信息头部 -->
-                        <div class="email-panel-header">尊敬的{{ CLOUD_NAME }}，恭喜你，注册成功！</div>
+                        <div class="email-panel-header">云平台用户注册成功</div>
                         <!-- End 邮件详细信息头部 -->
+
+                        <div class="email-panel-body">用户<samp>&nbsp;{{register_name}}&nbsp;</samp>注册成功，&nbsp;</div>
+
                     </div>
                     <!-- End 邮件详细信息 -->
 
@@ -99,7 +97,20 @@
 
 
     <!-- JS Page Level -->
-
+    <script type="text/javascript">
+      delayURL();
+      function delayURL() {
+          var delay = document.getElementById("time").innerHTML;
+          var t = setTimeout("delayURL()", 1000);
+          if (delay > 0) {
+              delay--;
+              document.getElementById("time").innerHTML = delay;
+          } else {
+              clearTimeout(t);
+              window.location.href = "/auth/login/";
+          }
+      }
+   </script>
 
 </body>
 </html>

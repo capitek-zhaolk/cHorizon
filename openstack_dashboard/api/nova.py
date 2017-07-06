@@ -32,7 +32,7 @@ from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
-from sendemail import send_email_by_template
+import send_email_by_template
 
 from django.conf import settings
 from django.utils.functional import cached_property  # noqa

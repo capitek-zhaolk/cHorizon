@@ -22,6 +22,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django import shortcuts
 import django.views.decorators.vary
+import send_email_by_template
 
 import horizon
 from horizon import base
@@ -77,19 +78,26 @@ def register(request):
            mail_from = EMAIL_HOST_USER
            mail_to_list = {register_email,} | CLOUD_ADMINISTRATOR_EMAIL
 
+           # add code
+           email_template_name_html = 'user_register.html'
+
            mail_subject = '%s: Welcome to Cloud Platform' % (CLOUD_NAME)
            mail_plain_msg = 'Registration Link:\n\t%s\n' % (register_link)
            mail_html_msg  = u'<b>点击此链接注册</b>:%s' % (register_link)
 
+           context = {'register_name':register_name}
            for mail_to in mail_to_list:
-               send_mail(
-                   mail_subject,
-                   mail_plain_msg,
-                   mail_from,
-                   [mail_to],
-                   fail_silently=False,
-                   html_message=mail_html_msg
-               )
+               send_email_by_template(mail_subject, email_template_name_html, context, mail_to)
+
+           # for mail_to in mail_to_list:
+           #     send_mail(
+           #         mail_subject,
+           #         mail_plain_msg,
+           #         mail_from,
+           #         [mail_to],
+           #         fail_silently=False,
+           #         html_message=mail_html_msg
+           #     )
            return shortcuts.redirect('/register/notification/')
        else:
            return shortcuts.render(request, 'horizon/register.html', {'error_message': 'invalid-email-address'})
