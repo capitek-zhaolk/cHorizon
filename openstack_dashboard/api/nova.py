@@ -32,6 +32,7 @@ from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
+from sendemail import send_email_by_template
 
 from django.conf import settings
 from django.utils.functional import cached_property  # noqa
@@ -760,9 +761,12 @@ def server_create(request, name, image, flavor, key_name, user_data,
         except:
             LOG.info("instance: flavor get failure")
 
+        # send mail
+        mail_from = EMAIL_HOST_USER
+        mail_to_list = {user.email, } | CLOUD_ADMINISTRATOR_EMAIL
+
         # add Codes
         email_template_name_html = 'server_create.html'
-        email_html = loader.get_template(email_template_name_html)
 
 
         mail_subject = '%s: New Server "%s" Created' % (CLOUD_NAME, request.DATA['name'])
@@ -772,39 +776,10 @@ def server_create(request, name, image, flavor, key_name, user_data,
         context = {'User': request.__dict__['user'], 'serverName': instance.name, 'vcpu': flavor.vcpus,
                    'memory': flavor.ram, 'disk': flavor.disk, 'ipAddress': ips, 'os':new.image_name}
 
-        '''mail_html_msg =''' ''' 
-                    <table border="1" cellspacing="0">
-                        <tr><td width="150">User:</td><td width="150">%s</td></tr>
-                        <tr><td>Server Name:</td><td>%s</td></tr>
-                        <tr><td>VCPU:</td><td>%s Core%s</td></tr>
-                        <tr><td>Memory:</td><td>%sMB</td></tr>
-                        <tr><td>Disk:</td><td>%sGB</td></tr>
-                        <tr><td>OS:</td><td>%s</td></tr>
-                        <tr><td>OS User:</td><td>root</td></tr>
-                        <tr><td>OS Password:</td><td>%s</td></tr>
-                        <tr><td>IP Address:</td><td>(DHCP)</td></tr>
-                        <tr><td>SSH supported:</td><td>Yes</td></tr>
-                    </table>
-                ''' '''% (
-                request.__dict__['user'], request.DATA['name'], flavor.vcpus, " " if flavor.vcpus == 1 else "s", flavor.ram,
-                flavor.disk, new.image_name, defpass)'''
-
+        # 封装了一个方法
         for mail_to in mail_to_list:
-            html_content = loader.render_to_string(email_template_name_html, context)
-            msg = EmailMessage(mail_subject, html_content, mail_from, mail_to_list)
-            msg.content_subtype = "html"
-            msg.send()
+            send_email_by_template(mail_subject, email_template_name_html, context, mail_to)
 
-            '''
-            send_mail(
-                mail_subject,
-                mail_plain_msg,
-                mail_from,
-                [mail_to],
-                fail_silently=False,
-                html_message=mail_html_msg
-            )
-            '''
     except Exception as e:
         LOG.info("Failure sending mail: %s" % (e.message))
     except:
@@ -854,8 +829,8 @@ def server_delete(request, instance_id):
         mail_from = EMAIL_HOST_USER
         mail_to_list = {user.email,} | CLOUD_ADMINISTRATOR_EMAIL
 
+        # add codes
         email_template_name_html = 'server_deleted.html'
-        email_html = loader.get_template(email_template_name_html)
 
         mail_subject = '%s: Server "%s" Deleted' % (CLOUD_NAME, instance.name)
         mail_plain_msg = 'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nIP Address:%s\n' % (request.__dict__['user'], instance.name,
@@ -864,30 +839,9 @@ def server_delete(request, instance_id):
         context = {'User': request.__dict__['user'], 'serverName': instance.name, 'vcpu': flavor.vcpus,
                    'memory': flavor.ram, 'disk': flavor.disk, 'os': new.image_name, 'ipAddress': ips}
 
-        # mail_html_msg = '''
-        #     <table border="1" cellspacing="0">
-        #         <tr><td width="150">User:</td><td width="150">%s</td></tr>
-        #         <tr><td>Server Name:</td><td>%s</td></tr>
-        #         <tr><td>VCPU:</td><td>%s Core%s</td></tr>
-        #         <tr><td>Memory:</td><td>%sMB</td></tr>
-        #         <tr><td>Disk:</td><td>%sGB</td></tr>
-        #         <tr><td>IP Address:</td><td>%s</td></tr>
-        #     </table> ''' % (request.__dict__['user'], instance.name, flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, ips)
-
         for mail_to in mail_to_list:
-            html_content = loader.render_to_string(email_template_name_html, context)
-            msg = EmailMessage(mail_subject, html_content, mail_from, mail_to_list)
-            msg.content_subtype = "html"
-            msg.send()
+            send_email_by_template(mail_subject, email_template_name_html, context, mail_to)
 
-            # send_mail(
-            #     mail_subject,
-            #     mail_plain_msg,
-            #     mail_from,
-            #     [mail_to],
-            #     fail_silently=False,
-            #     html_message=mail_html_msg
-            # )
     except Exception as e:
         LOG.info("Failure sending mail: %s" % (e.message))
     except:

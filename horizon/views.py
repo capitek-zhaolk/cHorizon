@@ -17,6 +17,8 @@ from django import shortcuts
 from django import template
 from django.utils import encoding
 from django.views import generic
+from django import forms
+from django.http import HttpResponse
 
 import horizon
 from horizon import exceptions
@@ -117,3 +119,34 @@ class APIView(HorizonTemplateView):
         except Exception:
             exceptions.handle(request)
         return self.render_to_response(context)
+
+
+# 用户注册
+class UserForm(forms.Form):
+    email = forms.CharField(max_length=50)
+
+def user_register(request):
+    if request.method == "POST":
+        form=UserForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            email = cd['email']
+            user = email.split("@")[0]
+            users = User.object.create(user=user,email=email) # User添加数据库的models.py文件中的class
+            users.save()
+            return HttpResponse('register success!')
+    else:
+        form = UserForm()
+
+    mail_from = EMAIL_HOST_USER
+
+    context = {'email':email}
+    mail_subject = '%s 注册服务器'
+    mail_to_list = email
+    html_content = loader.render_to_string('user_register.html', context)
+    msg = EmailMessage(mail_subject, html_content, mail_from, mail_to_list)
+    msg.content_subtype = "html"
+    msg.send()
+
+    return render(request, "user_register.html", locals())
+
