@@ -469,3 +469,8 @@ if 'HORIZON_IMAGES_ALLOW_UPLOAD' in globals():
         message += ' Keep in mind that HORIZON_IMAGES_ALLOW_UPLOAD set to ' \
                    'False overrides the value of HORIZON_IMAGES_UPLOAD_MODE.'
     logging.warning(message)
+EMAIL_HOST = 'smtp.capitek.com.cn'
+EMAIL_PORT = '25'
+EMAIL_HOST_USER = 'liuh@capitek.com'
+EMAIL_HOST_PASSWORD = 'capitek'
+EMAIL_USE_TLS = True

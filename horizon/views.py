@@ -117,3 +117,14 @@ class APIView(HorizonTemplateView):
         except Exception:
             exceptions.handle(request)
         return self.render_to_response(context)
+def send_mail(request):
+    try:
+        subject = 'hello'
+        html_content = u'<b>激活链接：</b><a href="http://www.....com.cn">http:www.....com.cn.com</a>'
+        msg = EmailMessage(subject,html_content,EMAIL_HOST_USER,['qq1183534511@sina.com',])
+        msg.content_subtype = 'html'
+        msg.send()
+        return(request,'common/resetpassword.html',locals())
+    except Exception as e:
+        logger.error(e)
+    return render(request,'common/error.html',{'error':e})
