@@ -159,23 +159,23 @@ def splash(request):
     return response
 def reset_password(request):
     if request.method == 'POST':
-       register_email = request.POST.get('register-email')
+       reset_password_email = request.POST.get('reset_password-email')
 
-       register_name = register_email.split('@')[0]
-       register_domain = register_email.split('@')[1]
+       reset_password_name = reset_password_email.split('@')[0]
+       reset_password_domain = reset_password_email.split('@')[1]
 
-       LOG.info("Register: %s, %s, %s" % (register_email, register_name, register_domain))
+       LOG.info("Register: %s, %s, %s" % (reset_password_email, reset_password_name, reset_password_domain))
 
-       if register_domain in AUTHORIZATION_EMAIL_DOMAIN.keys():
-           register_code = base64.b16encode(zlib.compress(register_email))
-           register_link = "http://" + HORIZON_HOST + "/register/verification/" + register_code.lower()
+       if reset_password_domain in AUTHORIZATION_EMAIL_DOMAIN.keys():
+           reset_password_code = base64.b16encode(zlib.compress(reset_password_email))
+           reset_password_link = "http://" + HORIZON_HOST + "/reset_password/new/" + reset_password.lower()
 
            mail_from = EMAIL_HOST_USER
-           mail_to_list = {register_email,} | CLOUD_ADMINISTRATOR_EMAIL
+           mail_to_list = {reset_password_email,} | CLOUD_ADMINISTRATOR_EMAIL
 
            mail_subject = '%s: Welcome to Cloud Platform' % (CLOUD_NAME)
-           mail_plain_msg = 'Registration Link:\n\t%s\n' % (register_link)
-           mail_html_msg  = u'<b>点击此链接重置密码</b>:%s' % (register_link)
+           mail_plain_msg = 'Registration Link:\n\t%s\n' % (reset_password_link)
+           mail_html_msg  = u'<b>点击此链接注册</b>:%s' % (reset_password_link)
 
            for mail_to in mail_to_list:
                send_mail(
@@ -186,8 +186,10 @@ def reset_password(request):
                    fail_silently=False,
                    html_message=mail_html_msg
                )
-           return shortcuts.redirect('/register/notification/')
+           return shortcuts.redirect('/register/new/')
        else:
            return shortcuts.render(request, 'horizon/reset_password.html', {'error_message': 'invalid-email-address'})
     else:
        return shortcuts.render(request, 'horizon/reset_password.html')
+def reset_password_new(request):
+    return shortcuts.render(request, 'horizon/reset_password_confirm.html')
