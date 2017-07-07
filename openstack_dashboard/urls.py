@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^register/verification/(?P<code>\w+)', views.register_verification),
     url(r'^register/verification/', views.register_verification),
     url(r'^register/', views.register),
+    url(r'^reset_password/', views.reset_password),
     url(r'^api/', include(rest.urls)),
     url(r'', include(horizon.urls)),
 ]
