@@ -53,11 +53,9 @@ class SendHtmlEmail(threading.Thread):
         msg.content_subtype = "html"
         msg.send(self.fail_silently)
 
-    def stop(self):
-        self.stopped = True
-
-    def isStopped(self):
-        return self.stopped
+    def __del__(self):
+        self._server.quit()
+        self._server.close()
 
 def send_email_by_template(subject, module, data, mail_from, to_list):
     '''
