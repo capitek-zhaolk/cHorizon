@@ -7,6 +7,7 @@ import string
 import random
 
 from django.core.mail import send_mail
+import time
 
 # add Codes
 from django.core.mail import EmailMultiAlternatives
@@ -48,11 +49,15 @@ class SendHtmlEmail(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
-        #for mail_to in self.mail_to_list:
-        html_content = loader.render_to_string(email_template_name_html, context)
         msg = EmailMessage(self.mail_subject, self.html_content, self.mail_from, self.to_list)
         msg.content_subtype = "html"
         msg.send(self.fail_silently)
+
+    def stop(self):
+        self.stopped = True
+
+    def isStopped(self):
+        return self.stopped
 
 def send_email_by_template(subject, module, data, mail_from, to_list):
     '''
@@ -65,6 +70,10 @@ def send_email_by_template(subject, module, data, mail_from, to_list):
     send_from = mail_from
     send_email = SendHtmlEmail(subject, html_content, send_from, to_list)
     send_email.start()
+
+    time.sleep(5)
+    thread.stop()
+    thread.join()
 
 
 
