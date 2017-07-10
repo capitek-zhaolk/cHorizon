@@ -26,8 +26,6 @@ import logging
 import string
 import random
 
-from django.core.mail import send_mail
-
 from django.conf import settings
 from django.utils.functional import cached_property  # noqa
 from django.utils.translation import ugettext_lazy as _
@@ -52,13 +50,12 @@ from openstack_dashboard.api import keystone
 from openstack_dashboard.api import network_base
 from openstack_dashboard.contrib.developer.profiler import api as profiler
 
+from utils.sendmail import send_email_on_server_create
+from utils.sendmail import send_email_on_server_delete
+
 LOG = logging.getLogger(__name__)
 
 CLOUD_NAME = getattr(settings, 'CLOUD_NAME', None)
-
-EMAIL_HOST_USER = getattr(settings, 'EMAIL_HOST_USER', None)
-
-CLOUD_ADMINISTRATOR_EMAIL = getattr(settings, 'CLOUD_ADMINISTRATOR_EMAIL', None)
 
 # Supported compute versions
 VERSIONS = base.APIVersionManager("compute", preferred_version=2)
@@ -756,12 +753,8 @@ def server_create(request, name, image, flavor, key_name, user_data,
             LOG.info("instance: flavor get failure")
 
         # send mail
-        mail_from = EMAIL_HOST_USER
-        mail_to_list = {user.email,} | CLOUD_ADMINISTRATOR_EMAIL
-
+        mail_to = user.email
         mail_subject = '%s: New Server "%s" Created' % (CLOUD_NAME, request.DATA['name'])
-        mail_plain_msg = 'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nOS:\t%s\nIP Address:\t(DHCP)\n' % (request.__dict__['user'], request.DATA['name'],
-                         flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, new.image_name)
         mail_html_msg = ''' 
             <table border="1" cellspacing="0">
                 <tr><td width="150">User:</td><td width="150">%s</td></tr>
@@ -777,15 +770,8 @@ def server_create(request, name, image, flavor, key_name, user_data,
             </table>
         ''' % (request.__dict__['user'], request.DATA['name'], flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, new.image_name, defpass)
 
-        for mail_to in mail_to_list:
-            send_mail(
-                mail_subject,
-                mail_plain_msg,
-                mail_from,
-                [mail_to],
-                fail_silently=False,
-                html_message=mail_html_msg
-            )
+        send_email_on_server_create(mail_to, mail_subject, mail_html_msg)
+
     except Exception as e:
         LOG.info("Failure sending mail: %s" % (e.message))
     except:
@@ -831,12 +817,8 @@ def server_delete(request, instance_id):
             LOG.info("instance: user get failure")
 
         # send mail
-        mail_from = EMAIL_HOST_USER
-        mail_to_list = {user.email,} | CLOUD_ADMINISTRATOR_EMAIL
-
+        mail_to = user.email
         mail_subject = '%s: Server "%s" Deleted' % (CLOUD_NAME, instance.name)
-        mail_plain_msg = 'User:\t%s\nServer Name:\t%s\nVCPU:\t%s Core%s\nMemory:\t%sMB\nDisk:\t%sGB\nIP Address:%s\n' % (request.__dict__['user'], instance.name,
-                         flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, ips)
         mail_html_msg = ''' 
             <table border="1" cellspacing="0">
                 <tr><td width="150">User:</td><td width="150">%s</td></tr>
@@ -847,15 +829,8 @@ def server_delete(request, instance_id):
                 <tr><td>IP Address:</td><td>%s</td></tr>
             </table> ''' % (request.__dict__['user'], instance.name, flavor.vcpus, " " if flavor.vcpus==1 else "s", flavor.ram, flavor.disk, ips)
 
-        for mail_to in mail_to_list:
-            send_mail(
-                mail_subject,
-                mail_plain_msg,
-                mail_from,
-                [mail_to],
-                fail_silently=False,
-                html_message=mail_html_msg
-            )
+        send_email_on_server_delete(mail_to, mail_subject, mail_html_msg)
+
     except Exception as e:
         LOG.info("Failure sending mail: %s" % (e.message))
     except:

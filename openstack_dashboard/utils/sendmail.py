@@ -61,6 +61,8 @@ def send_email_by_html():
 
 
 def send_email_on_user_register_request(register_email):
+    LOG.info("Send email on user register request")
+
     register_code = base64.b16encode(zlib.compress(register_email))
     register_link = "http://" + HORIZON_HOST + "/register/verification/" + register_code.lower()
 
@@ -72,9 +74,25 @@ def send_email_on_user_register_request(register_email):
     sending.start()
 
 def send_email_on_user_register_result(register_email):
+    LOG.info("Send email on user register result")
+
     mail_to = register_email
     mail_subject = '%s: Welcome to Cloud Platform' % (CLOUD_NAME)
     mail_html_msg  = u'<b>用户注册完成</b>'
 
     sending = SendHtmlEmail(mail_subject, mail_to, mail_html_msg)
     sending.start()
+
+
+def send_email_on_server_create(mail_to, mail_subject, mail_html_msg):
+    LOG.info("Send email on user server create")
+
+    sending = SendHtmlEmail(mail_subject, mail_to, mail_html_msg)
+    sending.start()
+
+def send_email_on_server_delete(mail_to, mail_subject, mail_html_msg):
+    LOG.info("Send email on user server delete")
+
+    sending = SendHtmlEmail(mail_subject, mail_to, mail_html_msg)
+    sending.start()
+
