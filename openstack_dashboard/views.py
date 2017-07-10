@@ -18,7 +18,6 @@ import logging
 import zlib
 import base64
 
-from django.core.mail import send_mail
 from django.conf import settings
 from django import shortcuts
 import django.views.decorators.vary
@@ -28,19 +27,15 @@ from horizon import base
 from horizon import exceptions
 from horizon import notifications
 
+from utils.sendmail import send_email_on_user_register_request
+from utils.sendmail import send_email_on_user_register_result
+
 LOG = logging.getLogger(__name__)
-
-CLOUD_NAME = getattr(settings, 'CLOUD_NAME', None)
-
-HORIZON_HOST = getattr(settings, 'HORIZON_HOST', None)
 
 MESSAGES_PATH = getattr(settings, 'MESSAGES_PATH', None)
 
-EMAIL_HOST_USER = getattr(settings, 'EMAIL_HOST_USER', None)
-
 AUTHORIZATION_EMAIL_DOMAIN = getattr(settings, 'AUTHORIZATION_EMAIL_DOMAIN', None)
 
-CLOUD_ADMINISTRATOR_EMAIL = getattr(settings, 'CLOUD_ADMINISTRATOR_EMAIL', None)
 
 def get_user_home(user):
     try:
@@ -59,45 +54,26 @@ def get_user_home(user):
     return dashboard.get_absolute_url()
 
 def index(request):
-    return shortcuts.render(request, 'horizon/index.html')
+    return shortcuts.render(request, 'index.html')
 
 def register(request):
     if request.method == 'POST':
        register_email = request.POST.get('register-email')
-
        register_name = register_email.split('@')[0]
        register_domain = register_email.split('@')[1]
 
        LOG.info("Register: %s, %s, %s" % (register_email, register_name, register_domain))
 
        if register_domain in AUTHORIZATION_EMAIL_DOMAIN.keys():
-           register_code = base64.b16encode(zlib.compress(register_email))
-           register_link = "http://" + HORIZON_HOST + "/register/verification/" + register_code.lower()
-
-           mail_from = EMAIL_HOST_USER
-           mail_to_list = {register_email,} | CLOUD_ADMINISTRATOR_EMAIL
-
-           mail_subject = '%s: Welcome to Cloud Platform' % (CLOUD_NAME)
-           mail_plain_msg = 'Registration Link:\n\t%s\n' % (register_link)
-           mail_html_msg  = u'<b>点击此链接注册</b>:%s' % (register_link)
-
-           for mail_to in mail_to_list:
-               send_mail(
-                   mail_subject,
-                   mail_plain_msg,
-                   mail_from,
-                   [mail_to],
-                   fail_silently=False,
-                   html_message=mail_html_msg
-               )
+           send_email_on_user_register_request(register_email)
            return shortcuts.redirect('/register/notification/')
        else:
-           return shortcuts.render(request, 'horizon/register.html', {'error_message': 'invalid-email-address'})
+           return shortcuts.render(request, 'user/register/register.html', {'error_message': 'invalid-email-address'})
     else:
-       return shortcuts.render(request, 'horizon/register.html')
+       return shortcuts.render(request, 'user/register/register.html')
 
 def register_notification(request):
-    return shortcuts.render(request, 'horizon/register_msg.html')
+    return shortcuts.render(request, 'user/register/register_msg.html')
 
 def register_verification(request, code='0'):
     if request.method == 'GET':
@@ -108,16 +84,16 @@ def register_verification(request, code='0'):
             LOG.info("Email: %s", register_email)
         except:
             LOG.info("Email: decompress/decode failure")
-            return shortcuts.render(request, 'horizon/register_verify.html', {'error_message': 'invalid-verification-code'})
+            return shortcuts.render(request, 'user/register/register_verify.html', {'error_message': 'invalid-verification-code'})
 
         if (register_email):
             register_name = register_email.split('@')[0]
             register_domain = register_email.split('@')[1]
             register_projectprefix = AUTHORIZATION_EMAIL_DOMAIN[register_domain]
 
-            return shortcuts.render(request, 'horizon/register_verify.html', {'register_name':register_name, 'register_email':register_email})
+            return shortcuts.render(request, 'user/register/register_verify.html', {'register_name':register_name, 'register_email':register_email})
         else:
-            return shortcuts.render(request, 'horizon/register_verify.html', {'error_message': 'invalid-verification-code'})
+            return shortcuts.render(request, 'user/register/register_verify.html', {'error_message': 'invalid-verification-code'})
         pass
 
     if request.method == 'POST':
@@ -135,7 +111,9 @@ def register_verification(request, code='0'):
         LOG.info("Result: %d" % (nret))
         # TODO: CALL API
 
-        return shortcuts.render(request, 'horizon/register_result.html', {'register_name':register_name})
+        send_email_on_user_register_result(register_email)
+
+        return shortcuts.render(request, 'user/register/register_result.html', {'register_name':register_name})
         pass
 
     return shortcuts.redirect('/register/')
